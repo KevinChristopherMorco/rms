@@ -11,6 +11,8 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    @vite('resources/css/app.css')
+
     <style>
         @font-face {
             font-family: Mona Sans;
@@ -68,9 +70,6 @@
         nav {
             width: 100%;
             height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         nav li,
@@ -79,11 +78,10 @@
 
         }
 
-        .list-item-container1 {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+        .hamburger-icon {
+            display: none;
         }
+
 
         .list-item-container1 img {
             margin-right: 40px;
@@ -102,16 +100,12 @@
 
         }
 
-        .list-item-container2 {
-            display: flex;
-            align-items: center;
-        }
 
-        .list-item-container2 a:nth-of-type(1) {
+        .list-item-container2 li .btn-login {
             margin-right: 35px;
         }
 
-        .list-item-container2 a:nth-of-type(2) {
+        .list-item-container2 .btn-register {
             margin-right: 15px;
             border: .5px solid white;
             padding: 5px 5px;
@@ -131,6 +125,8 @@ Welcome.blade.php
             margin-top: -80px;
         }
 
+
+
         .start-up div:nth-of-type(1):not(.input-container) {
             padding-top: 250px;
             padding-left: 75px;
@@ -139,14 +135,14 @@ Welcome.blade.php
         .start-up h1 {
             color: white;
             font-size: 40px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
 
         }
 
         .start-up h4 {
             color: gray;
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
 
         }
 
@@ -174,7 +170,6 @@ Welcome.blade.php
         }
 
         .input-container {
-            display: flex;
             width: 50%;
         }
 
@@ -194,19 +189,21 @@ Welcome.blade.php
             box-shadow: 1px 1px #5B78D6;
         }
 
+
         .start-up div:nth-of-type(2) {
-            display: flex;
             color: #fff;
-            align-items: center;
             padding-top: 125px;
             padding-left: 75px;
         }
 
         .start-up div:nth-of-type(3) {
-            display: flex;
             color: #fff;
-            align-items: center;
-            justify-content: center;
+            margin-top: 50px;
+
+        }
+
+        .start-up div:nth-of-type(3) {
+            color: #fff;
             margin-top: 50px;
 
         }
@@ -215,9 +212,125 @@ Welcome.blade.php
             margin-right: 100px;
         }
 
+        .login-page {
+            background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, 1)),
+                url('/pictures/startup.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            margin-top: -80px;
+        }
+
+        .register-page {
+            background-image: url('/gifs/space.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 100vh;
+            margin-top: -80px;
+        }
+
+        .register-container{
+            padding-top: 150px;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .register-input-container{
+            width: 60vw;
+            height: 70vh;
+            border-radius: 10px;
+            background: linear-gradient(rgba(91, 120, 214, .5), rgba(91, 120, 214, .5));
+        }
+
+        .register-input-container input[type="text"], .register-input-container input[type="email"], .register-input-container input[type="password"] {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 10px;
+            width: 25vw;
+        }
+
+        .register-input-container label,
+        .register-input-container p {
+            color: white;
+        }
+
+        .login-container{
+            padding-top: 150px;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .login-input-container {
+            background: linear-gradient(rgba(91, 120, 214, .5), rgba(91, 120, 214, .5));
+            padding: 100px;
+            width: 50vw;
+            height: 50vh;
+            border-radius: 10px;
+        }
+
+        .login-input-container input[type="submit"] {
+            background-color: #5B78D6;
+            color: white;
+            padding: 5px;
+            width: 5vw;
+            cursor: pointer;
+        }
+
+        .login-input-container input[type="submit"]:hover {
+            box-shadow: 1px 1px #5B78D6;
+        }
+
+        .login-input-container label,
+        .login-input-container p {
+            color: white;
+        }
+
+        .login-input-container a {
+            color: #CFBBCC;
+        }
+
+        .login-input-container input[type="email"],
+        .login-input-container input[type="password"] {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 10px;
+            width: 40vw;
+
+        }
+
+        .login-input-container input[type="email"]:focus,
+        .login-input-container input[type="password"]:focus {
+            outline: 2px solid #5B78D6;
+
+        }
 
 
         @media only screen and (max-width: 600px) {
+            .navbar ul {
+                display: none;
+            }
+
+            .logo {
+                margin-left: 10px;
+            }
+
+            .hamburger-icon {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            .list-item-container1 {
+                width: 100%;
+            }
+
+            .list-item-container1 img {
+                margin-right: 0;
+            }
+
             .start-up div:nth-of-type(1):not(.input-container) {
                 padding-left: 5px;
                 width: 100vw;
@@ -235,7 +348,6 @@ Welcome.blade.php
             }
 
             .input-container {
-                display: flex;
                 width: 100vw;
                 padding-left: 5px;
 
@@ -252,24 +364,19 @@ Welcome.blade.php
             .start-up div:nth-of-type(2) {
                 padding-top: 150px;
                 padding-left: 5px;
-                text-align: center;
             }
 
             .start-up div:nth-of-type(3) {
-                display: block;
-                text-align: center;
-                margin-top: 10px;
-
-
+                margin-top: 5px;
             }
 
             .start-up div:nth-of-type(3) img {
-                margin-top: 20px;
+                margin-top: 50px;
                 margin-left: 20px;
                 margin-right: 0;
-                width: 130px;
-                height: 100px;
+
             }
+
 
         }
     </style>
@@ -277,10 +384,13 @@ Welcome.blade.php
 
 <body>
     <header>
-        <nav>
-            <div class="list-item-container1">
-                <img src="/pictures/book-logo.png" width="75" height="75" alt="RMS">
-                <ul>
+        <nav class="navbar flex justify-between items-center">
+            <div class="list-item-container1 flex justify-between items-center md:justify-around">
+                <img class="logo sm:justify-center" src="/pictures/book-logo.png" width="75" height="75" alt="RMS">
+                <a href="javascript:void(0);" class="hamburger-icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <ul class="nav-items">
                     <li><a href="/">Browse Books</a></li>
                     <li><a href="/about">Events and Programs</a></li>
                     <li><a href="/services">Policies and Guidelines</a></li>
@@ -288,8 +398,14 @@ Welcome.blade.php
                 </ul>
             </div>
             <div class="list-item-container2">
-                <a href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
-                <a href="{{ route('register') }}"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                <ul class="nav-items flex">
+                    <li>
+                        <a class="btn-login" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+                    </li>
+                    <li>
+                        <a class="btn-register" href="{{ route('register') }}"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
