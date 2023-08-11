@@ -213,8 +213,8 @@ Welcome.blade.php
         }
 
         .login-page {
-            background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, 1)),
-                url('/pictures/startup.jpg');
+            background-image: url('/pictures/wave.jpg');
+
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -224,7 +224,7 @@ Welcome.blade.php
         }
 
         .register-page {
-            background-image: url('/gifs/space.gif');
+            background-image: url('/pictures/wave.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -232,6 +232,8 @@ Welcome.blade.php
             height: 100vh;
             margin-top: -80px;
         }
+
+        /*
 
         .register-container{
             padding-top: 150px;
@@ -258,21 +260,114 @@ Welcome.blade.php
             color: white;
         }
 
-        .login-container{
+        */
+
+        .register-container {
+            padding-top: 150px;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .register-input-container {
+            width: 70vw;
+            height: 70vh;
+            border-radius: 10px;
+            background: white;
+            box-shadow: .2px .5px #5B78D6;
+        }
+
+        .register-breadcrumb-container {
+            margin-bottom: 20px;
+        }
+
+        .register-breadcrumb-item li {
+            padding: 15px;
+            width: 100%;
+            background: #ECF1FE;
+            color: #BEC8E9;
+        }
+
+        .register-breadcrumb-item li div {
+            border-radius: 50%;
+            background-color: #C1CBEA;
+            color: #D9F0FE;
+            height: 20px;
+            width: 20px;
+            font-size: 15px;
+        }
+
+
+        .register-breadcrumb-item li.active {
+            padding: 15px;
+            border-radius: 0 20px 20px 0;
+            background: linear-gradient(90deg, rgba(162, 223, 254, 1) 0%, rgba(127, 203, 252, 1) 49%, rgba(107, 153, 251, 1) 82%);
+            width: 100%;
+            color: white;
+        }
+
+        .register-breadcrumb-item li.active div {
+            border-radius: 50%;
+            background-color: white;
+            color: #BCD0F9;
+            height: 20px;
+            width: 20px;
+            font-size: 15px;
+
+        }
+
+        .register-input-container input[type="text"],
+        .register-input-container select,
+        .register-input-container input[type="email"],
+        .register-input-container input[type="date"],
+        .register-input-container input[type="password"] {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 3px;
+            border-radius: 5px;
+            width: 90%;
+            border: 1px solid #6BACFB;
+        }
+
+        .register-input-container input[type="text"]:focus,
+        .register-input-container select:focus,
+        .register-input-container input[type="email"]:focus,
+        .register-input-container input[type="date"]:focus,
+        .register-input-container input[type="password"]:focus {
+            border: 2px solid #5B78D6;
+            outline: none;
+        }
+
+        .register-input-container select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .register-input-container .personal-information {
+            padding: 10px;
+        }
+
+        .register-button a {
+            color: #5B78D6;
+        }
+
+        .login-container {
             padding-top: 150px;
             width: 100vw;
             height: 100vh;
         }
 
         .login-input-container {
-            background: linear-gradient(rgba(91, 120, 214, .5), rgba(91, 120, 214, .5));
+            background: white;
             padding: 100px;
             width: 50vw;
             height: 50vh;
             border-radius: 10px;
+            box-shadow: .2px .5px #5B78D6;
+
         }
 
-        .login-input-container input[type="submit"] {
+        .login-input-container input[type="submit"],
+        .register-input-container button {
             background-color: #5B78D6;
             color: white;
             padding: 5px;
@@ -286,11 +381,11 @@ Welcome.blade.php
 
         .login-input-container label,
         .login-input-container p {
-            color: white;
+            color: black;
         }
 
         .login-input-container a {
-            color: #CFBBCC;
+            color: #5B78D6;
         }
 
         .login-input-container input[type="email"],
@@ -299,12 +394,14 @@ Welcome.blade.php
             padding: 5px;
             border-radius: 10px;
             width: 40vw;
+            border: 1px solid #5B78D6;
+            outline: none;
 
         }
 
         .login-input-container input[type="email"]:focus,
         .login-input-container input[type="password"]:focus {
-            outline: 2px solid #5B78D6;
+            border: 2px solid #6BACFB;
 
         }
 
