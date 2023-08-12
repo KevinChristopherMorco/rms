@@ -11,6 +11,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    @viteReactRefresh
     @vite('resources/css/app.css')
 
     <style>
@@ -214,13 +215,11 @@ Welcome.blade.php
 
         .login-page {
             background-image: url('/pictures/wave.jpg');
-
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             width: 100%;
             height: 100vh;
-            margin-top: -80px;
         }
 
         .register-page {
@@ -230,7 +229,6 @@ Welcome.blade.php
             background-position: center;
             width: 100%;
             height: 100vh;
-            margin-top: -80px;
         }
 
         /*
@@ -261,9 +259,13 @@ Welcome.blade.php
         }
 
         */
+        .home-icon {
+            color: white;
+            cursor: pointer;
+        }
 
         .register-container {
-            padding-top: 150px;
+            padding-top: 100px;
             width: 100vw;
             height: 100vh;
         }
@@ -315,11 +317,9 @@ Welcome.blade.php
 
         }
 
-        .register-input-container input[type="text"],
+    
         .register-input-container select,
-        .register-input-container input[type="email"],
-        .register-input-container input[type="date"],
-        .register-input-container input[type="password"] {
+        .register-input-container input:not(input[type=radio]) {
             margin-top: 10px;
             margin-bottom: 20px;
             padding: 3px;
@@ -328,11 +328,9 @@ Welcome.blade.php
             border: 1px solid #6BACFB;
         }
 
-        .register-input-container input[type="text"]:focus,
+       
         .register-input-container select:focus,
-        .register-input-container input[type="email"]:focus,
-        .register-input-container input[type="date"]:focus,
-        .register-input-container input[type="password"]:focus {
+        .register-input-container input:focus {
             border: 2px solid #5B78D6;
             outline: none;
         }
@@ -342,7 +340,7 @@ Welcome.blade.php
             -moz-appearance: none;
         }
 
-        .register-input-container .personal-information {
+        .register-input-container .user-registration {
             padding: 10px;
         }
 
@@ -351,9 +349,13 @@ Welcome.blade.php
         }
 
         .login-container {
-            padding-top: 150px;
+            padding-top: 100px;
             width: 100vw;
             height: 100vh;
+        }
+
+        .tab{
+            display: none;
         }
 
         .login-input-container {
@@ -480,6 +482,8 @@ Welcome.blade.php
 </head>
 
 <body>
+    @if (!Route::is('register', 'login'))
+
     <header>
         <nav class="navbar flex justify-between items-center">
             <div class="list-item-container1 flex justify-between items-center md:justify-around">
@@ -506,9 +510,11 @@ Welcome.blade.php
             </div>
         </nav>
     </header>
+    @endif
     <main>
         @yield('content')
     </main>
+    
 </body>
 
 </html>

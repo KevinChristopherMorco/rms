@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
+@section ('title', 'Sign In')
+
 @section('content')
 <section class="login-page">
-
+    <div class="home-icon flex justify-start items-center p-2">
+       <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
+    </div>
     <div class="login-container flex justify-center">
         <div class="login-input-container flex justify-center items-center">
             <div class="col-md-8">
@@ -29,14 +33,13 @@
                                 <div class="flex justify-between items-center">
                                     <label for="password" class="">{{ __('Password') }}</label>
                                     @if (Route::has('password.request'))
-                                    <a class="btn btn-link text-xs" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link text-xs font-bold" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 </div>
                                 @endif
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -59,7 +62,7 @@
 
                             <div class="flex justify-between items-center">
                                 <div class="flex justify-end items-center">
-                                    <p class="text-xs">Don't have an account?</p><a class="text-xs mx-1" href="/register">Sign Up</a>
+                                    <p class="text-xs">Don't have an account?</p><a class="text-xs font-bold mx-1" href="/register">Sign Up</a>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="{{ __('Login') }}">
                             </div>
