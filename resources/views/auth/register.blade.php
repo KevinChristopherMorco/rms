@@ -93,9 +93,7 @@
 
                                         <div class="col-span-1">
                                             <label for="gender">{{__('Gender') }}</label>
-                                            <input type="text" name="gender" id="gender">
 
-                                            <!--
                                             <select class="" name="gender" id="gender" required>
                                                 <option value="" selected>Please select your gender</option>
                                                 <option value="Male">Male</option>
@@ -105,7 +103,6 @@
                                                 <option value="Transgender">Transgender</option>
                                                 <option value="Transwoman">Transwoman</option>
                                             </select>
--->
                                             @error('date')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -162,13 +159,11 @@
                                 <div class="tab member-identification">
                                     <div class="grid grid-cols-2">
                                         <div class="col-span-1">
-                                            <div class="flex items-center"><!--
+                                            <div class="flex items-center">
                                                 <input type="radio" name="member" value="Faculty" id="faculty"> Faculty
                                                 <input type="radio" name="member" value="Stiudent" id="student"> Student
                                             
--->
-                                                <label for="member">Type</label>
-                                                <input type="text" name="member" id="member">
+                                    
                                             </div>
 
                                         </div>

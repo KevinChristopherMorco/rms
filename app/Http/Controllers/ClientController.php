@@ -1,42 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request; // Add this line for the correct import
 
-class RegisterController extends Controller
+class ClientController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+    public function index(){
+        return view('welcome');
+    }
+    public function login(){
+        return view('login');
+    }
 
-    use RegistersUsers;
+    public function register(){
+        return view('register');
+    }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function test(){
+        return view('auth.test');
+    }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -66,7 +52,7 @@ class RegisterController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            User::create([
+            Client::create([
                 'first_name' => $request['first_name'],
                 'middle_name' => $request['middle_name'],
                 'last_name' => $request['last_name'],
@@ -79,11 +65,10 @@ class RegisterController extends Controller
                 'city_municipality' => $request['city_municipality'],
                 'province' => $request['province'],
                 'member' => $request['member'],
-                'password' => $request['password'],            ]);
+                'password' => $request['password'],
+            ]);
 
             return redirect()->route('register')->with('success', 'Form submitted successfully!');
         }
     }
 }
-
-       
