@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request; // Add this line for the correct import
 
 class RegisterController extends Controller
 {
@@ -41,61 +42,48 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function create(Request $request)
     {
-        /*
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        */
+        if ($request->isMethod('post')) {
+            // Handle form submission
+            $validator = Validator::make($request->all(), [
+                'first_name' => 'required',
+                'middle_name' => 'required',
+                'last_name' => 'required',
+                'birthdate' => 'required',
+                'gender' => 'required',
+                'card_number' => 'required',
+                'email' => 'required|email',
+                'house_no' => 'required',
+                'barangay' => 'required',
+                'city_municipality' => 'required',
+                'province' => 'required',
+                'member' => 'required',
+                'password' => 'required|min:8', // Adjust the minimum length as needed
+            ]);
 
-        return Validator::make($data, [
-            'name' => [ 'string', 'max:255'],
-            'email' => [ 'string', 'max:255', 'unique:users'],
-            'password' => ['string', 'min:8', 'confirmed'],
-        ]);
-    }
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'first-name' => $data['first-name'],
-            'middle-name' => $data['middle-name'],
-            'last-name' => $data['last-name'],
-            'birthdate' => $data['birthdate'],
-            'gender' => $data['gender'],
-            'card-number' => $data['card-number'],
-            'email' => $data['email'],
-            'house-no' => $data['house-no'],
-            'barangay' => $data['barangay'],
-            'city-municipality' => $data['house-no'],
-            'province' => $data['barangay'],
-            'member' => $data['house-no'],
-            'password' => $data['barangay'],
-        ]);
+            User::create([
+                'first_name' => $request['first_name'],
+                'middle_name' => $request['middle_name'],
+                'last_name' => $request['last_name'],
+                'birthdate' => $request['birthdate'],
+                'gender' => $request['gender'],
+                'card_number' => $request['card_number'],
+                'email' => $request['email'],
+                'house_no' => $request['house_no'],
+                'barangay' => $request['barangay'],
+                'city_municipality' => $request['city_municipality'],
+                'province' => $request['province'],
+                'member' => $request['member'],
+                'password' => $request['password'],            ]);
 
-        /*
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        */
+            return redirect()->route('register.create')->with('success', 'Form submitted successfully!');
+        }
     }
 }
+
+       

@@ -27,16 +27,16 @@ class User extends Authenticatable
     */
 
     protected $fillable = [
-        'first-name',
-        'middle-name',
-        'last-name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'birthdate',
         'gender',
-        'card-number',
+        'card_number',
         'email',
-        'house-no',
+        'house_no',
         'barangay',
-        'city-municipality',
+        'city_municipality',
         'province',
         'member',
         'password',

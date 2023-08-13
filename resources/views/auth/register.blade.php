@@ -32,15 +32,15 @@
                             </ul>
                         </div>
                         <div class="user-registration">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register.create') }}">
                                 <div class="tab user-information">
                                     <div class="grid grid-cols-1 md:grid-cols-3">
                                         @csrf
                                         <div class="col-span-1">
-                                            <label for="first-name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
+                                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 
                                             <div class="text-center">
-                                                <input id="first-name" type="text" class="form-control @error('name') is-invalid @enderror" name="first-name" value="{{ old('first-name') }}" placeholder="Enter your first name" required autocomplete="name" autofocus>
+                                                <input id="first_name" type="text" class="form-control @error('name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" placeholder="Enter your first name" required autocomplete="name" autofocus>
 
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -51,10 +51,10 @@
                                         </div>
 
                                         <div class="col-span-1">
-                                            <label for="middle-name" class="col-md-4 col-form-label text-md-end">{{ __('Middle Name') }}</label>
+                                            <label for="middle_name" class="col-md-4 col-form-label text-md-end">{{ __('Middle Name') }}</label>
 
                                             <div class="text-center">
-                                                <input id="middle-name" type="text" class="form-control @error('name') is-invalid @enderror" name="middle-name" value="{{ old('middle-name') }}" placeholder="Enter your middle name" required autocomplete="name" autofocus>
+                                                <input id="middle_name" type="text" class="form-control @error('name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" placeholder="Enter your middle name" required autocomplete="name" autofocus>
 
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -65,9 +65,9 @@
                                         </div>
 
                                         <div class="col-span-1">
-                                            <label for="last-name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+                                            <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
                                             <div class="">
-                                                <input id="last-name" type="text" class="form-control @error('last-name') is-invalid @enderror" name="last-name" value="{{ old('last-name') }}" placeholder="Enter your last name" required autocomplete="name" autofocus>
+                                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" placeholder="Enter your last name" required autocomplete="name" autofocus>
 
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -93,6 +93,9 @@
 
                                         <div class="col-span-1">
                                             <label for="gender">{{__('Gender') }}</label>
+                                            <input type="text" name="gender" id="gender">
+
+                                            <!--
                                             <select class="" name="gender" id="gender" required>
                                                 <option value="" selected>Please select your gender</option>
                                                 <option value="Male">Male</option>
@@ -102,6 +105,7 @@
                                                 <option value="Transgender">Transgender</option>
                                                 <option value="Transwoman">Transwoman</option>
                                             </select>
+-->
                                             @error('date')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -114,9 +118,9 @@
                                 <div class="tab user-identification ">
                                     <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="col-span-1">
-                                            <label for="card-number">{{__('Library Card Number')}}</label>
+                                            <label for="card_number">{{__('Library Card Number')}}</label>
                                             <div>
-                                                <input type="number" name="card-number" id="card-number">
+                                                <input type="number" name="card_number" id="card_number">
                                             </div>
                                         </div>
                                         <div class="col-span-1">
@@ -128,9 +132,9 @@
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-4">
                                         <div class="col-span-1">
-                                            <label for="house-no">{{__('House No.')}}</label>
+                                            <label for="house_no">{{__('House No.')}}</label>
                                             <div>
-                                                <input type="text" name="house-no" id="house-no">
+                                                <input type="text" name="house_no" id="house_no">
                                             </div>
                                         </div>
                                         <div class="col-span-1">
@@ -140,9 +144,9 @@
                                             </div>
                                         </div>
                                         <div class="col-span-1">
-                                            <label for="city-municipality">{{__('City/Municipality')}}</label>
+                                            <label for="city_municipality">{{__('City/Municipality')}}</label>
                                             <div>
-                                                <input type="text" name="city-municipality" id="city-municipality">
+                                                <input type="text" name="city_municipality" id="city_municipality">
                                             </div>
                                         </div>
 
@@ -158,9 +162,13 @@
                                 <div class="tab member-identification">
                                     <div class="grid grid-cols-2">
                                         <div class="col-span-1">
-                                            <div class="flex items-center">
+                                            <div class="flex items-center"><!--
                                                 <input type="radio" name="member" value="Faculty" id="faculty"> Faculty
                                                 <input type="radio" name="member" value="Stiudent" id="student"> Student
+                                            
+-->
+                                                <label for="member">Type</label>
+                                                <input type="text" name="member" id="member">
                                             </div>
 
                                         </div>
@@ -213,8 +221,10 @@
 
 
                                 </div>
-                                <input type="submit" value="Create">
+                                <button type="submit">
+                                    {{ __('Register') }}
 
+                                </button>
                             </form>
                         </div>
                     </div>
