@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,13 +17,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 //Route::any will be changed accordingly
-Route::get('/', [ClientController::class, 'index'])->name('welcome');
+Route::get('/', [UserController::class, 'index'])->name('welcome');
 
 
-Route::get('/register', [ClientController::class, 'register'])->name('register');
-Route::any('/registers', [ClientController::class, 'create'])->name('register.create');
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::any('/create', [RegisterController::class, 'create'])->name('register.create');
 
-Route::get('/login', [ClientController::class, 'login'])->name('login');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login/process', [LoginController::class, 'process'])->name('login.process');
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->name('resetPassword');
 Auth::routes();
-
-Route::get('/home', [ClientController::class, 'index'])->name('home');

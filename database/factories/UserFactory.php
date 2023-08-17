@@ -18,19 +18,19 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => $this->faker->firstName,
-            'middle_name' => $this->faker->lastName,
-            'last_name' => $this->faker->lastName,
-            'birthdate' => $this->faker->date,
-            'gender' => $this->faker->randomElement(['Male', 'Female']),
-            'card_number' => $this->faker->creditCardNumber,
-            'email' => $this->faker->unique()->safeEmail,
-            'house_no' => $this->faker->buildingNumber,
-            'barangay' => $this->faker->word,
-            'city_municipality' => $this->faker->city,
-            'province' => $this->faker->state,
-            'member' => $this->faker->boolean,
-            'password' => bcrypt('password'), // Default password for testing purposes
+            'first_name' => fake()->firstName(),
+            'middle_name' => fake()->lastName(),
+            'last_name' => fake()->lastName(),
+            'birthdate' => fake()->date(),
+            'gender' => fake()->randomElement(['Male', 'Female']),
+            'card_number' => fake()->creditCardNumber(),
+            'email' => fake()->safeEmail(),
+            'house_no' => fake()->buildingNumber(),
+            'barangay' => fake()->streetAddress(),
+            'city_municipality' => fake()->city(),
+            'province' => fake()->citySuffix(),
+            'user_type' => fake()->randomElement(['Student', 'Faculty']),
+            'password' => bcrypt(fake()->phoneNumber())
         ];
     }
 

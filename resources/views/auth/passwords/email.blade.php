@@ -1,47 +1,51 @@
 @extends('layouts.app')
+@section('title', 'Password Reset')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<section class="login-page">
+<div class="home-icon flex justify-start items-center p-2">
+        <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
+    </div>
+    <div class="login-container flex justify-center">
+        <div class="login-input-container flex justify-center items-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header font-bold text-lg">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
+                    <div class="card-body">
+                        @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                        @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your email address" autofocus>
 
-                                @error('email')
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="flex justify-end mb-0">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Reset') }}
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection

@@ -17,7 +17,7 @@
                         <p class="text-center font-200 text-base mb-8">{{ __('Introduce your self') }}</p>
 
                         <div class="register-breadcrumb-container">
-                            <ul class="register-breadcrumb-item flex justify-around items-center">
+                            <ul class="register-breadcrumb-item md:flex md:justify-around md:items-center">
                                 <li class="step flex text-center items-center">
                                     <div class="reg-number mr-4">1. </div> Personal Information
                                 </li>
@@ -33,9 +33,10 @@
                         </div>
                         <div class="user-registration">
                             <form method="POST" action="{{ route('register.create') }}">
+                                @csrf
+
                                 <div class="tab user-information">
                                     <div class="grid grid-cols-1 md:grid-cols-3">
-                                        @csrf
                                         <div class="col-span-1">
                                             <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 
@@ -66,7 +67,7 @@
 
                                         <div class="col-span-1">
                                             <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
-                                            <div class="">
+                                            <div class="text-center">
                                                 <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" placeholder="Enter your last name" required autocomplete="name" autofocus>
 
                                                 @error('name')
@@ -93,21 +94,22 @@
 
                                         <div class="col-span-1">
                                             <label for="gender">{{__('Gender') }}</label>
-
-                                            <select class="" name="gender" id="gender" required>
-                                                <option value="" selected>Please select your gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Gay">Gay</option>
-                                                <option value="Lesbian">Lesbian</option>
-                                                <option value="Transgender">Transgender</option>
-                                                <option value="Transwoman">Transwoman</option>
-                                            </select>
-                                            @error('date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                            <div class="text-center">
+                                                <select class="" name="gender" id="gender" required>
+                                                    <option value="" selected>Please select your gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Gay">Gay</option>
+                                                    <option value="Lesbian">Lesbian</option>
+                                                    <option value="Transgender">Transgender</option>
+                                                    <option value="Transwoman">Transwoman</option>
+                                                </select>
+                                                @error('date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -116,41 +118,41 @@
                                     <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="col-span-1">
                                             <label for="card_number">{{__('Library Card Number')}}</label>
-                                            <div>
-                                                <input type="number" name="card_number" id="card_number">
+                                            <div class="text-center">
+                                                <input type="number" name="card_number" id="card_number" placeholder="Enter your library card number">
                                             </div>
                                         </div>
                                         <div class="col-span-1">
                                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                                            <div>
-                                                <input type="text" name="email" id="email">
+                                            <div class="text-center">
+                                                <input type="text" name="email" id="email" placeholder="Enter your email">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-4">
                                         <div class="col-span-1">
                                             <label for="house_no">{{__('House No.')}}</label>
-                                            <div>
-                                                <input type="text" name="house_no" id="house_no">
+                                            <div class="text-center">
+                                                <input type="text" name="house_no" id="house_no" placeholder="Enter your House No./Street Address ">
                                             </div>
                                         </div>
                                         <div class="col-span-1">
                                             <label for="barangay">{{__('Barangay')}}</label>
-                                            <div>
-                                                <input type="text" name="barangay" id="barangay">
+                                            <div class="text-center">
+                                                <input type="text" name="barangay" id="barangay" placeholder="Enter your barangay">
                                             </div>
                                         </div>
                                         <div class="col-span-1">
                                             <label for="city_municipality">{{__('City/Municipality')}}</label>
-                                            <div>
-                                                <input type="text" name="city_municipality" id="city_municipality">
+                                            <div class="text-center">
+                                                <input type="text" name="city_municipality" id="city_municipality" placeholder="Enter your city/municipality">
                                             </div>
                                         </div>
 
                                         <div class="col-span-1">
                                             <label for="province">{{__('Province')}}</label>
-                                            <div>
-                                                <input type="text" name="province" id="province">
+                                            <div class="text-center">
+                                                <input type="text" name="province" id="province" placeholder="Enter your province">
                                             </div>
                                         </div>
                                     </div>
@@ -159,20 +161,28 @@
                                 <div class="tab member-identification">
                                     <div class="grid grid-cols-2">
                                         <div class="col-span-1">
-                                            <div class="flex items-center">
-                                                <input type="radio" name="member" value="Faculty" id="faculty"> Faculty
-                                                <input type="radio" name="member" value="Stiudent" id="student"> Student
-                                            
-                                    
+                                            <label class="text-base font-bold">Who am I?</label>
+                                            <div class="radio-btn-grp b md:flex md:justify-center md:items-center">
+
+                                                <input type="radio" name="user_type" value="Faculty" id="faculty">
+                                                <label for="faculty" class="radio-label"><img src="/pictures/teacher.png" /></label>
+                                                <div>
+                                                    <label for="faculty" class="radio-label">A Teacher</label>
+                                                </div>
+                                                <input type="radio" name="user_type" value="Student" id="student">
+                                                <label for="student" class="radio-label"><img src="/pictures/student.png" /></label>
+                                                <div>
+                                                    <label for="student" class="radio-label">A Student</label>
+                                                </div>
                                             </div>
 
                                         </div>
 
                                         <div class="col-span-1">
                                             <label for="password">Password</label>
-                                            <input type="Password" name="password" id="password">
+                                            <input type="Password" name="password" id="password" placeholder="Enter your password">
                                             <label for="cpassword">Confirm Password</label>
-                                            <input type="Password" name="cpassword" id="cpassword">
+                                            <input type="Password" name="cpassword" id="cpassword" placeholder="Retype your password">
 
                                         </div>
                                     </div>
@@ -213,13 +223,13 @@
                                     <button type="button" onclick="nextTab();" class="" id="nextBtn">
                                         {{ __('Next') }}
                                     </button>
+                                    <button type="submit" id="register">
+                                        {{ __('Register') }}
 
+                                    </button>
 
                                 </div>
-                                <button type="submit">
-                                    {{ __('Register') }}
 
-                                </button>
                             </form>
                         </div>
                     </div>
@@ -238,6 +248,8 @@
 
     function showTab(n) {
         var x = document.getElementsByClassName("tab");
+        var register = document.getElementById("register");
+        register.style.display = "none";
         x[n].style.display = "block";
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
@@ -245,9 +257,13 @@
             document.getElementById("prevBtn").style.display = "inline";
         }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").style.display = "none";
+            register.style.display = "block";
+
         } else {
             document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").style.display = "block";
+
         }
     }
 

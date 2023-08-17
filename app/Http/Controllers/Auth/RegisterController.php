@@ -46,7 +46,8 @@ class RegisterController extends Controller
     {
         if ($request->isMethod('post')) {
             // Handle form submission
-            $validator = Validator::make($request->all(), [
+         //   $validator = Validator::make($request->all(), [
+            $validator = $request->validate([
                 'first_name' => 'required',
                 'middle_name' => 'required',
                 'last_name' => 'required',
@@ -58,13 +59,15 @@ class RegisterController extends Controller
                 'barangay' => 'required',
                 'city_municipality' => 'required',
                 'province' => 'required',
-                'member' => 'required',
+                'user_type' => 'required',
                 'password' => 'required|min:8', // Adjust the minimum length as needed
             ]);
 
+            /*
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
+            */
 
             User::create([
                 'first_name' => $request['first_name'],
@@ -78,8 +81,10 @@ class RegisterController extends Controller
                 'barangay' => $request['barangay'],
                 'city_municipality' => $request['city_municipality'],
                 'province' => $request['province'],
-                'member' => $request['member'],
-                'password' => $request['password'],            ]);
+                'user_type' => $request['user_type'],
+                'password' => $request['password'],
+            ]);
+            
 
             return redirect()->route('register')->with('success', 'Form submitted successfully!');
         }

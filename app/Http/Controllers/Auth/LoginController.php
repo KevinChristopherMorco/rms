@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
@@ -33,6 +36,30 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+    public function process(Request $request)
+    {
+
+       $validator = $request->validate([
+        'email' => 'required|email',
+        'password'=> 'required|min:8',
+       ]);
+    
+        if(auth()->attempt($validator)){
+            $request->session()->regenerate();
+            return view('dashboard');
+        }
+        return redirect()->route('login')->with('error', 'Invalid credentials');
+
+    }
+
+    public function logout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

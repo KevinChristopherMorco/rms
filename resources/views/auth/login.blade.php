@@ -5,16 +5,15 @@
 @section('content')
 <section class="login-page">
     <div class="home-icon flex justify-start items-center p-2">
-       <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
+        <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
     </div>
     <div class="login-container flex justify-center">
         <div class="login-input-container flex justify-center items-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login.process') }}">
                             @csrf
-
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -33,7 +32,7 @@
                                 <div class="flex justify-between items-center">
                                     <label for="password" class="">{{ __('Password') }}</label>
                                     @if (Route::has('password.request'))
-                                    <a class="btn btn-link text-xs font-bold" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link text-xs font-bold" href="{{ route('resetPassword') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 </div>
