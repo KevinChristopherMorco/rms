@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -36,7 +37,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-
+   
     public function process(Request $request)
     {
 
@@ -47,7 +48,13 @@ class LoginController extends Controller
     
         if(auth()->attempt($validator)){
             $request->session()->regenerate();
-            return view('dashboard');
+            return redirect('/home')->with('success', 'Logged in successfully');
+
+            // return redirect()->route('home')->with('success', 'Login Successful');
+
+            //return view('dashboard');
+           // return redirect('https://google.com')->with('success', 'Logged in successfully');
+
         }
         return redirect()->route('login')->with('error', 'Invalid credentials');
 

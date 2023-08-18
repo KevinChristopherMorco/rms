@@ -69,7 +69,7 @@ class RegisterController extends Controller
             }
             */
 
-            User::create([
+          $user=  User::create([
                 'first_name' => $request['first_name'],
                 'middle_name' => $request['middle_name'],
                 'last_name' => $request['last_name'],

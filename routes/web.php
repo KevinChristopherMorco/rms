@@ -24,8 +24,16 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::any('/create', [RegisterController::class, 'create'])->name('register.create');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login/process', [LoginController::class, 'process'])->name('login.process');
+Route::post('/authenticate', [LoginController::class, 'process']);
+// Route::get('/home', [UserController::class, 'home'])->name('home');
+
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->name('resetPassword');
+
+Route::get('/home', function(){
+    return view('home');
+});
+
 Auth::routes();
+
