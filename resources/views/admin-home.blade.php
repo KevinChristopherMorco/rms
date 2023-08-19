@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home')
+@section('title', 'Admin Home')
 @section('content')
 <section class="home-container">
     @if (session('status'))
@@ -29,7 +29,7 @@
                 @csrf
                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" role="alert"><i class="fa-solid fa-power-off pr-2"></i>Logout</button>
             </form>
-            <p>This is the student/faculty dashboard</p>
+            <p>This is the admin dashboard</p>
         </div>
     </div>
 

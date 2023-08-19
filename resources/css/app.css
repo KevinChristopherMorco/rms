@@ -414,6 +414,28 @@ Welcome.blade.php
     background-color: #D9F0FE;
 }
 
+.home-container{
+    padding: 0 5vw;
+    height: 100vh;
+    background-color: #FBECE1;
+}
+
+.home-container .introductory-note{
+    padding: 15px;
+    width: 100%;
+    background-color: #5B78D6;
+    box-shadow: 5px 5px #6BACFB;
+}
+
+.home-container .book-view{
+    padding: 15px;
+    height: 65vh;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 5px 5px #6BACFB;
+}
+
+
 @media only screen and (max-width: 600px) {
     .navbar ul {
         display: none;
