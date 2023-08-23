@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -46,14 +46,16 @@ class LoginController extends Controller
         'password'=> 'required|min:8',
        ]);
     
-        if(auth()->attempt($validator)){
+        if(Auth::attempt($validator)){
+
+            if(Auth::user()->user_type == "Admin"){
             $request->session()->regenerate();
-            return redirect('/home')->with('success', 'Logged in successfully');
+            return redirect()->route('admin')->with('success', 'Logged in successfully');
+        } else{
+            $request->session()->regenerate();
+            return redirect()->route('home')->with('success', 'Logged in successfully');
 
-            // return redirect()->route('home')->with('success', 'Login Successful');
-
-            //return view('dashboard');
-           // return redirect('https://google.com')->with('success', 'Logged in successfully');
+        }
 
         }
         return redirect()->route('login')->with('error', 'Invalid credentials');

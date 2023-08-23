@@ -34,9 +34,18 @@ Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->na
 
 
 
-Route::get('/home', function(){
-    return view('home');
-})->middleware('auth');
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('home')->middleware('auth');
+
+// Route::get('/admin', function () {
+//     return view('admin-home');
+// })->name('admin')->middleware('admin');
+
+Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
+Route::get('/home', [UserController::class, 'home'])->name('home');
+Route::get('/admin/show', [UserController::class, 'showUser'])->name('admin.showUser');
+Route::get('/admin/showBook', [UserController::class, 'showBook'])->name('admin.showBook');
 
 
 Auth::routes();
