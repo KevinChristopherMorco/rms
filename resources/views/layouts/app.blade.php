@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://i.pinimg.com/originals/5f/fb/de/5ffbdeceb84323decd76084b2efca958.png"
+    <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/64400fe934265712f946d45f/3452728a-1b44-41e6-b979-5bff0e2d096a/sundayPSLlogo-color.png"
         type="image/x-icon">
     <title>@yield('title')</title>
     <!-- Fonts -->
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     @viteReactRefresh
     @vite('resources/css/app.css')
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>

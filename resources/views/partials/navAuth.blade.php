@@ -1,18 +1,18 @@
 <nav class="navbar flex justify-between items-center" style="background-color: #fff;">
-    <div class="list-item-container1 flex justify-between items-center md:justify-around">
+    <div class="navbar__list-item-container1-auth flex justify-between items-center md:justify-around">
         <img class="logo sm:justify-center" src="/pictures/book-logo.png" width="75" height="75" alt="RMS">
         <a href="javascript:void(0);" class="hamburger-icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
-        <ul class="nav-items-authenticated">
+        <ul class="navbar__nav-items-auth">
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('user.catalog') }}">Catalog</a></li>
             <li><a href="">Resources</a></li>
             <li><a href="">Forums</a></li>
         </ul>
     </div>
-    <div class="list-item-container2-authenticated">
-        <ul class="nav-items flex justify-around items-center">
+    <div class="navbar__list-item-container2-auth">
+        <ul class="navbar__nav-items-auth flex justify-around items-center">
             <li>
                 <i class="fa-solid fa-magnifying-glass fa-xl"></i>
             </li>
@@ -20,13 +20,13 @@
                 <i class="fa-solid fa-bell fa-xl" style="cursor: pointer;"></i>
             </li>
 
-            <li class="nav-profile-image">
-                <img class="nav-image"
+            <li class="navbar__nav-profile-image">
+                <img class="navbar__nav-image"
                     src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
                     width="40px" height="40px" alt="">
             </li>
         </ul>
-        <div class="profile-contents">
+        <div class="navbar__profile-contents">
             <ul class="text-center">
                 <li class="pt-4">
                     <a href="" class="text-black"> <i class="fa-solid fa-gear"></i>
@@ -45,8 +45,8 @@
     </div>
 
     <script>
-        const navImage = document.querySelector('.nav-image')
-        const navProfile = document.querySelector('.profile-contents')
+        const navImage = document.querySelector('.navbar__nav-image')
+        const navProfile = document.querySelector('.navbar__profile-contents')
 
         navImage.addEventListener('click', (event) => {
 

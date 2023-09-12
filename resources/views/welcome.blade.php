@@ -3,7 +3,7 @@
 @section('title', 'RMS')
 
 @section('content')
-<section class="start-up">
+<section class="start-up px-2">
     <div>
         <h1>Discover a World of Knowledge and Imagination</h1>
         <h4>Explore our extensive catalog, check out the latest releases, and embark on a journey of learning and exploration</h4>
