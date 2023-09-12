@@ -37,32 +37,28 @@ class LoginController extends Controller
      *
      * @return void
      */
-   
+
     public function process(Request $request)
     {
+        $validator = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
 
-       $validator = $request->validate([
-        'email' => 'required|email',
-        'password'=> 'required|min:8',
-       ]);
-    
-        if(Auth::attempt($validator)){
-
-            if(Auth::user()->user_type == "Admin"){
-            $request->session()->regenerate();
-            return redirect()->route('admin')->with('success', 'Logged in successfully');
-        } else{
-            $request->session()->regenerate();
-            return redirect()->route('home')->with('success', 'Logged in successfully');
-
-        }
-
+        if (Auth::attempt($validator)) {
+            if (Auth::user()->user_type == "Admin") {
+                $request->session()->regenerate();
+                return redirect()->route('admin')->with('success', 'Logged in successfully');
+            } else {
+                $request->session()->regenerate();
+                return redirect()->route('home')->with('success', 'Logged in successfully');
+            }
         }
         return redirect()->route('login')->with('error', 'Invalid credentials');
-
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

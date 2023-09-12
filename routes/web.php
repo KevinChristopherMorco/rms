@@ -42,6 +42,9 @@ Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->na
 //     return view('admin-home');
 // })->name('admin')->middleware('admin');
 
+Route::get('/guest/browse', [UserController::class, 'guestBrowse'])->name('guest.browse');
+Route::get('/catalog', [UserController::class, 'catalog'])->name('user.catalog');
+
 Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
 Route::get('/home', [UserController::class, 'home'])->name('home');
 Route::get('/admin/show', [UserController::class, 'showUser'])->name('admin.showUser');

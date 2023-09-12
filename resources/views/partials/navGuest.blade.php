@@ -5,7 +5,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="nav-items">
-                    <li><a href="/">Browse Books</a></li>
+                    <li><a href="{{route('guest.browse')}}">Browse Books</a></li>
                     <li><a href="/about">Events and Programs</a></li>
                     <li><a href="/services">Policies and Guidelines</a></li>
                     <li><a href="/contact">Contact</a></li>

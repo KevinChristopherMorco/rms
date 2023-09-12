@@ -15,13 +15,27 @@ class UserController extends Controller
     {
         return view('welcome');
     }
+
+    public function guestBrowse()
+    {
+        $data = array('books' => DB::table('books')->orderBy('created_at')->paginate(5));
+        return view('guest.browseBook', $data);
+    }
     public function login()
     {
         return view('login');
     }
     public function home()
     {
-        return view('home');
+        $data= array('books'=>DB::table('books')->orderBy('created_at')->paginate(10));
+
+        return view('home', $data);
+    }
+
+    public function catalog()
+    {
+        $data= array('books'=>DB::table('books')->orderBy('created_at')->paginate(10));
+        return view('user.catalog', $data);
     }
 
 
@@ -49,10 +63,10 @@ class UserController extends Controller
         // return view('admin-home', compact('users'));
     }
 
-    public function showUser(){
-        $data=array('users'=>DB::table('users')->orderBy('created_at')->paginate(8));
+    public function showUser()
+    {
+        $data = array('users' => DB::table('users')->orderBy('created_at')->paginate(8));
         return view('admin.showUser', $data);
-
     }
     public function showBook()
     {

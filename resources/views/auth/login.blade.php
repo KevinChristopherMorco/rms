@@ -10,7 +10,7 @@
     <div class="login-container flex justify-center">
         <div class="login-input-container flex justify-center items-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="cards">
                     <div class="card-body">
                         <form method="POST" action="{{route('login.process')}}">
                             @csrf

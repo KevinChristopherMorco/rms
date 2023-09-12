@@ -23,6 +23,4 @@
         <img src="/pictures/nlm.png" width="250" height="150" alt="">
     </div>
 </section>
-
-
 @endsection

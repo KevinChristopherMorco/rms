@@ -24,8 +24,18 @@ class BookFactory extends Factory
             'date_published'=>fake()->date(),
             'genre'=> fake()-> randomElement(['Horror', 'Fantasy', 'Mystery', 'Thriller', 'Science', 'Mathematics', 'History', 'Biography/Authobiography', 'Cookbook', 'Religious/Spiritual', 'Comics', 'Poetry']),
             'description'=>fake()->sentence($nbWords),
-
-
+            'book_image'=>fake()->imageUrl(640,480),
+            'college' => fake()->randomElement([
+                'College of Engineering and Technology',
+                'College of Industrial Technology',
+                'College of Business Management and Accountancy',
+                'College of Teacher Education',
+                'College of Computer Studies',
+                'College of Criminal Justice Education',
+                'College of Arts and Sciences',
+                'College of Nursing and Allied Health',
+                'College of Hospitality Management and Tourism',
+            ]),
         ];
     }
 }

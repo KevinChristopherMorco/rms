@@ -13,3 +13,9 @@ import './bootstrap';
  */
 
 import './components/Example';
+import './components/User';
+
+
+
+
+

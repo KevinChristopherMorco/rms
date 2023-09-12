@@ -10,7 +10,7 @@
                     @include('partials.sidebar')
                 </div>
                 <div class="col-span-4">
-                    <div style="background-color: #4976E7; width:100%; height:20%;"></div>
+                    <div style="background: linear-gradient(240deg, #4976E7, #7CC6FA); width:100%; height:20%;"></div>
 
                     <div class="table-container">
                         <p class="text-lg font-bold pb-4">User Information</p>
@@ -20,7 +20,6 @@
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>ISBN</th>
-                                    <th>Genre</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -31,7 +30,6 @@
                                         <td>{{ $book->title }}</td>
                                         <td>{{ $book->author }}</td>
                                         <td>{{ $book->isbn }}</td>
-                                        <td>{{ $book->genre }}</td>
                                         <td class="action-btn"><i class="fa-solid fa-eye px-2"></i>
                                             <i class="fa-solid fa-pen-to-square px-2"></i>
                                             <i class="fa-solid fa-trash px-2"></i>

@@ -10,7 +10,7 @@
                     @include('partials.sidebar')
                 </div>
                 <div class="col-span-4">
-                    <div style="background-color: #4976E7; width:100%; height:20%;"></div>
+                    <div style="background: linear-gradient(240deg, #4976E7, #7CC6FA); width:100%; height:20%;"></div>
 
                     <div class="table-container">
                         <p class="text-lg font-bold pb-4">User Information</p>
