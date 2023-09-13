@@ -84,6 +84,7 @@ nav {
     height: auto;
     position: fixed;
     top: 80px;
+    z-index: 9999;
 }
 
 nav li,
@@ -318,10 +319,10 @@ Welcome.blade.php
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-color: #640ED8;
-    border-radius: 50px;
+    border-radius: 40px;
     z-index: 9999;
 }
 
@@ -333,6 +334,14 @@ Welcome.blade.php
     overflow-y: scroll;
     z-index: 9999;
     color: white;
+}
+
+.guest-browse-books__category-list li {
+    padding: .5rem 0;
+}
+
+.guest-browse-books__category-list-phone li {
+    padding: .2rem 0;
 }
 
 #reserveBook {

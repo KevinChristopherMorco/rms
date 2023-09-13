@@ -7,11 +7,14 @@
         <div class="guest-browse-books">
             <div class="grid md:grid-cols-4 gap-4">
                 <div class="md:col-span-1">
-                    <div class="guest-browse-books__phone-filter hidden md:block">
+                    <div class="guest-browse-books__filter-container hidden md:block">
                         <p class="text-lg text-center font-bold py-4">Filter books</p>
                         <div class="px-2 py-2">
-                            <p class="guest-browse-books__filter-base text-base font-bold">Colleges</p>
-                            <ul class="guest-browse-books__category-list guest-browse-books__category-list--college hidden">
+                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Colleges</p> <i
+                                    class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <ul class="guest-browse-books__category-list guest-browse-books__category-list--college hidden px-2">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="college" value="college of engineering">
@@ -69,10 +72,13 @@
                                         College of Hospitality Management and Tourism
                                     </label>
                                 </li>
-                                </ul>
+                            </ul>
 
-                                <p class="guest-browse-books__filter-base text-base font-bold">Genre</p>
-                                <ul class="guest-browse-books__category-list guest-browse-books__category-list--genre hidden">
+                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Genre</p> <i
+                                    class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <ul class="guest-browse-books__category-list guest-browse-books__category-list--genre hidden px-2">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="category" value="Biography/Authobiography">
@@ -145,10 +151,15 @@
                                         Thriller
                                     </label>
                                 </li>
-                                </ul>
+                            </ul>
 
-                                <p class="guest-browse-books__filter-base text-base font-bold">Availability</p>
-                                <ul  class="guest-browse-books__category-list guest-browse-books__category-list--availability hidden">
+                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Availability</p> <i
+                                    class="fa-solid fa-arrow-down"></i>
+                            </div>
+
+                            <ul
+                                class="guest-browse-books__category-list guest-browse-books__category-list--availability hidden px-2">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="availability" value="in stock">
@@ -177,8 +188,13 @@
                         <div class="guest-browse-books__phone-filter">
                             <p class="text-lg text-center font-bold py-4">Filter books</p>
                             <div class="px-2 py-2">
-                                <p class="guest-browse-books__filter-base-phone text-base font-bold">Colleges</p>
-                                <ul class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--college hidden">
+                                <div
+                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Colleges</p>
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </div>
+                                <ul
+                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--college hidden px-2">
                                     <li>
                                         <label>
                                             <input type="checkbox" name="college" value="college of engineering">
@@ -187,7 +203,8 @@
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="college" value="college of industrial technology">
+                                            <input type="checkbox" name="college"
+                                                value="college of industrial technology">
                                             College of Industrial Technology
                                         </label>
                                     </li>
@@ -212,7 +229,8 @@
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="college" value="college of nursing and allied health">
+                                            <input type="checkbox" name="college"
+                                                value="college of nursing and allied health">
                                             College of Nursing and Allied Health
                                         </label>
                                     </li>
@@ -236,10 +254,16 @@
                                             College of Hospitality Management and Tourism
                                         </label>
                                     </li>
-                                    </ul>
-    
-                                    <p class=" guest-browse-books__filter-base-phone text-base font-bold">Genre</p>
-                                    <ul class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--genre hidden">
+                                </ul>
+
+                                <div
+                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Genre</p> <i
+                                        class="fa-solid fa-arrow-down"></i>
+                                </div>
+
+                                <ul
+                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--genre hidden px-2">
                                     <li>
                                         <label>
                                             <input type="checkbox" name="category" value="Biography/Authobiography">
@@ -312,17 +336,22 @@
                                             Thriller
                                         </label>
                                     </li>
-                                    </ul>
-    
-                                    <p class="guest-browse-books__filter-base-phone text-base font-bold">Availability</p>
-                                    <ul class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--availability hidden">
+                                </ul>
+
+                                <div
+                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Availability
+                                    </p> <i class="fa-solid fa-arrow-down"></i>
+                                </div>
+                                <ul
+                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--availability hidden px-2">
                                     <li>
                                         <label>
                                             <input type="checkbox" name="availability" value="in stock">
                                             In stock
                                         </label>
                                     </li>
-    
+
                                     <li>
                                         <label>
                                             <input type="checkbox" name="availability" value="limited stock">
@@ -335,7 +364,7 @@
                                             Out of Stock
                                         </label>
                                     </li>
-    
+
                                 </ul>
                             </div>
                         </div>
@@ -370,14 +399,15 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center guest-browse-books__filter-settings-container">
-                <i class="fa-solid fa-gears text-white fa-2x"></i>
+            <div class="flex justify-center items-center guest-browse-books__filter-settings-container mr-2 md:hidden">
+                <i class="fa-solid fa-gears text-white"></i>
             </div>
         </div>
     </section>
 
     <script>
         const filterBookGuest = document.querySelectorAll('.guest-browse-books__filter-settings-container')
+        const filterBookIcon = document.querySelectorAll('.guest-browse-books__filter-settings-container i')
         const showFilterBook = document.querySelectorAll('.guest-browse-books__filter-phone-container')
 
         filterBookGuest.forEach((filterBookEl) => {
@@ -385,29 +415,62 @@
                 showFilterBook.forEach((showFilterEl) => {
                     showFilterEl.classList.toggle('hidden')
                 })
+                filterBookIcon.forEach((filterBookIconEl)=>{
+
+                    if(filterBookIconEl.classList.contains('fa-gears')){
+                        filterBookIconEl.classList.remove('fa-gears')
+                        filterBookIconEl.classList.add('fa-x')
+                    } else{
+                        filterBookIconEl.classList.add('fa-gears')
+                        filterBookIconEl.classList.remove('fa-x')
+                    }
+                })
 
             })
         })
 
-        const filterBase = document.querySelectorAll('.guest-browse-books__filter-base')
-        const filterBasePhone = document.querySelectorAll('.guest-browse-books__filter-base-phone')
+        const filterBase = document.querySelectorAll('.guest-browse-books__filter-base-container')
+        const filterBasePhone = document.querySelectorAll('.guest-browse-books__filter-base-phone-container')
         const categoryList = document.querySelectorAll('.guest-browse-books__category-list')
         const categoryListPhone = document.querySelectorAll('.guest-browse-books__category-list-phone')
+        const arrowIcon = document.querySelectorAll('.guest-browse-books__filter-base-container i')
+        const arrowIconPhone = document.querySelectorAll('.guest-browse-books__filter-base-phone-container i')
 
-        filterBase.forEach((filterBaseEl, filterBaseIndex)=>{
+        filterBase.forEach((filterBaseEl, filterBaseIndex) => {
             filterBaseEl.addEventListener('click', (e) => {
+
+                arrowIcon.forEach((arrowIconEl, arrowIconIndex) => {
+                    arrowIconEl.classList.add('fa-arrow-down')
+                    arrowIconEl.classList.remove('fa-arrow-up')
+                })
+                arrowIcon[filterBaseIndex].classList.add('fa-arrow-up')
+
+
+                categoryList.forEach((categoryListEl) => {
+                    categoryListEl.classList.add('hidden')
+                })
+
                 categoryList[filterBaseIndex].classList.toggle('hidden')
 
             })
         })
 
-        filterBasePhone.forEach((filterBasePhoneEl, filterBasePhoneIndex)=>{
+        filterBasePhone.forEach((filterBasePhoneEl, filterBasePhoneIndex) => {
             filterBasePhoneEl.addEventListener('click', (e) => {
+
+                arrowIconPhone.forEach((arrowIconPhoneEl, arrowIconIndex) => {
+                    arrowIconPhoneEl.classList.add('fa-arrow-down')
+                    arrowIconPhoneEl.classList.remove('fa-arrow-up')
+                })
+                arrowIconPhone[filterBasePhoneIndex].classList.add('fa-arrow-up')
+
+                categoryListPhone.forEach((categoryListPhoneEl) => {
+                    categoryListPhoneEl.classList.add('hidden')
+                })
+
                 categoryListPhone[filterBasePhoneIndex].classList.toggle('hidden')
 
             })
         })
-
-
     </script>
 @endsection
