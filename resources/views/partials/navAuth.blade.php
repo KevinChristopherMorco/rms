@@ -26,7 +26,7 @@
                     width="40px" height="40px" alt="">
             </li>
         </ul>
-        <div class="navbar__profile-contents">
+        <div class="navbar__profile-contents-auth">
             <ul class="text-center">
                 <li class="pt-4">
                     <a href="" class="text-black"> <i class="fa-solid fa-gear"></i>
@@ -46,7 +46,7 @@
 
     <script>
         const navImage = document.querySelector('.navbar__nav-image')
-        const navProfile = document.querySelector('.navbar__profile-contents')
+        const navProfile = document.querySelector('.navbar__profile-contents-auth')
 
         navImage.addEventListener('click', (event) => {
 

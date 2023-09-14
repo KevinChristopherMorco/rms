@@ -152,46 +152,37 @@ a {
     color: #150F3B;
 }
 
+.navbar__profile-contents-auth {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 110px;
+    display: none;
+    border-radius: 10px;
+}
+
 /*
 Welcome.blade.php
 */
-.start-up {
+.start-up-container {
     background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, 1)),
         url('/public/pictures/startup.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
+    padding-top: 10%;
 }
 
 
 
-.start-up div:nth-of-type(1):not(.input-container) {
-    padding-top: 250px;
-    padding-left: 75px;
-}
-
-.start-up h1 {
-    color: white;
-    font-size: 40px;
-    margin-bottom: 5px;
-
-}
-
-.start-up h4 {
-    color: gray;
-    font-size: 20px;
-    margin-bottom: 20px;
-
-}
-
-.start-up h3 {
+.start-up-container h3 {
     margin-bottom: 10px;
     margin-right: 5px;
 
 }
 
-.start-up input[type="text"] {
+.start-up-container input[type="text"] {
     font-size: 16px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -202,17 +193,17 @@ Welcome.blade.php
     border-radius: 10px 0 0 10px;
 }
 
-.start-up input[type="text"]:focus {
+.start-up-container input[type="text"]:focus {
     border-color: #5B78D6;
     border: .5px solid #5B78D6;
     outline: none;
 }
 
-.input-container {
+.start-up-container__input-container {
     width: 50%;
 }
 
-.input-container input[type="submit"] {
+.start-up-container__input-container input[type="submit"] {
     margin-left: -5px;
     width: 20%;
     background-color: #5B78D6;
@@ -224,32 +215,10 @@ Welcome.blade.php
     font-weight: 600;
 }
 
-.input-container input[type="submit"]:hover {
+.start-up-container__input-container input[type="submit"]:hover {
     box-shadow: 1px 1px #5B78D6;
 }
 
-
-.start-up div:nth-of-type(2) {
-    color: #fff;
-    padding-top: 125px;
-    padding-left: 75px;
-}
-
-.start-up div:nth-of-type(3) {
-    color: #fff;
-    margin-top: 50px;
-
-}
-
-.start-up div:nth-of-type(3) {
-    color: #fff;
-    margin-top: 50px;
-
-}
-
-.start-up div:nth-of-type(3) img {
-    margin-right: 100px;
-}
 
 .login-page {
     background-image: url('/public/pictures/wave.jpg');
@@ -268,6 +237,8 @@ Welcome.blade.php
     width: 100%;
     height: 100vh;
 }
+
+/* start guest browse books */
 
 .guest-browse-container {
     background-image: url('/public/pictures/wave.jpg');
@@ -331,7 +302,7 @@ Welcome.blade.php
     height: 100%;
     background-color: #6F6EE3;
     position: fixed;
-    overflow-y: scroll;
+    overflow-y: hidden;
     z-index: 9999;
     color: white;
 }
@@ -348,14 +319,7 @@ Welcome.blade.php
     margin: 0 auto;
 }
 
-.navbar__profile-contents {
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    height: 110px;
-    display: none;
-    border-radius: 10px;
-}
+/* end guest browse books */
 
 .home-icon {
     color: white;
@@ -772,42 +736,22 @@ table .action-btn i:nth-of-type(3) {
         margin-right: 0;
     }
 
-    .start-up div:nth-of-type(1):not(.input-container) {
-        padding-left: 5px;
+    .start-up-container{
+        padding-top: 50%;
+    }
+
+
+    .start-up-container__input-container {
         width: 100%;
-        text-align: center;
-    }
-
-
-
-    .input-container {
-        width: 100%;
-        padding-left: 5px;
 
     }
 
-    .start-up input[type="text"] {
-        width: 65vw;
+    .start-up-container input[type="text"] {
+        width: 65%;
     }
 
-    .input-container input[type="submit"] {
-        width: 30vw
-    }
-
-    .start-up div:nth-of-type(2) {
-        padding-top: 150px;
-        padding-left: 5px;
-    }
-
-    .start-up div:nth-of-type(3) {
-        margin-top: 5px;
-    }
-
-    .start-up div:nth-of-type(3) img {
-        margin-top: 50px;
-        margin-left: 20px;
-        margin-right: 0;
-
+    .start-up-container__input-container input[type="submit"] {
+        width: 40%
     }
 
     .guest-browse-books__filter-container {
@@ -823,30 +767,30 @@ table .action-btn i:nth-of-type(3) {
 
 
 
-    .register-input-container {
+    .register-start-up-container__input-container {
         width: 100vw;
         height: 70vh;
     }
 
-    .login-input-container input[type="submit"],
-    .login-input-container button,
-    .register-input-container button {
+    .login-start-up-container__input-container input[type="submit"],
+    .login-start-up-container__input-container button,
+    .register-start-up-container__input-container button {
         width: 20vw;
     }
 
-    .register-input-container .radio-btn-grp img {
+    .register-start-up-container__input-container .radio-btn-grp img {
         height: 50px;
         width: 50px;
     }
 
-    .login-input-container {
+    .login-start-up-container__input-container {
         padding: 100px;
         width: 90vw;
         height: 50vh;
     }
 
-    .login-input-container input[type="email"],
-    .login-input-container input[type="password"] {
+    .login-start-up-container__input-container input[type="email"],
+    .login-start-up-container__input-container input[type="password"] {
         margin-top: 10px;
         padding: 5px;
         border-radius: 10px;
