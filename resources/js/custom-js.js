@@ -1,5 +1,5 @@
-const passwordIcon = document.querySelectorAll('.login-section__login-input-container .login-input-group i')
-const passwordInput = document.querySelectorAll('.login-section__login-input-container input[type="password"]')
+const passwordIcon = document.querySelectorAll('.login-container__login-input-container .login-container__login-input-group i')
+const passwordInput = document.querySelectorAll('.login-container__login-input-container input[type="password"]')
 
 passwordIcon.forEach((passwordIconEl) => {
     passwordIconEl.addEventListener('click', (e) => {

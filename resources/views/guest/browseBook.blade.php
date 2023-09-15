@@ -4,7 +4,7 @@
 @section('content')
 
     <section class="guest-browse-container py-20">
-        <div class="guest-browse-books">
+        <div class="guest-browse-container__guest-browse-books">
             <div class="grid md:grid-cols-4 gap-4">
                 <div class="md:col-span-1">
                     <div class="guest-browse-books__filter-container hidden md:block">
@@ -372,7 +372,7 @@
 
                 </div>
                 <div class="md:col-span-3">
-                    <div class="guest-book-view">
+                    <div class="guest-browse-container__guest-book-view">
                         <div class="grid md:grid-cols-3 gap-4">
                             @foreach ($books as $book)
                                 <div class="card">
@@ -399,15 +399,15 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center guest-browse-books__filter-settings-container mr-2 md:hidden">
+            <div class="flex justify-center items-center guest-browse-books__filter-icon-container mr-2 md:hidden">
                 <i class="fa-solid fa-gears text-white"></i>
             </div>
         </div>
     </section>
 
     <script>
-        const filterBookGuest = document.querySelectorAll('.guest-browse-books__filter-settings-container')
-        const filterBookIcon = document.querySelectorAll('.guest-browse-books__filter-settings-container i')
+        const filterBookGuest = document.querySelectorAll('.guest-browse-books__filter-icon-container')
+        const filterBookIcon = document.querySelectorAll('.guest-browse-books__filter-icon-container i')
         const showFilterBook = document.querySelectorAll('.guest-browse-books__filter-phone-container')
 
         filterBookGuest.forEach((filterBookEl) => {

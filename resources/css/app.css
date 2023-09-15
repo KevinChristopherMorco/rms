@@ -214,7 +214,7 @@ Welcome.blade.php
 }
 
 
-.login-section {
+.login-container {
     background-image: url('/public/pictures/wave.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -223,7 +223,7 @@ Welcome.blade.php
     height: 100vh;
 }
 
-.register-page {
+.register-container {
     background-image: url('/public/pictures/wave.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -243,12 +243,12 @@ Welcome.blade.php
     height: 100vh;
 }
 
-.guest-browse-books {
+.guest-browse-container__guest-browse-books {
     width: 100%;
     height: 100vh;
 }
 
-.guest-book-view {
+.guest-browse-container__guest-book-view {
     width: 100%;
     background-color: #fff;
     border-radius: 20px;
@@ -280,7 +280,16 @@ Welcome.blade.php
     border-radius: 20px;
 }
 
-.guest-browse-books__filter-settings-container {
+.guest-browse-books__filter-base-container {
+    cursor: pointer;
+}
+
+.guest-browse-books__filter-base-phone-container {
+    cursor: pointer;
+}
+
+
+.guest-browse-books__filter-icon-container {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -309,6 +318,8 @@ Welcome.blade.php
     padding: .2rem 0;
 }
 
+
+
 #reserveBook {
     margin: 0 auto;
 }
@@ -320,32 +331,32 @@ Welcome.blade.php
     cursor: pointer;
 }
 
-.register-container {
+.register-container__register-item-container {
     padding-top: 100px;
     width: 100vw;
     height: 100vh;
 }
 
-.register-input-container {
-    width: 70vw;
+.register-container__register-input-container {
+    width: 70%;
     height: 70vh;
     border-radius: 10px;
     background: white;
     box-shadow: .2px .5px #5B78D6;
 }
 
-.register-breadcrumb-container {
+.register-container__register-breadcrumb-container {
     margin-bottom: 20px;
 }
 
-.register-breadcrumb-item li {
+.register-container__register-breadcrumb-item li {
     padding: 15px;
     width: 100%;
     background: #ECF1FE;
     color: #BEC8E9;
 }
 
-.register-breadcrumb-item li div {
+.register-container__register-breadcrumb-item li div {
     border-radius: 50%;
     background-color: #C1CBEA;
     color: #D9F0FE;
@@ -355,7 +366,7 @@ Welcome.blade.php
 }
 
 
-.register-breadcrumb-item li.active {
+.register-container__register-breadcrumb-item li.active {
     padding: 15px;
     border-radius: 0 20px 20px 0;
     background: linear-gradient(90deg, rgba(162, 223, 254, 1) 0%, rgba(127, 203, 252, 1) 49%, rgba(107, 153, 251, 1) 82%);
@@ -363,7 +374,7 @@ Welcome.blade.php
     color: white;
 }
 
-.register-breadcrumb-item li.active div {
+.register-container__register-breadcrumb-item li.active div {
     border-radius: 50%;
     background-color: white;
     color: #BCD0F9;
@@ -374,8 +385,8 @@ Welcome.blade.php
 }
 
 
-.register-input-container select,
-.register-input-container input:not(input[type=radio]) {
+.register-container__register-input-container select,
+.register-container__register-input-container input:not(input[type=radio]) {
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 3px;
@@ -385,26 +396,26 @@ Welcome.blade.php
 }
 
 
-.register-input-container select:focus,
-.register-input-container input:focus {
+.register-container__register-input-container select:focus,
+.register-container__register-input-container input:focus {
     border: 2px solid #5B78D6;
     outline: none;
 }
 
-.register-input-container select {
+.register-container__register-input-container select {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
-.register-input-container .user-registration {
+.register-container__register-input-container .user-registration {
     padding: 10px;
 }
 
-.register-button a {
+.register-container__register-button-group a {
     color: #5B78D6;
 }
 
-.login-section__login-container {
+.login-container__login-container {
     padding-top: 100px;
     width: 100vw;
     height: 100vh;
@@ -414,7 +425,7 @@ Welcome.blade.php
     display: none;
 }
 
-.login-section__login-input-container {
+.login-container__login-input-container {
     background: white;
     width: 50vw;
     height: 50vh;
@@ -423,9 +434,9 @@ Welcome.blade.php
 
 }
 
-.login-section__login-input-container input[type="submit"],
-.login-section__login-input-container button,
-.register-input-container button {
+.login-container__login-input-container input[type="submit"],
+.login-container__login-input-container button,
+.register-container__register-input-container button {
     background-color: #5B78D6;
     color: white;
     padding: 5px;
@@ -433,22 +444,22 @@ Welcome.blade.php
     cursor: pointer;
 }
 
-.login-section__login-input-container input[type="submit"]:hover {
+.login-container__login-input-container input[type="submit"]:hover {
     box-shadow: 1px 1px #5B78D6;
 }
 
-.login-section__login-input-container label,
-.login-section__login-input-container p {
+.login-container__login-input-container label,
+.login-container__login-input-container p {
     color: black;
 }
 
-.login-section__login-input-container a {
+.login-container__login-input-container a {
     color: #5B78D6;
 }
 
-.login-section__login-input-container input[type="email"],
-.login-section__login-input-container input[type="password"],
-.login-section__login-input-container input[type="text"] {
+.login-container__login-input-container input[type="email"],
+.login-container__login-input-container input[type="password"],
+.login-container__login-input-container input[type="text"] {
     padding: 5px;
     border-radius: 10px;
     width: 40vw;
@@ -457,34 +468,32 @@ Welcome.blade.php
 
 }
 
-.login-section__login-input-container input[type="email"]:focus,
-.login-section__login-input-container input[type="password"]:focus
-.login-section__login-input-container input[type="text"]:focus
-{
+.login-container__login-input-container input[type="email"]:focus,
+.login-container__login-input-container input[type="password"]:focus .login-container__login-input-container input[type="text"]:focus {
     border: 2px solid #6BACFB;
 
 }
 
-.login-section__login-input-container .login-section__login-input-group i.fa-eye-slash{
+.login-container__login-input-container .login-container__login-input-group i {
     margin-left: -30px;
     cursor: pointer;
 }
 
-.register-input-container input[type="radio"] {
+.register-container__register-input-container input[type="radio"] {
     display: none;
 }
 
-.register-input-container .radio-btn-grp img {
+.register-container__register-input-container .radio-btn-grp img {
     height: 100px;
     width: 100px;
     padding: 10px;
 }
 
-.register-input-container .radio-btn-grp img:hover {
+.register-container__register-input-container .radio-btn-grp img:hover {
     cursor: pointer;
 }
 
-.register-input-container .radio-btn-grp input[type="radio"]:checked+.radio-label {
+.register-container__register-input-container .radio-btn-grp input[type="radio"]:checked+.radio-label {
     border: 1px solid #5B78D6;
     background-color: #D9F0FE;
 }
@@ -761,21 +770,21 @@ table .action-btn i:nth-of-type(3) {
         border-radius: 20px;
     }
 
-    .login-section__login-input-container {
+    .login-container__login-input-container {
         width: 90%;
     }
 
-    .login-section__login-input-container input[type="email"],
-    .login-section__login-input-container input[type="password"],
-    .login-section__login-input-container input[type="text"]  {
+    .login-container__login-input-container input[type="email"],
+    .login-container__login-input-container input[type="password"],
+    .login-container__login-input-container input[type="text"] {
         width: 100%;
 
     }
-    
 
-    .login-section__login-input-container input[type="submit"],
-    .login-section__login-input-container button,
-    .register-input-container button {
+
+    .login-container__login-input-container input[type="submit"],
+    .login-container__login-input-container button,
+    .register-container__register-input-container button {
         width: 20%;
     }
 
@@ -784,16 +793,10 @@ table .action-btn i:nth-of-type(3) {
         width: 100%;
     }
 
-    .register-start-up-container__input-container {
-        width: 100vw;
-        height: 70vh;
+    .register-container__register-input-container {
+        width: 90%;
     }
 
-
-    .register-start-up-container__input-container .radio-btn-grp img {
-        height: 50px;
-        width: 50px;
-    }
 
 
 

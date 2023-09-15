@@ -3,15 +3,15 @@
 @section('title', 'Sign In')
 
 @section('content')
-    <section class="login-section">
+    <section class="login-container">
         <div class="home-icon flex justify-start items-center p-2">
             <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
         </div>
-        <div class="login-section__login-container flex justify-center">
-            <div class="login-section__login-input-container flex justify-center items-center px-6 md:px-20 md:py10">
+        <div class="login-container__login-container flex justify-center">
+            <div class="login-container__login-input-container flex justify-center items-center px-6 md:px-20 md:py10">
                 <form method="POST" action="{{ route('login.process') }}">
                     @csrf
-                    <div class="login-section__input-group py-2">
+                    <div class="login-container__input-group py-2">
                         <label for="email"
                             class="col-md-4 col-form-label text-md-end py-2">{{ __('Email Address') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -24,7 +24,7 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="login-section__input-group py-2">
+                    <div class="login-container__input-group py-2">
                         <div class="flex justify-between items-center">
                             <label for="password" class="">{{ __('Password') }}</label>
                             @if (Route::has('password.request'))
@@ -33,7 +33,7 @@
                                 </a>
                         </div>
                         @endif
-                        <div class="login-section__login-input-group flex items-center">
+                        <div class="login-container__login-input-group flex items-center">
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                 placeholder="Enter your password" required autocomplete="current-password">
