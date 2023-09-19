@@ -7,30 +7,29 @@
         <div class="home-icon flex justify-start items-center p-2">
             <a href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
         </div>
-        <div class="register-container__register-item-container flex justify-center">
+        <div class="register-container__register-item-container flex justify-center py-20">
             <div class="register-container__register-input-container py-6">
                 <p class="text-center font-bold text-xl mb-1">{{ __('Create an account') }}</p>
                 <p class="text-center font-200 text-base mb-8">{{ __('Introduce your self') }}</p>
 
                 <div class="register-container__register-breadcrumb-container">
                     <ul class="register-container__register-breadcrumb-item md:flex md:justify-around md:items-center">
-                        <li class="step flex text-center items-center">
-                            <div class="reg-number mr-4">1. </div> Personal Information
+                        <li class="register-container__step flex text-center items-center">
+                            <div class="register-container__step-number mr-4">1. </div> Personal Information
                         </li>
 
-                        <li class="step flex text-center items-center">
-                            <div class="reg-number mr-4">2. </div> Identification Information
+                        <li class="register-container__step flex text-center items-center">
+                            <div class="register-container__step-number mr-4">2. </div> Identification Information
                         </li>
 
-                        <li class="step flex text-center items-center">
-                            <div class="reg-number mr-4">3. </div> Membership Type
+                        <li class="register-container__step flex text-center items-center">
+                            <div class="register-container__step-number mr-4">3. </div> Membership Type
                         </li>
                     </ul>
                 </div>
                 <div class="user-registration">
                     <form method="POST" action="{{ route('register.create') }}">
                         @csrf
-
                         <div class="tab user-information">
                             <div class="grid grid-cols-1 md:grid-cols-3">
                                 <div class="col-span-1">
@@ -179,11 +178,10 @@
                         </div>
 
                         <div class="tab member-identification">
-                            <div class="grid grid-cols-2">
+                            <div class="md:grid md:grid-cols-2">
                                 <div class="col-span-1">
                                     <label class="text-base font-bold">Who am I?</label>
-                                    <div class="radio-btn-grp b md:flex md:justify-center md:items-center">
-
+                                    <div class="register-container__radio-btn-grp flex justify-center items-center">
                                         <input type="radio" name="user_type" value="Faculty" id="faculty">
                                         <label for="faculty" class="radio-label"><img
                                                 src="/pictures/teacher.png" /></label>
@@ -197,9 +195,7 @@
                                             <label for="student" class="radio-label">A Student</label>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="col-span-1">
                                     <label for="password">Password</label>
                                     <input type="Password" name="password" id="password"
@@ -207,22 +203,23 @@
                                     <label for="cpassword">Confirm Password</label>
                                     <input type="Password" name="cpassword" id="cpassword"
                                         placeholder="Retype your password">
-
                                 </div>
                             </div>
                         </div>
 
-                        <div class="register-container__register-button-group flex justify-between items-center mr-4">
-                            <p class="account-indicator text-xs">Already have an account? <a class="text-xs font-bold"
-                                    href="/login">Sign in</a></p>
-                            <button type="button" onclick="prevTab()" class="" id="prevBtn">
+                        <div class="register-container__register-button-group flex justify-between items-center py-4 mr-4">
+                            <p class="register-container__account-indicator text-xs">Already have an account? <a
+                                    class="text-xs font-bold" href="/login">Sign in</a></p>
+                            <button class="register-container__button mx-2" type="button" onclick="prevTab()"
+                                class="" id="prevBtn">
                                 {{ __('Previous') }}
                             </button>
 
-                            <button type="button" onclick="nextTab();" class="" id="nextBtn">
+                            <button class="register-container__button" type="button" onclick="nextTab();"
+                                class="" id="nextBtn">
                                 {{ __('Next') }}
                             </button>
-                            <button type="submit" id="register">
+                            <button class="register-container__button" type="submit" id="register">
                                 {{ __('Register') }}
                             </button>
                         </div>
@@ -235,9 +232,9 @@
     <script>
         var currentTab = 0;
         showTab(currentTab);
-        const elements = document.querySelectorAll('.step');
-        elements[0].classList.add('active');
-        var y = document.querySelectorAll(".account-indicator");
+        const elements = document.querySelectorAll('.register-container__step');
+        elements[0].classList.add('register-container__step--active');
+        var y = document.querySelectorAll(".register-container__account-indicator");
 
 
         function showTab(n) {
@@ -269,8 +266,8 @@
             showTab(currentTab);
 
             for (let i = 1; i < elements.length; i++) {
-                elements[currentTab].classList.add('active');
-                elements[currentTab - 1].classList.remove('active');
+                elements[currentTab].classList.add('register-container__step--active');
+                elements[currentTab - 1].classList.remove('register-container__step--active');
 
             }
 
@@ -293,8 +290,8 @@
             showTab(currentTab);
             x[currentTab + 1].style.display = 'none';
             for (let i = 1; i < elements.length; i++) {
-                elements[currentTab].classList.add('active');
-                elements[currentTab + 1].classList.remove('active');
+                elements[currentTab].classList.add('register-container__step--active');
+                elements[currentTab + 1].classList.remove('register-container__step--active');
             }
 
             if (currentTab == 0) {

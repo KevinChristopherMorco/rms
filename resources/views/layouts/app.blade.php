@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     @viteReactRefresh
     @vite('resources/css/app.css')
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -33,7 +34,7 @@
 
     @yield('content')
 
-    @vite('resources/js/custom-js.js')
+    @vite('resources/js/app.js')
 
 </body>
 

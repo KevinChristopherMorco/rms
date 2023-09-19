@@ -68,13 +68,14 @@ nav {
     height: 75px;
     position: fixed;
     top: 0;
+    z-index: 9999;
+
 }
 
 .navbar-sticky {
     height: 80px;
     background-color: rgba(0, 0, 0, .8);
     transition: height .3s ease;
-    z-index: 999;
 
 }
 
@@ -90,20 +91,26 @@ nav {
 nav li,
 a {
     color: white;
-
 }
 
 .hamburger-icon {
     display: none;
 }
 
+.navbar__list-item-container1-auth {
+    width: 100%;
+}
+
+.navbar__list-item-container1-auth li,
+.navbar__list-item-container1-auth div {
+    cursor: pointer;
+}
 
 .navbar__list-item-container1-auth img,
 .navbar__list-item-container1-guest img {
     margin-right: 40px;
 }
 
-.navbar__list-item-container1-auth ul,
 .navbar__list-item-container1-guest ul {
     display: flex;
     list-style: none;
@@ -117,9 +124,24 @@ a {
 
 }
 
-.navbar__list-item-container2-auth {
-    width: 18%;
-    position: relative;
+.navbar__list-hidden-container-auth,
+.navbar__nav-links-phone {
+    position: fixed;
+    padding: 5rem;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    z-index: 999;
+}
+
+.navbar__list-hidden-container-auth,
+.navbar__nav-links-phone {
+    position: fixed;
+    padding: 5rem;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    z-index: 999;
 }
 
 .navbar__list-item-container1-guest {
@@ -134,6 +156,10 @@ a {
     margin-right: 15px;
     border: .5px solid white;
     padding: 5px 5px;
+}
+
+.navbar__nav-items-auth {
+    width: 100%;
 }
 
 .navbar__nav-items-auth a {
@@ -153,7 +179,6 @@ a {
 }
 
 .navbar__profile-contents-auth {
-    position: absolute;
     background-color: #fff;
     width: 100%;
     height: 110px;
@@ -332,9 +357,7 @@ Welcome.blade.php
 }
 
 .register-container__register-item-container {
-    padding-top: 100px;
     width: 100vw;
-    height: 100vh;
 }
 
 .register-container__register-input-container {
@@ -349,14 +372,14 @@ Welcome.blade.php
     margin-bottom: 20px;
 }
 
-.register-container__register-breadcrumb-item li {
+.register-container__register-breadcrumb-item .register-container__step {
     padding: 15px;
     width: 100%;
     background: #ECF1FE;
     color: #BEC8E9;
 }
 
-.register-container__register-breadcrumb-item li div {
+.register-container__register-breadcrumb-item .register-container__step .register-container__step-number {
     border-radius: 50%;
     background-color: #C1CBEA;
     color: #D9F0FE;
@@ -366,7 +389,7 @@ Welcome.blade.php
 }
 
 
-.register-container__register-breadcrumb-item li.active {
+.register-container__register-breadcrumb-item .register-container__step.register-container__step--active {
     padding: 15px;
     border-radius: 0 20px 20px 0;
     background: linear-gradient(90deg, rgba(162, 223, 254, 1) 0%, rgba(127, 203, 252, 1) 49%, rgba(107, 153, 251, 1) 82%);
@@ -374,7 +397,7 @@ Welcome.blade.php
     color: white;
 }
 
-.register-container__register-breadcrumb-item li.active div {
+.register-container__register-breadcrumb-item .register-container__step.register-container__step--active div {
     border-radius: 50%;
     background-color: white;
     color: #BCD0F9;
@@ -415,15 +438,38 @@ Welcome.blade.php
     color: #5B78D6;
 }
 
+.register-container__register-input-container input[type="radio"] {
+    display: none;
+}
+
+.register-container__register-input-container .register-container__radio-btn-grp img {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+}
+
+.register-container__register-input-container .register-container__radio-btn-grp img:hover {
+    cursor: pointer;
+}
+
+.register-container__register-input-container .register-container__radio-btn-grp input[type="radio"]:checked+.radio-label {
+    border: 1px solid #5B78D6;
+    background-color: #D9F0FE;
+}
+
+.tab {
+    display: none;
+}
+
+/* start login page */
+
 .login-container__login-container {
     padding-top: 100px;
     width: 100vw;
     height: 100vh;
 }
 
-.tab {
-    display: none;
-}
+
 
 .login-container__login-input-container {
     background: white;
@@ -434,8 +480,7 @@ Welcome.blade.php
 
 }
 
-.login-container__login-input-container input[type="submit"],
-.login-container__login-input-container button,
+.login-container__login-input-container .login-container__button,
 .register-container__register-input-container button {
     background-color: #5B78D6;
     color: white;
@@ -444,22 +489,16 @@ Welcome.blade.php
     cursor: pointer;
 }
 
-.login-container__login-input-container input[type="submit"]:hover {
-    box-shadow: 1px 1px #5B78D6;
-}
-
 .login-container__login-input-container label,
 .login-container__login-input-container p {
     color: black;
 }
 
-.login-container__login-input-container a {
+.login-container__login-input-container .login-container__anchor-link {
     color: #5B78D6;
 }
 
-.login-container__login-input-container input[type="email"],
-.login-container__login-input-container input[type="password"],
-.login-container__login-input-container input[type="text"] {
+.login-container__login-input-container .login-container__input-group .login-container__input {
     padding: 5px;
     border-radius: 10px;
     width: 40vw;
@@ -468,8 +507,7 @@ Welcome.blade.php
 
 }
 
-.login-container__login-input-container input[type="email"]:focus,
-.login-container__login-input-container input[type="password"]:focus .login-container__login-input-container input[type="text"]:focus {
+.login-container__login-input-container .login-container__input-group .login-container__input:focus {
     border: 2px solid #6BACFB;
 
 }
@@ -479,39 +517,23 @@ Welcome.blade.php
     cursor: pointer;
 }
 
-.register-container__register-input-container input[type="radio"] {
-    display: none;
-}
-
-.register-container__register-input-container .radio-btn-grp img {
-    height: 100px;
-    width: 100px;
-    padding: 10px;
-}
-
-.register-container__register-input-container .radio-btn-grp img:hover {
-    cursor: pointer;
-}
-
-.register-container__register-input-container .radio-btn-grp input[type="radio"]:checked+.radio-label {
-    border: 1px solid #5B78D6;
-    background-color: #D9F0FE;
-}
+/* end login page */
 
 
+
+/* start home page */
 .home-container {
-    padding: 0 5vw;
     background-color: #FBECE1;
 }
 
-.home-container .introductory-note {
+.home-container__introductory-note {
     padding: 15px;
     width: 100%;
     background-color: #150F3B;
     box-shadow: 5px 5px #6BACFB;
 }
 
-.home-container .book-view {
+.home-container__book-view {
     padding: 15px;
     height: 100%;
     width: 100%;
@@ -519,7 +541,17 @@ Welcome.blade.php
     box-shadow: 5px 5px #6BACFB; */
 }
 
-.card {
+.home-container__goal-interest-container {
+    width: 100%;
+}
+
+.home-container__goal-interest-item {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #150F3B;
+}
+
+.home-container__card {
     width: 90%;
     height: 400px;
     background-color: #fff;
@@ -529,35 +561,35 @@ Welcome.blade.php
     border: 1px solid #4976E7;
 }
 
-.card:hover {
+.home-container__card:hover {
     box-shadow: -6px 6px #150F3B;
     transform: translate(10px, -10px);
 }
 
-.card i:hover {
+.home-container__card i:hover {
     cursor: pointer;
 }
 
-.card-header {
+.home-container__card-header {
     height: 40%;
     width: 100%;
     box-shadow: 0 1px rgba(0, 0, 0, .2);
 }
 
-.card-header img {
+.home-container__card-header img {
     border-radius: 20px 20px 0 0;
     height: 100%;
     width: 100%;
 
 }
 
-.card-footer {
+.home-container__card-footer {
     position: absolute;
     bottom: 5%;
     width: 100%;
 }
 
-.card-footer button {
+.home-container__card-footer button {
     background-color: #4976E7;
     width: 60%;
     border-radius: 5px;
@@ -566,27 +598,28 @@ Welcome.blade.php
 
 }
 
-.add-favorite {
+.home-container__add-favorite {
     width: 30px;
     height: 30px;
     background-color: #F73157;
     border-radius: 40px;
 }
 
-.add-favorite i {
+.home-container__add-favorite i,
+.home-container__feedback i {
     color: #fff;
 }
 
-.feedback {
+.home-container__feedback {
     width: 30px;
     height: 30px;
     background-color: #2FAA8C;
     border-radius: 40px;
 }
 
-.feedback i {
-    color: #fff;
-}
+
+
+/* end home page */
 
 .admin-container {
     height: 100%;
@@ -723,9 +756,11 @@ table .action-btn i:nth-of-type(3) {
 
 
 @media only screen and (max-width: 600px) {
-    .navbar ul {
+    #navbar-guest ul {
         display: none;
     }
+
+
 
     .logo {
         margin-left: 10px;
@@ -744,6 +779,8 @@ table .action-btn i:nth-of-type(3) {
     .navbar__list-item-container1-guest img {
         margin-right: 0;
     }
+
+    .navbar__nav-links-phone {}
 
     .start-up-container {
         padding-top: 50%;
@@ -774,30 +811,48 @@ table .action-btn i:nth-of-type(3) {
         width: 90%;
     }
 
-    .login-container__login-input-container input[type="email"],
-    .login-container__login-input-container input[type="password"],
-    .login-container__login-input-container input[type="text"] {
+    .login-container__login-input-container .login-container__input-group .login-container__input {
         width: 100%;
-
     }
 
+    .login-container__login-input-container .login-container__input-group .login-input--checkbox {
+        width: 5%;
+    }
 
-    .login-container__login-input-container input[type="submit"],
-    .login-container__login-input-container button,
-    .register-container__register-input-container button {
+    .login-container__login-input-container .login-container__button {
         width: 20%;
     }
 
 
-    .card {
+    .home-container__card {
         width: 100%;
     }
 
+
     .register-container__register-input-container {
         width: 90%;
+        height: 100%;
+    }
+
+    .register-container .register-container__button {
+        width: 25%;
+    }
+
+
+    .home-container__goal-interest-item {
+        width: 100%;
     }
 
 
 
+}
+
+@media (min-width: 1000px) and (max-width: 2000px) {
+
+    .navbar__list-hidden-container-auth,
+    .navbar__nav-links-phone {
+        width: 20%;
+        right: 4%;
+    }
 
 }
