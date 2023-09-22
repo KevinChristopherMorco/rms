@@ -63,7 +63,7 @@ a:hover {
     opacity: .7;
 }
 
-nav {
+nav:not([role=navigation]) {
     width: 100%;
     height: 75px;
     position: fixed;
@@ -71,6 +71,17 @@ nav {
     z-index: 9999;
 
 }
+
+nav[role=navigation] span[aria-current=page] span.cursor-default {
+   font-weight: bolder;
+   background-color: #5B78D6;
+   color: #fff;
+}
+
+nav[role=navigation] p ,nav[role=navigation] span  {
+    font-weight: bolder;
+    font-size: 0.7rem;
+ }
 
 .navbar-sticky {
     height: 80px;
@@ -617,7 +628,9 @@ Welcome.blade.php
     border-radius: 40px;
 }
 
-
+.loading-indicator{
+    width: 100%;
+}
 
 /* end home page */
 

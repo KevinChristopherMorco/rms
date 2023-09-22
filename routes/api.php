@@ -18,4 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// book api routes
+
 Route::get('/books/{id}', [BookController::class, 'findBookId']);
+Route::get('/catalogfilter',[BookController::class, 'findBookFilter']);

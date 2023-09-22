@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookReservationController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +46,7 @@ Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->na
 
 Route::get('/guest/browse', [UserController::class, 'guestBrowse'])->name('guest.browse');
 Route::get('/catalog', [UserController::class, 'catalog'])->name('user.catalog');
+Route::post('/catalog/reserveBook', [BookReservationController::class, 'store'])->name('catalog.reserve');
 
 Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
 Route::get('/home', [UserController::class, 'home'])->name('home');

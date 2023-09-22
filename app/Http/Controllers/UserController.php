@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Client;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -27,14 +30,20 @@ class UserController extends Controller
     }
     public function home()
     {
-        $data= array('books'=>DB::table('books')->orderBy('created_at')->paginate(10));
+        $authSessionId=Auth::id();
+        $data = array('books'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=', DB::raw($authSessionId))->select('books.*')->paginate(10));
 
         return view('home', $data);
     }
 
     public function catalog()
     {
-        $data= array('books'=>DB::table('books')->orderBy('created_at')->paginate(10));
+
+        $data= array('books'=>DB::table('books')->leftJoin('book_reservations', function(JoinClause $join){
+            $authSessionId=Auth::id();
+            $join->on('book_reservations.book_id', '=', 'books.id')->where('book_reservations.user_id', '=', $authSessionId);
+        })->whereNull('book_reservations.user_id')->select('books.*')->paginate(10)
+    );
         return view('user.catalog', $data);
     }
 
@@ -59,8 +68,6 @@ class UserController extends Controller
         $userCount = User::count();
         return view('admin.adminHome', compact('userCount'));
 
-        // $users = User::all();
-        // return view('admin-home', compact('users'));
     }
 
     public function showUser()
