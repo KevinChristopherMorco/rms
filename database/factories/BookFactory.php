@@ -16,7 +16,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $nbWords = 6;
+        $nbWords = 12;
         return [
             'title'=>fake()->catchPhrase(),
             'author'=>fake()->name(),
@@ -36,6 +36,8 @@ class BookFactory extends Factory
                 'College of Nursing and Allied Health',
                 'College of Hospitality Management and Tourism',
             ]),
+            'status' => fake()->randomElement(['In stock', 'Limited stock', 'Out of stock']),
+            'stock' => fake()->numberBetween($min = 0, $max = 2000),
         ];
     }
 }

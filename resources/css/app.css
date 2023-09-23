@@ -594,6 +594,14 @@ Welcome.blade.php
 
 }
 
+.home-container__tags{
+    background-color: #37C70E;
+    color: #fff;
+    border-radius: 20px;
+    height: 100%;
+    width: 80%;
+}
+
 .home-container__card-footer {
     position: absolute;
     bottom: 5%;
@@ -626,6 +634,16 @@ Welcome.blade.php
     height: 30px;
     background-color: #2FAA8C;
     border-radius: 40px;
+}
+
+.reserve-input{
+    border: 1px solid #640ED8;
+    border-radius: 10px;
+}
+.reserve-input:focus{
+    outline: none;
+    border: 2px solid #640ED8;
+    border-radius: 10px;
 }
 
 .loading-indicator{

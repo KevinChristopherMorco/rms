@@ -11,6 +11,8 @@ class BookReservationController extends Controller
         $validateData = $request->validate([
             'user_id' => 'required',
             'book_id' => 'required',
+            'reserve_start' => 'required',
+            'reserve_end' => 'required',
         ]);
         BookReservation::create($validateData);
 

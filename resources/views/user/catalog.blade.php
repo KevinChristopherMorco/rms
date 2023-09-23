@@ -392,8 +392,9 @@
                                     <div class="home-container__card-body">
                                         <p class="text-base font-bold text-center">{{ $book->title }}</p>
                                         <div class="flex justify-center items-center">
-                                            <p class="text-sm text-center pt-8">{{ $book->description }}</p>
+                                            <p class="text-sm text-center pt-4">{{ $book->description }}</p>
                                         </div>
+
                                     </div>
                                     <div class="home-container__card-footer px-4 ">
                                         <div class="flex justify-center items-center gap-4">
@@ -422,11 +423,11 @@
     <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
         style="background: rgba(0,0,0,.7);">
         <div
-            class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div class=" py-4 text-left px-6">
                 <!--Title-->
                 <div class="flex justify-between items-center pb-3">
-                    <p class="text-2xl font-bold">View Book</p>
+                    <p class="text-2xl font-bold">Book Details</p>
                     <div class="modal-close cursor-pointer z-50">
                         <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18"
                             height="18" viewBox="0 0 18 18">
@@ -458,7 +459,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -470,6 +471,7 @@
         const modalContent = document.querySelectorAll('.modal-content-container');
         const loadingIndicators = document.querySelectorAll('.loading-indicator');
         const modalText = document.querySelectorAll('.modal-text');
+        const navbar = document.querySelectorAll('.navbar')
 
 
         modal.forEach((modalEl) => {
@@ -480,6 +482,11 @@
             modalCloseEl.addEventListener('click', (e) => {
                 modal.forEach((modalEl) => {
                     modalEl.style.display = 'none'
+                    modalEl.classList.remove('show')
+
+                })
+                navbar.forEach((navbarEl) => {
+                    navbarEl.classList.remove('hidden')
                 })
             })
         })
@@ -488,23 +495,45 @@
         const generateModalContent = (bookData, userId) => {
             return `
             <div class="flex justify-between items-center pb-3">
-                <p class="text-2xl font-bold">${bookData.title}</p>
-            </div>
-            <div class="my-5">
-                <p>${bookData.description}</p>
-            </div>
-            <form action='{{route('catalog.reserve')}}' method="POST">
-                @csrf
+    <p class="text-2xl font-bold">${bookData.title}</p>
+</div>
+<div class="flex justify-center items-center">
+    <p class="home-container__tags text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
+    <p class="home-container__tags text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
+
+</div>
+<div class="py-5">
+    <p class="text-center text-sm">${bookData.description}</p>
+</div>
+<div class="py-2">
+    <span class="font-bold">Book ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+</div>
+<div class="py-2">
+    <span class="font-bold">Book Availability:</span> <span class="book-availability text-sm"> ${bookData.status}</span>
+</div>
+
+<form action='{{ route('catalog.reserve') }}' method="POST">
+    @csrf
     <input type="hidden" name="user_id" value="${userId}">
     <input type="hidden" name="book_id" value="${bookData.id}">
+    <div class="py-2">
+    <p class="py-2 text-base font-bold">Reservation Date:</p>
+    <div class="flex justify-around items-center">
+        <label class="font-bold" for="reserve_start"> Start Date </label>
+        <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
+        <label class="font-bold" for="reserve_end"> End Date </label>
+        <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
+    </div>
+    </div>
+
     <!--Footer-->
-                <div class="flex justify-end pt-2">
-                    
-                    <button
-                        class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">Reserve</button>
-                </div>
-            </form>
-            <!-- Add more book data here -->
+    <div class="flex justify-end pt-4">
+
+        <button
+            class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
+    </div>
+</form>
+<!-- Add more book data here -->
         `;
         }
 
@@ -512,6 +541,17 @@
             viewBtnEl.addEventListener('click', (e) => {
                 modal.forEach((modalEl) => {
                     modalEl.style.display = 'flex'
+                    modalEl.classList.add('show')
+
+                    if (modalEl.classList.contains('show')) {
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.add('hidden')
+                        })
+                    }
+
+
+
+
                 })
 
                 const bookId = viewBtnEl.getAttribute('data-book-id');
@@ -664,6 +704,7 @@
             })
         })
     </script>
+    
 
 
 
