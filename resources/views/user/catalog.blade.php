@@ -495,21 +495,23 @@
         const generateModalContent = (bookData, userId) => {
             return `
             <div class="flex justify-between items-center pb-3">
-    <p class="text-2xl font-bold">${bookData.title}</p>
+    <p class="book-title text-2xl font-bold">${bookData.title}</p>
 </div>
 <div class="flex justify-center items-center">
-    <p class="home-container__tags text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
-    <p class="home-container__tags text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
+    <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
+    <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
 
 </div>
 <div class="py-5">
     <p class="text-center text-sm">${bookData.description}</p>
 </div>
 <div class="py-2">
-    <span class="font-bold">Book ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+    <span class="font-bold">Book Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
 </div>
+
+
 <div class="py-2">
-    <span class="font-bold">Book Availability:</span> <span class="book-availability text-sm"> ${bookData.status}</span>
+    <span class="font-bold">Book ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
 </div>
 
 <form action='{{ route('catalog.reserve') }}' method="POST">
@@ -548,10 +550,6 @@
                             navbarEl.classList.add('hidden')
                         })
                     }
-
-
-
-
                 })
 
                 const bookId = viewBtnEl.getAttribute('data-book-id');
@@ -574,6 +572,71 @@
                             modalTextEl.innerHTML = generateModalContent(bookData, userId);
                         })
 
+                        const collegeTag = document.querySelectorAll('.home-container__tags-college')
+                        collegeTag.forEach((collegeTagEl) => {
+                            if (collegeTagEl.innerHTML == 'College of Computer Studies') {
+                                collegeTagEl.style.background = '#640ED8'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Business Management and Accountancy') {
+                                collegeTagEl.style.background = '#F7B900'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Nursing and Allied Health') {
+                                collegeTagEl.style.background = '#00F700'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Engineering and Technology') {
+                                collegeTagEl.style.background = '#F74000'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Industrial Technology') {
+                                collegeTagEl.style.background = '#0017A3'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Teacher Education') {
+                                collegeTagEl.style.background = '#6363F7'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Criminal Justice Education') {
+                                collegeTagEl.style.background = '#525252'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Arts and Sciences') {
+                                collegeTagEl.style.background = '#F7007E'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Hospitality Management and Tourism') {
+                                collegeTagEl.style.background = '#C00000'
+                            } else {
+                                collegeTagEl.style.background = '#511D1A'
+
+                            }
+                        })
+
+
+
+                        const bookAvailability = document.querySelectorAll('.book-availability')
+                        bookAvailability.forEach((bookAvailabilityEl) => {
+                            if (bookAvailabilityEl.innerHTML == 'In stock') {
+                                bookAvailabilityEl.classList.add('in-stock')
+                            }
+
+                            if (bookAvailabilityEl.innerHTML == 'Limited stock') {
+                                bookAvailabilityEl.classList.add('limited-stock')
+                            }
+
+                            if (bookAvailabilityEl.innerHTML == 'Out of stock') {
+                                bookAvailabilityEl.classList.add('out-stock')
+                            }
+                        })
+
+                        const reserveStart = document.getElementById('reserve_start')
+                        reserveStart.min = new Date().toISOString().split("T")[0];
+                        let reserveEnd = document.getElementById('reserve_end')
+                        reserveEnd.disabled = true
+
+                        reserveStart.addEventListener('change', (e) => {
+                            let reserveStartDate = reserveStart.value
+
+                            reserveEnd.disabled = false
+
+                            let minEndDate = new Date(reserveStartDate);
+                            let lol = minEndDate.setDate(minEndDate.getDate() + 7);
+                            reserveEnd.min = minEndDate.toISOString().split("T")[0]
+                        })
                         loadingIndicators.forEach((loadingIndicator) => {
                             loadingIndicator.style.display = 'none'
                         });
@@ -704,7 +767,7 @@
             })
         })
     </script>
-    
+
 
 
 

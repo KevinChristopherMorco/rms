@@ -595,11 +595,14 @@ Welcome.blade.php
 }
 
 .home-container__tags{
-    background-color: #37C70E;
     color: #fff;
     border-radius: 20px;
     height: 100%;
     width: 80%;
+}
+
+.home-container__tags-genre{
+    background-color: #7377AD;
 }
 
 .home-container__card-footer {
@@ -643,6 +646,33 @@ Welcome.blade.php
 .reserve-input:focus{
     outline: none;
     border: 2px solid #640ED8;
+    border-radius: 10px;
+}
+
+.in-stock{
+    background-color: #37C70E;
+    color: #fff;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.limited-stock{
+    background-color: #E4B644;
+    color: #fff;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.out-stock{
+    background-color: #F70E0E;
+    color: #fff;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
     border-radius: 10px;
 }
 
