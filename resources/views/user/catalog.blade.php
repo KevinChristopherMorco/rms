@@ -2,7 +2,6 @@
 @section('title', 'Browse Books')
 
 @section('content')
-
     <section class="guest-browse-container py-20">
         <div class="guest-browse-container__guest-browse-books">
             <div class="grid md:grid-cols-4 gap-4">
@@ -421,8 +420,47 @@
         </div>
     </section>
 
+
+
     {{-- reserve modal --}}
     @include('modal.reserveBook')
+
+    @if (session('success'))
+        <script>
+            window.addEventListener('load', () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Reservation request successful!',
+                    text: 'Please wait for the admin to confirm your request',
+                })
+            })
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            window.addEventListener('load', () => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid request!',
+                    text: 'We cannot proceed to your request',
+                })
+            })
+        </script>
+    @endif
+    @if (session('notFound'))
+    <script>
+        window.addEventListener('load', () => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid request!',
+                text: 'We cannot proceed to your request',
+            })
+        })
+    </script>
+@endif
+
+
 
     <script>
         const modal = document.querySelectorAll('.main-modal')
@@ -466,14 +504,13 @@
     @csrf
     <input type="hidden" name="user_id" value="${userId}">
     <input type="hidden" name="book_id" value="${bookData.id}">
-    <div class="py-2">
+    <div class="reserve-post-input py-2">
     <p class="py-2 text-base font-bold">Reservation Date:</p>
     <div class="flex justify-around items-center">
         <label class="font-bold" for="reserve_start"> Start Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
         <label class="font-bold" for="reserve_end"> End Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
-    </div>
     </div>
 
     <!--Footer-->
@@ -482,6 +519,8 @@
         <button
             class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
     </div>
+</div>
+
 </form>
 <!-- Add more book data here -->
         `;
@@ -585,6 +624,10 @@
                                 }
                             })
 
+                            let reservePostRequest = document.querySelectorAll(
+                                '.reserve-post-input')
+
+
 
                             // set the design color tags of availability
                             const bookAvailability = document.querySelectorAll('.book-availability')
@@ -595,6 +638,9 @@
                                     'Limited stock') {
                                     bookAvailabilityEl.classList.add('limited-stock')
                                 } else {
+                                    reservePostRequest.forEach((reservePostRequestEl) => {
+                                        reservePostRequestEl.classList.add('hidden')
+                                    })
                                     bookAvailabilityEl.classList.add('out-stock')
                                 }
                             })
@@ -793,4 +839,5 @@
             })
         })
     </script>
+
 @endsection
