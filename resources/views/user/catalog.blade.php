@@ -420,49 +420,9 @@
             </div>
         </div>
     </section>
-    <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
-        style="background: rgba(0,0,0,.7);">
-        <div
-            class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
-            <div class=" py-4 text-left px-6">
-                <!--Title-->
-                <div class="flex justify-between items-center pb-3">
-                    <p class="text-2xl font-bold">Book Details</p>
-                    <div class="modal-close cursor-pointer z-50">
-                        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18"
-                            height="18" viewBox="0 0 18 18">
-                            <path
-                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-                <!--Body-->
-                <div class="modal-content-container my-5">
-                    <div class="loading-indicator flex justify-center">
-                        <div role="status">
-                            <svg aria-hidden="true"
-                                class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
-                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                    fill="currentColor" />
-                                <path
-                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                    fill="currentFill" />
-                            </svg>
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
 
-                    <div class="modal-text">
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    {{-- reserve modal --}}
+    @include('modal.reserveBook')
 
     <script>
         const modal = document.querySelectorAll('.main-modal')
@@ -475,21 +435,9 @@
 
 
         modal.forEach((modalEl) => {
-            modalEl.style.display = 'none'
+            modalEl.classList.add('hidden')
         })
 
-        modalClose.forEach((modalCloseEl) => {
-            modalCloseEl.addEventListener('click', (e) => {
-                modal.forEach((modalEl) => {
-                    modalEl.style.display = 'none'
-                    modalEl.classList.remove('show')
-
-                })
-                navbar.forEach((navbarEl) => {
-                    navbarEl.classList.remove('hidden')
-                })
-            })
-        })
 
         // Function to generate modal content
         const generateModalContent = (bookData, userId) => {
@@ -524,7 +472,7 @@
         <label class="font-bold" for="reserve_start"> Start Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
         <label class="font-bold" for="reserve_end"> End Date </label>
-        <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
+        <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
     </div>
     </div>
 
@@ -539,123 +487,201 @@
         `;
         }
 
-        viewBtn.forEach((viewBtnEl, viewBtnIndex) => {
-            viewBtnEl.addEventListener('click', (e) => {
-                modal.forEach((modalEl) => {
-                    modalEl.style.display = 'flex'
-                    modalEl.classList.add('show')
+        // this function is used for viewing the content through modal it includes the ID of the item as well as the endpoint
 
-                    if (modalEl.classList.contains('show')) {
-                        navbar.forEach((navbarEl) => {
-                            navbarEl.classList.add('hidden')
-                        })
-                    }
-                })
+        const viewButtonFunction = () => {
+            viewBtn.forEach((viewBtnEl, viewBtnIndex) => {
+                viewBtnEl.addEventListener('click', (e) => {
+                    modal.forEach((modalEl) => {
+                        // if the viewbutton is clicked show the modal
+                        modalEl.style.display = 'flex'
+                        modalEl.classList.add('show')
 
-                const bookId = viewBtnEl.getAttribute('data-book-id');
-
-                loadingIndicators.forEach((loadingIndicator) => {
-                    loadingIndicator.style.display = 'block'
-                });
-
-                modalText.forEach((modalTextEl) => {
-                    modalTextEl.style.display = 'none'
-
-                });
-                // Make an Axios GET request to fetch data based on the book ID
-                axios.get(`/api/books/${bookId}`)
-                    .then(response => {
-                        const bookData = response.data;
-                        const userId = viewBtnEl.getAttribute('data-user-id')
-
-                        modalText.forEach((modalTextEl) => {
-                            modalTextEl.innerHTML = generateModalContent(bookData, userId);
-                        })
-
-                        const collegeTag = document.querySelectorAll('.home-container__tags-college')
-                        collegeTag.forEach((collegeTagEl) => {
-                            if (collegeTagEl.innerHTML == 'College of Computer Studies') {
-                                collegeTagEl.style.background = '#640ED8'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Business Management and Accountancy') {
-                                collegeTagEl.style.background = '#F7B900'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Nursing and Allied Health') {
-                                collegeTagEl.style.background = '#00F700'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Engineering and Technology') {
-                                collegeTagEl.style.background = '#F74000'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Industrial Technology') {
-                                collegeTagEl.style.background = '#0017A3'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Teacher Education') {
-                                collegeTagEl.style.background = '#6363F7'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Criminal Justice Education') {
-                                collegeTagEl.style.background = '#525252'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Arts and Sciences') {
-                                collegeTagEl.style.background = '#F7007E'
-                            } else if (collegeTagEl.innerHTML ==
-                                'College of Hospitality Management and Tourism') {
-                                collegeTagEl.style.background = '#C00000'
-                            } else {
-                                collegeTagEl.style.background = '#511D1A'
-
-                            }
-                        })
-
-
-
-                        const bookAvailability = document.querySelectorAll('.book-availability')
-                        bookAvailability.forEach((bookAvailabilityEl) => {
-                            if (bookAvailabilityEl.innerHTML == 'In stock') {
-                                bookAvailabilityEl.classList.add('in-stock')
-                            }
-
-                            if (bookAvailabilityEl.innerHTML == 'Limited stock') {
-                                bookAvailabilityEl.classList.add('limited-stock')
-                            }
-
-                            if (bookAvailabilityEl.innerHTML == 'Out of stock') {
-                                bookAvailabilityEl.classList.add('out-stock')
-                            }
-                        })
-
-                        const reserveStart = document.getElementById('reserve_start')
-                        reserveStart.min = new Date().toISOString().split("T")[0];
-                        let reserveEnd = document.getElementById('reserve_end')
-                        reserveEnd.disabled = true
-
-                        reserveStart.addEventListener('change', (e) => {
-                            let reserveStartDate = reserveStart.value
-
-                            reserveEnd.disabled = false
-
-                            let minEndDate = new Date(reserveStartDate);
-                            let lol = minEndDate.setDate(minEndDate.getDate() + 7);
-                            reserveEnd.min = minEndDate.toISOString().split("T")[0]
-                        })
-                        loadingIndicators.forEach((loadingIndicator) => {
-                            loadingIndicator.style.display = 'none'
-                        });
-
-                        modalText.forEach((modalTextEl) => {
-                            modalTextEl.style.display = 'block'
-
-                        });
-
+                        // Hide the navbar if modal is opened
+                        if (modalEl.classList.contains('show')) {
+                            navbar.forEach((navbarEl) => {
+                                navbarEl.classList.add('hidden')
+                            })
+                        }
                     })
-                    .catch(error => {
-                        console.error('Error fetching book data:', error);
+
+                    // when modal is closed
+
+                    modalClose.forEach((modalCloseEl) => {
+                        modalCloseEl.addEventListener('click', (e) => {
+                            modal.forEach((modalEl) => {
+                                modalEl.style.display = 'none'
+                                modalEl.classList.remove('show')
+
+                            })
+                            navbar.forEach((navbarEl) => {
+                                navbarEl.classList.remove('hidden')
+                            })
+                        })
+                    })
+
+
+                    // get the book-id attribute through the button
+                    const bookId = viewBtnEl.getAttribute('data-book-id');
+
+
+                    // show a loader in modal when opened
+                    loadingIndicators.forEach((loadingIndicator) => {
+                        loadingIndicator.style.display = 'block'
                     });
 
+                    // set the modal text to display none
+                    modalText.forEach((modalTextEl) => {
+                        modalTextEl.style.display = 'none'
+
+                    });
+
+                    // Make an Axios GET request to fetch data based on the book ID
+                    axios.get(`/api/books/${bookId}`)
+                        .then(response => {
+                            const bookData = response.data;
+                            const userId = viewBtnEl.getAttribute('data-user-id')
+
+                            // generate the fetched data in the html of modalText
+                            modalText.forEach((modalTextEl) => {
+                                modalTextEl.innerHTML = generateModalContent(bookData,
+                                    userId);
+                            })
+
+                            // set the design color tags of colleges
+                            const collegeTag = document.querySelectorAll(
+                                '.home-container__tags-college')
+                            collegeTag.forEach((collegeTagEl) => {
+                                if (collegeTagEl.innerHTML ==
+                                    'College of Computer Studies') {
+                                    collegeTagEl.style.background = '#640ED8'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Business Management and Accountancy') {
+                                    collegeTagEl.style.background = '#F7B900'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Nursing and Allied Health') {
+                                    collegeTagEl.style.background = '#00F700'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Engineering and Technology') {
+                                    collegeTagEl.style.background = '#F74000'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Industrial Technology') {
+                                    collegeTagEl.style.background = '#0017A3'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Teacher Education') {
+                                    collegeTagEl.style.background = '#6363F7'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Criminal Justice Education') {
+                                    collegeTagEl.style.background = '#525252'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Arts and Sciences') {
+                                    collegeTagEl.style.background = '#F7007E'
+                                } else if (collegeTagEl.innerHTML ==
+                                    'College of Hospitality Management and Tourism') {
+                                    collegeTagEl.style.background = '#C00000'
+                                } else {
+                                    collegeTagEl.style.background = '#511D1A'
+
+                                }
+                            })
 
 
+                            // set the design color tags of availability
+                            const bookAvailability = document.querySelectorAll('.book-availability')
+                            bookAvailability.forEach((bookAvailabilityEl) => {
+                                if (bookAvailabilityEl.innerHTML == 'In stock') {
+                                    bookAvailabilityEl.classList.add('in-stock')
+                                } else if (bookAvailabilityEl.innerHTML ==
+                                    'Limited stock') {
+                                    bookAvailabilityEl.classList.add('limited-stock')
+                                } else {
+                                    bookAvailabilityEl.classList.add('out-stock')
+                                }
+                            })
+
+
+
+                            const reserveStart = document.getElementById('reserve_start')
+                            //get the current date through the constructor
+                            reserveStart.min = new Date().toISOString().split("T")[0]
+
+                            const reserveEnd = document.getElementById('reserve_end')
+
+                            reserveStart.addEventListener('change', (e) => {
+                                let reserveStartDate = reserveStart.value
+
+                                let date = new Date(reserveStart.value);
+                                let checkDay = date.getDay();
+                                if (checkDay == 0 || checkDay == 6) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Weekends not allowed!',
+                                        text: 'Please select weekdays only.',
+                                    })
+                                    reserveStart.value = ""
+                                    reserveStart.type = "text"
+                                    reserveStart.placeholder = "Enter date here"
+                                }
+
+                                if (reserveStart.value === "") {
+                                    reserveEnd.disabled = true
+                                    reserveEnd.value = ""
+                                    reserveEnd.type = "text"
+                                    reserveEnd.placeholder = "Enter date here"
+                                } else {
+                                    reserveEnd.disabled = false
+
+                                    //set the date of the end date that will depend on the start date 
+                                    let minEndDate = new Date(reserveStartDate);
+                                    minEndDate.setDate(minEndDate.getDate() + 7);
+                                    reserveEnd.min = minEndDate.toISOString().split("T")[0]
+                                }
+                            })
+
+                            reserveEnd.addEventListener('change', (e) => {
+                                let reserveEndDate = reserveEnd.value
+                                let date = new Date(reserveEndDate)
+                                let checkDay = date.getDay()
+
+                                if (checkDay == 0 || checkDay == 6) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Weekends not allowed!',
+                                        text: 'Please select weekdays only.',
+                                    })
+                                    reserveEnd.value = ""
+                                    reserveEnd.type = "text"
+                                    reserveEnd.placeholder = "Enter date here"
+                                }
+                            })
+
+                            //hide the loading indicator
+                            loadingIndicators.forEach((loadingIndicator) => {
+                                loadingIndicator.style.display = 'none'
+                            });
+
+                            //show modal text inner html
+                            modalText.forEach((modalTextEl) => {
+                                modalTextEl.style.display = 'block'
+
+                            });
+
+                        })
+                        .catch(error => {
+                            console.error('Error fetching book data:', error);
+                        });
+
+
+
+                })
             })
-        })
+        }
+
+        viewButtonFunction();
     </script>
+
+
+
     <script>
         const heartIcon = document.querySelectorAll('.home-container__add-favorite')
         const feedbackIcon = document.querySelectorAll('.home-container__feedback')
@@ -767,9 +793,4 @@
             })
         })
     </script>
-
-
-
-
-    @include('modal.reserveBook')
 @endsection

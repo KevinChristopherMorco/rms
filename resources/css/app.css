@@ -643,6 +643,15 @@ Welcome.blade.php
     border: 1px solid #640ED8;
     border-radius: 10px;
 }
+.reserve-input:hover{
+    cursor: pointer;
+}
+.reserve-input:disabled{
+    border: 1px solid gray;
+    background-color: lightgray;
+    border-radius: 10px;
+    cursor:not-allowed;
+}
 .reserve-input:focus{
     outline: none;
     border: 2px solid #640ED8;
