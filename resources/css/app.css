@@ -557,6 +557,7 @@ Welcome.blade.php
 
 .home-container__btn-item--active{
     background-color: #640ED8;
+    box-shadow: 2px 2px #640ED8;
     color: #fff;
 }
 
