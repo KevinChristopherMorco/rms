@@ -40,6 +40,14 @@
                             <p class="text-l">Book</p>
                             <p class="text-xl font-bold">{{ $pendingBookRequest->title }}</p>
                             <p class="text-lg">{{ $pendingBookRequest->author }}</p>
+                            <div class="flex justify-end items-center">
+                                <div class="home-container__add-favorite flex justify-center items-center mx-2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="home-container__feedback flex justify-center items-center">
+                                    <i class="fa-regular fa-comments"></i>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <p class="text-center text-xl font-bold"><i class="fa-solid fa-hourglass-start fa-spin px-2"></i>No
@@ -61,6 +69,14 @@
                             <p class="text-l">Book</p>
                             <p class="text-xl font-bold">{{ $approveBookRequest->title }}</p>
                             <p class="text-lg">{{ $approveBookRequest->author }}</p>
+                            <div class="flex justify-end items-center">
+                                <div class="home-container__add-favorite flex justify-center items-center mx-2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="home-container__feedback flex justify-center items-center">
+                                    <i class="fa-regular fa-comments"></i>
+                                </div>
+                            </div>
                         </div>
                     @empty
 
@@ -84,6 +100,14 @@
                             <p class="text-l">Book</p>
                             <p class="text-xl font-bold">{{ $declineBookRequest->title }}</p>
                             <p class="text-lg">{{ $declineBookRequest->author }}</p>
+                            <div class="flex justify-end items-center">
+                                <div class="home-container__add-favorite flex justify-center items-center mx-2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="home-container__feedback flex justify-center items-center">
+                                    <i class="fa-regular fa-comments"></i>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <p class="text-center text-xl font-bold"><i
@@ -105,6 +129,14 @@
                             <p class="text-l">Book</p>
                             <p class="text-xl font-bold">{{ $confirmBookRequest->title }}</p>
                             <p class="text-lg">{{ $confirmBookRequest->author }}</p>
+                            <div class="flex justify-end items-center">
+                                <div class="home-container__add-favorite flex justify-center items-center mx-2">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="home-container__feedback flex justify-center items-center">
+                                    <i class="fa-regular fa-comments"></i>
+                                </div>
+                            </div>
                         </div>
                     @empty
                         <div class="col-span-2">
@@ -134,7 +166,7 @@
                 <div class=" py-4 text-left px-6">
                     <!--Title-->
                     <div class="flex justify-between items-center pb-3">
-                        <p class="text-2xl font-bold">View Book</p>
+                        <p class="text-2xl font-bold">Book Details</p>
                         <div class="modal-close cursor-pointer z-50">
                             <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18"
                                 height="18" viewBox="0 0 18 18">
@@ -322,7 +354,6 @@
 
 `;
         }
-
     </script>
 
     <script>
@@ -331,6 +362,7 @@
 
         heartIcon.forEach((heartIconEl) => {
             heartIconEl.addEventListener('click', (e) => {
+                e.stopPropagation()
                 Swal.fire({
                     icon: 'success',
                     title: 'My favorite!',
@@ -341,6 +373,8 @@
 
         feedbackIcon.forEach((feedbackIconEl) => {
             feedbackIconEl.addEventListener('click', (e) => {
+                e.stopPropagation()
+
                 Swal.fire({
                     icon: 'success',
                     title: 'We hear you!',

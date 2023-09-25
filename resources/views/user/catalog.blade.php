@@ -460,6 +460,18 @@
     </script>
 @endif
 
+@if (session('invalidDate'))
+<script>
+    window.addEventListener('load', () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid request!',
+            text: 'We cannot proceed to your request',
+        })
+    })
+</script>
+@endif
+
 
 
     <script>
@@ -517,7 +529,7 @@
         <label class="font-bold px-4" for="reserve_end"> End Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
     </div>
-    
+
     <!--Footer-->
     <div class="flex justify-end mt-14">
         <button
