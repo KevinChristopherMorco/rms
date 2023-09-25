@@ -682,21 +682,21 @@ Welcome.blade.php
 }
 
 .modal-pending-status-container{
-    background-color: white;
+    background-color: #FEF3D3;
     border: 2px solid orange;
     color: orange;
     transform: rotate(-10deg);
 }
 
 .modal-accept-status-container{
-    background-color: white;
+    background-color: #DFFFDF;
     border: 2px solid #37C70E;
     color: #37C70E;
     transform: rotate(-10deg);
 }
 
 .modal-decline-status-container{
-    background-color: white;
+    background-color: #FEE2E2;
     border: 2px solid #F70E0E;
     color: #F70E0E;
     transform: rotate(-10deg);
