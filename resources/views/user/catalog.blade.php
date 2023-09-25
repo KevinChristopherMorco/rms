@@ -431,7 +431,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Reservation request successful!',
-                    text: 'Please wait for the admin to confirm your request',
+                    text: 'You may check the status of this request on your dashboard.',
                 })
             })
         </script>
@@ -492,13 +492,18 @@
     <p class="text-center text-sm">${bookData.description}</p>
 </div>
 <div class="py-2">
-    <span class="font-bold">Book Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
+    <span class="font-bold">Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
 </div>
-
 
 <div class="py-2">
-    <span class="font-bold">Book ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+    <span class="font-bold">Author:</span> <span class="book-isbn text-sm"> ${bookData.author}</span>
 </div>
+
+<div class="py-2">
+    <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+</div>
+
+
 
 <form action='{{ route('catalog.reserve') }}' method="POST">
     @csrf
@@ -506,16 +511,15 @@
     <input type="hidden" name="book_id" value="${bookData.id}">
     <div class="reserve-post-input py-2">
     <p class="py-2 text-base font-bold">Reservation Date:</p>
-    <div class="flex justify-around items-center">
-        <label class="font-bold" for="reserve_start"> Start Date </label>
+    <div class="flex justify-center items-center">
+        <label class="font-bold px-4" for="reserve_start"> Start Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
-        <label class="font-bold" for="reserve_end"> End Date </label>
+        <label class="font-bold px-4" for="reserve_end"> End Date </label>
         <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
     </div>
-
+    
     <!--Footer-->
-    <div class="flex justify-end pt-4">
-
+    <div class="flex justify-end mt-14">
         <button
             class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
     </div>

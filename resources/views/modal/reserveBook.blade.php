@@ -1,7 +1,7 @@
 <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
         style="background: rgba(0,0,0,.7);">
         <div
-            class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div class=" py-4 text-left px-6">
                 <!--Title-->
                 <div class="flex justify-between items-center pb-3">

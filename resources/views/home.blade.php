@@ -32,80 +32,42 @@
 
                 <div class="home-container__book-view home-container__book-status bg-white">
                     <p class="text-xl font-bold py-4 mb-4">Pending Request</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        @forelse ($pending as $pendingBookRequest)
-                            <div class="col-span-1">
-                                <div class="home-container__card">
-                                    <div class="home-container__card-header">
-                                        <img src="{{ $pendingBookRequest->book_image }}" alt="">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="text-base font-bold text-center">{{ $pendingBookRequest->title }}</p>
-                                        <p class="text-sm text-center py-4 px-2">{{ $pendingBookRequest->description }}</p>
-                                    </div>
-                                    <div class="home-container__card-footer px-4 ">
-                                        <div class="flex items-center gap-4">
-                                            <button class="view-book-btn text-center"
-                                                data-book-id="{{ $pendingBookRequest->id }}">View</button>
-                                            <div class="home-container__add-favorite flex justify-center items-center">
-                                                <i class="fa-solid fa-heart"></i>
-                                            </div>
-                                            <div class="home-container__feedback flex justify-center items-center">
-                                                <i class="fa-regular fa-comments"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-span-2">
-                                <p class="text-center text-xl font-bold"><i
-                                        class="fa-solid fa-hourglass-start fa-spin px-2"></i>No pending requests at the
-                                    moment</p>
-                            </div>
-                        @endforelse
-                    </div>
+                    <p class="text-sm"><span class="font-bold">Note:</span> Pending requests are subject to reviewed by the
+                        library staffs. You may check this dashboard frequently for updates.</p>
+                    @forelse ($pending as $pendingBookRequest)
+                        <div class="home-container__book-request-container home-container__book-pending py-6 px-2 mt-10"
+                            data-book-id="{{ $pendingBookRequest->id }}">
+                            <p class="text-l">Book</p>
+                            <p class="text-xl font-bold">{{ $pendingBookRequest->title }}</p>
+                            <p class="text-lg">{{ $pendingBookRequest->author }}</p>
+                        </div>
+                    @empty
+                        <p class="text-center text-xl font-bold"><i class="fa-solid fa-hourglass-start fa-spin px-2"></i>No
+                            pending requests at the
+                            moment</p>
+                    @endforelse
                     <div class="py-6">
-                        {{ $pending->links() }} 
+                        {{ $pending->links() }}
                     </div>
                 </div>
 
                 <div class="home-container__book-view home-container__book-status bg-white hidden">
                     <p class="text-xl font-bold py-4 mb-4">Approved Request</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        @forelse ($approve as $approveBookRequest)
-                            <div class="col-span-1">
-                                <div class="home-container__card">
-                                    <div class="home-container__card-header">
-                                        <img src="{{ $approveBookRequest->book_image }}" alt="">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="text-base font-bold text-center">{{ $approveBookRequest->title }}</p>
-                                        <p class="text-sm text-center py-4 px-2">{{ $approveBookRequest->description }}</p>
-                                    </div>
-                                    <div class="home-container__card-footer px-4 ">
-                                        <div class="flex items-center gap-4">
-                                            <button class="view-book-btn text-center"
-                                                data-book-id="{{ $approveBookRequest->id }}">View</button>
-                                            <div class="home-container__add-favorite flex justify-center items-center">
-                                                <i class="fa-solid fa-heart"></i>
-                                            </div>
-                                            <div class="home-container__feedback flex justify-center items-center">
-                                                <i class="fa-regular fa-comments"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-span-2">
+                    <p class="text-sm"><span class="font-bold">Note:</span> Approved requests are needed to be confirmed by
+                        the user for validation.</p>
+                    @forelse ($approve as $approveBookRequest)
+                        <div class="home-container__book-request-container home-container__book-accept py-6 px-2 mt-10"
+                            data-book-id="{{ $approveBookRequest->id }}">
+                            <p class="text-l">Book</p>
+                            <p class="text-xl font-bold">{{ $approveBookRequest->title }}</p>
+                            <p class="text-lg">{{ $approveBookRequest->author }}</p>
+                        </div>
+                    @empty
 
-                                <p class="text-center text-xl font-bold"><i
-                                        class="fa-solid fa-check-to-slot fa-bounce px-2"></i>No approved requests at
-                                    the moment</p>
-                            </div>
-                        @endforelse
-                    </div>
+                        <p class="text-center text-xl font-bold"><i class="fa-solid fa-check-to-slot fa-bounce px-2"></i>No
+                            approved requests at
+                            the moment</p>
+                    @endforelse
                     <div class="py-6">
                         {{ $approve->links() }}
                     </div>
@@ -113,39 +75,21 @@
 
                 <div class="home-container__book-view home-container__book-status bg-white hidden">
                     <p class="text-xl font-bold py-4 mb-4">Declined Request</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        @forelse ($decline as $declineBookRequest)
-                            <div class="col-span-1">
-                                <div class="home-container__card">
-                                    <div class="home-container__card-header">
-                                        <img src="{{ $declineBookRequest->book_image }}" alt="">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="text-base font-bold text-center">{{ $declineBookRequest->title }}</p>
-                                        <p class="text-sm text-center py-4 px-2">{{ $declineBookRequest->description }}</p>
-                                    </div>
-                                    <div class="home-container__card-footer px-4 ">
-                                        <div class="flex items-center gap-4">
-                                            <button class="view-book-btn text-center"
-                                                data-book-id="{{ $declineBookRequest->id }}">View</button>
-                                            <div class="home-container__add-favorite flex justify-center items-center">
-                                                <i class="fa-solid fa-heart"></i>
-                                            </div>
-                                            <div class="home-container__feedback flex justify-center items-center">
-                                                <i class="fa-regular fa-comments"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="col-span-2">
-                                <p class="text-center text-xl font-bold"><i
-                                        class="fa-solid fa-rectangle-xmark fa-bounce px-2"></i>No declined requests
-                                    at the moment</p>
-                            </div>
-                        @endforelse
-                    </div>
+                    <p class="text-sm"><span class="font-bold">Note:</span> Declined requests are irreversible, you may want
+                        to ask a staff why this had happened.</p>
+
+                    @forelse ($decline as $declineBookRequest)
+                        <div class="home-container__book-request-container home-container__book-decline py-6 px-2 mt-10"
+                            data-book-id="{{ $declineBookRequest->id }}">
+                            <p class="text-l">Book</p>
+                            <p class="text-xl font-bold">{{ $declineBookRequest->title }}</p>
+                            <p class="text-lg">{{ $declineBookRequest->author }}</p>
+                        </div>
+                    @empty
+                        <p class="text-center text-xl font-bold"><i
+                                class="fa-solid fa-rectangle-xmark fa-bounce px-2"></i>No declined requests
+                            at the moment</p>
+                    @endforelse
                     <div class="py-6">
                         {{ $decline->links() }}
                     </div>
@@ -182,7 +126,9 @@
                             </div>
                         @empty
                             <div class="col-span-2">
-                                <p class="text-center text-xl font-bold"><i class="fa-solid fa-book-open-reader fa-beat px-2"></i>Confirm the books in the approved tab to get started</p>
+                                <p class="text-center text-xl font-bold"><i
+                                        class="fa-solid fa-book-open-reader fa-beat px-2"></i>Confirm the books in the
+                                    approved tab to get started</p>
                             </div>
                         @endforelse
                     </div>
@@ -203,7 +149,7 @@
         <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
             style="background: rgba(0,0,0,.7);">
             <div
-                class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
                 <div class=" py-4 text-left px-6">
                     <!--Title-->
                     <div class="flex justify-between items-center pb-3">
@@ -239,11 +185,11 @@
 
                         </div>
                     </div>
-                    <!--Footer-->
+                    {{-- <!--Footer-->
                     <div class="flex justify-end pt-2">
                         <button
                             class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Confirm</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -271,17 +217,98 @@
         })
 
         // Function to generate modal content
-        const generateModalContent = (bookData) => {
+        const pendingBookContent = (bookData) => {
             return `
-        <div class="flex justify-between items-center pb-3">
-            <p class="text-2xl font-bold">${bookData.title}</p>
-        </div>
-        <div class="my-5">
-            <p>${bookData.description}</p>
-        </div>
-        <!-- Add more book data here -->
-    `;
+            <div class="flex justify-between items-center pb-3">
+    <p class="book-title text-2xl font-bold">${bookData.title}</p>
+    <div class="modal-pending-status-container flex justify-center items-center p-2">
+    <p class="modal-pending-status text-xs font-bold">Pending</p>
+    </div>
+</div>
+<div class="flex justify-center items-center">
+    <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
+    <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
+
+</div>
+<div class="py-5">
+    <p class="text-center text-sm">${bookData.description}</p>
+</div>
+<div class="py-2">
+    <span class="font-bold">Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">Author:</span> <span class="book-isbn text-sm"> ${bookData.author}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+</div>`;
         }
+
+        const acceptBookContent = (bookData) => {
+            return `
+            <div class="flex justify-between items-center pb-3">
+    <p class="book-title text-2xl font-bold">${bookData.title}</p>
+    <div class="modal-accept-status-container flex justify-center items-center p-2">
+    <p class="modal-accept-status text-xs font-bold">Accepted</p>
+    </div>
+</div>
+<div class="flex justify-center items-center">
+    <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
+    <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
+
+</div>
+<div class="py-5">
+    <p class="text-center text-sm">${bookData.description}</p>
+</div>
+<div class="py-2">
+    <span class="font-bold">Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">Author:</span> <span class="book-isbn text-sm"> ${bookData.author}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+</div>
+<div class="flex justify-end items-center">
+<button
+            class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Confirm</button>
+</div>
+            `;
+        }
+
+        const declineBookContent = (bookData) => {
+            return `
+            <div class="flex justify-between items-center pb-3">
+    <p class="book-title text-2xl font-bold">${bookData.title}</p>
+    <div class="modal-decline-status-container flex justify-center items-center p-2">
+    <p class="modal-decline-status text-xs font-bold">Declined</p>
+    </div>
+</div>
+<div class="flex justify-center items-center">
+    <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
+    <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
+
+</div>
+<div class="py-5">
+    <p class="text-center text-sm">${bookData.description}</p>
+</div>
+<div class="py-2">
+    <span class="font-bold">Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">Author:</span> <span class="book-isbn text-sm"> ${bookData.author}</span>
+</div>
+
+<div class="py-2">
+    <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
+</div>`;
+        }
+
 
         viewBtn.forEach((viewBtnEl, viewBtnIndex) => {
             viewBtnEl.addEventListener('click', (e) => {
@@ -377,6 +404,370 @@
                 tabButtonEl.classList.add('home-container__btn-item--active')
 
                 homeContainer[tabButtonIndex].classList.remove('hidden')
+            })
+        })
+    </script>
+
+    <script>
+        let pendingBook = document.querySelectorAll('.home-container__book-pending')
+        const navbar = document.querySelectorAll('.navbar')
+
+        pendingBook.forEach((pendingBookEl, i) => {
+            pendingBookEl.addEventListener('click', (e) => {
+                modal.forEach((modalEl) => {
+                    modalEl.style.display = 'flex'
+                    modalEl.classList.add('show')
+
+                    if (modalEl.classList.contains('show')) {
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.add('hidden')
+                        })
+                    }
+                })
+
+                modalClose.forEach((modalCloseEl) => {
+                    modalCloseEl.addEventListener('click', (e) => {
+                        modal.forEach((modalEl) => {
+                            modalEl.classList.add('hidden')
+                            modalEl.classList.remove('show')
+
+                        })
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.remove('hidden')
+                        })
+                    })
+                })
+
+                const bookId = pendingBookEl.getAttribute('data-book-id');
+
+                loadingIndicators.forEach((loadingIndicator, i) => {
+                    loadingIndicator.style.display = 'block'
+                });
+
+                modalText.forEach((modalTextEl, i) => {
+                    modalTextEl.style.display = 'none'
+
+                });
+                // Make an Axios GET request to fetch data based on the book ID
+                axios.get(`/api/books/${bookId}`)
+                    .then(response => {
+                        const bookData = response.data;
+
+                        modalText.forEach((modalTextEl) => {
+                            modalTextEl.innerHTML = pendingBookContent(bookData);
+                        })
+
+                        // set the design color tags of colleges
+                        const collegeTag = document.querySelectorAll(
+                            '.home-container__tags-college')
+                        collegeTag.forEach((collegeTagEl) => {
+                            if (collegeTagEl.innerHTML ==
+                                'College of Computer Studies') {
+                                collegeTagEl.style.background = '#640ED8'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Business Management and Accountancy') {
+                                collegeTagEl.style.background = '#F7B900'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Nursing and Allied Health') {
+                                collegeTagEl.style.background = '#00F700'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Engineering and Technology') {
+                                collegeTagEl.style.background = '#F74000'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Industrial Technology') {
+                                collegeTagEl.style.background = '#0017A3'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Teacher Education') {
+                                collegeTagEl.style.background = '#6363F7'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Criminal Justice Education') {
+                                collegeTagEl.style.background = '#525252'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Arts and Sciences') {
+                                collegeTagEl.style.background = '#F7007E'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Hospitality Management and Tourism') {
+                                collegeTagEl.style.background = '#C00000'
+                            } else {
+                                collegeTagEl.style.background = '#511D1A'
+
+                            }
+                        })
+
+                        // set the design color tags of availability
+                        const bookAvailability = document.querySelectorAll('.book-availability')
+                        bookAvailability.forEach((bookAvailabilityEl) => {
+                            if (bookAvailabilityEl.innerHTML == 'In stock') {
+                                bookAvailabilityEl.classList.add('in-stock')
+                            } else if (bookAvailabilityEl.innerHTML ==
+                                'Limited stock') {
+                                bookAvailabilityEl.classList.add('limited-stock')
+                            } else {
+                                reservePostRequest.forEach((reservePostRequestEl) => {
+                                    reservePostRequestEl.classList.add('hidden')
+                                })
+                                bookAvailabilityEl.classList.add('out-stock')
+                            }
+                        })
+
+                        loadingIndicators.forEach((loadingIndicator, i) => {
+                            loadingIndicator.style.display = 'none'
+                            console.log(loadingIndicator)
+
+                        });
+
+                        modalText.forEach((modalTextEl, i) => {
+                            modalTextEl.style.display = 'block'
+                            console.log(modalTextEl)
+
+                        });
+
+                    })
+                    .catch(error => {
+                        console.error('Error fetching book data:', error);
+                    });
+            })
+        })
+    </script>
+
+    <script>
+        let acceptBook = document.querySelectorAll('.home-container__book-accept')
+
+        acceptBook.forEach((acceptBookEl, i) => {
+            acceptBookEl.addEventListener('click', (e) => {
+                modal.forEach((modalEl) => {
+                    modalEl.style.display = 'flex'
+                    modalEl.classList.add('show')
+
+                    if (modalEl.classList.contains('show')) {
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.add('hidden')
+                        })
+                    }
+                })
+
+                modalClose.forEach((modalCloseEl) => {
+                    modalCloseEl.addEventListener('click', (e) => {
+                        modal.forEach((modalEl) => {
+                            modalEl.classList.add('hidden')
+                            modalEl.classList.remove('show')
+
+                        })
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.remove('hidden')
+                        })
+                    })
+                })
+
+                const bookId = acceptBookEl.getAttribute('data-book-id');
+
+                loadingIndicators.forEach((loadingIndicator, i) => {
+                    loadingIndicator.style.display = 'block'
+                });
+
+                modalText.forEach((modalTextEl, i) => {
+                    modalTextEl.style.display = 'none'
+
+                });
+                // Make an Axios GET request to fetch data based on the book ID
+                axios.get(`/api/books/${bookId}`)
+                    .then(response => {
+                        const bookData = response.data;
+
+                        modalText.forEach((modalTextEl) => {
+                            modalTextEl.innerHTML = acceptBookContent(bookData);
+                        })
+
+                        // set the design color tags of colleges
+                        const collegeTag = document.querySelectorAll(
+                            '.home-container__tags-college')
+                        collegeTag.forEach((collegeTagEl) => {
+                            if (collegeTagEl.innerHTML ==
+                                'College of Computer Studies') {
+                                collegeTagEl.style.background = '#640ED8'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Business Management and Accountancy') {
+                                collegeTagEl.style.background = '#F7B900'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Nursing and Allied Health') {
+                                collegeTagEl.style.background = '#00F700'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Engineering and Technology') {
+                                collegeTagEl.style.background = '#F74000'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Industrial Technology') {
+                                collegeTagEl.style.background = '#0017A3'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Teacher Education') {
+                                collegeTagEl.style.background = '#6363F7'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Criminal Justice Education') {
+                                collegeTagEl.style.background = '#525252'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Arts and Sciences') {
+                                collegeTagEl.style.background = '#F7007E'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Hospitality Management and Tourism') {
+                                collegeTagEl.style.background = '#C00000'
+                            } else {
+                                collegeTagEl.style.background = '#511D1A'
+
+                            }
+                        })
+
+                        // set the design color tags of availability
+                        const bookAvailability = document.querySelectorAll('.book-availability')
+                        bookAvailability.forEach((bookAvailabilityEl) => {
+                            if (bookAvailabilityEl.innerHTML == 'In stock') {
+                                bookAvailabilityEl.classList.add('in-stock')
+                            } else if (bookAvailabilityEl.innerHTML ==
+                                'Limited stock') {
+                                bookAvailabilityEl.classList.add('limited-stock')
+                            } else {
+                                reservePostRequest.forEach((reservePostRequestEl) => {
+                                    reservePostRequestEl.classList.add('hidden')
+                                })
+                                bookAvailabilityEl.classList.add('out-stock')
+                            }
+                        })
+
+                        loadingIndicators.forEach((loadingIndicator, i) => {
+                            loadingIndicator.style.display = 'none'
+                            console.log(loadingIndicator)
+
+                        });
+
+                        modalText.forEach((modalTextEl, i) => {
+                            modalTextEl.style.display = 'block'
+                            console.log(modalTextEl)
+
+                        });
+
+                    })
+                    .catch(error => {
+                        console.error('Error fetching book data:', error);
+                    });
+            })
+        })
+    </script>
+
+    <script>
+        let declineBook = document.querySelectorAll('.home-container__book-decline')
+
+        declineBook.forEach((declineBookEl, i) => {
+            declineBookEl.addEventListener('click', (e) => {
+                modal.forEach((modalEl) => {
+                    modalEl.style.display = 'flex'
+                    modalEl.classList.add('show')
+
+                    if (modalEl.classList.contains('show')) {
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.add('hidden')
+                        })
+                    }
+                })
+
+                modalClose.forEach((modalCloseEl) => {
+                    modalCloseEl.addEventListener('click', (e) => {
+                        modal.forEach((modalEl) => {
+                            modalEl.classList.add('hidden')
+                            modalEl.classList.remove('show')
+
+                        })
+                        navbar.forEach((navbarEl) => {
+                            navbarEl.classList.remove('hidden')
+                        })
+                    })
+                })
+
+                const bookId = declineBookEl.getAttribute('data-book-id');
+
+                loadingIndicators.forEach((loadingIndicator, i) => {
+                    loadingIndicator.style.display = 'block'
+                });
+
+                modalText.forEach((modalTextEl, i) => {
+                    modalTextEl.style.display = 'none'
+
+                });
+                // Make an Axios GET request to fetch data based on the book ID
+                axios.get(`/api/books/${bookId}`)
+                    .then(response => {
+                        const bookData = response.data;
+
+                        modalText.forEach((modalTextEl) => {
+                            modalTextEl.innerHTML = declineBookContent(bookData);
+                        })
+
+                        // set the design color tags of colleges
+                        const collegeTag = document.querySelectorAll(
+                            '.home-container__tags-college')
+                        collegeTag.forEach((collegeTagEl) => {
+                            if (collegeTagEl.innerHTML ==
+                                'College of Computer Studies') {
+                                collegeTagEl.style.background = '#640ED8'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Business Management and Accountancy') {
+                                collegeTagEl.style.background = '#F7B900'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Nursing and Allied Health') {
+                                collegeTagEl.style.background = '#00F700'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Engineering and Technology') {
+                                collegeTagEl.style.background = '#F74000'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Industrial Technology') {
+                                collegeTagEl.style.background = '#0017A3'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Teacher Education') {
+                                collegeTagEl.style.background = '#6363F7'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Criminal Justice Education') {
+                                collegeTagEl.style.background = '#525252'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Arts and Sciences') {
+                                collegeTagEl.style.background = '#F7007E'
+                            } else if (collegeTagEl.innerHTML ==
+                                'College of Hospitality Management and Tourism') {
+                                collegeTagEl.style.background = '#C00000'
+                            } else {
+                                collegeTagEl.style.background = '#511D1A'
+
+                            }
+                        })
+
+                        // set the design color tags of availability
+                        const bookAvailability = document.querySelectorAll('.book-availability')
+                        bookAvailability.forEach((bookAvailabilityEl) => {
+                            if (bookAvailabilityEl.innerHTML == 'In stock') {
+                                bookAvailabilityEl.classList.add('in-stock')
+                            } else if (bookAvailabilityEl.innerHTML ==
+                                'Limited stock') {
+                                bookAvailabilityEl.classList.add('limited-stock')
+                            } else {
+                                reservePostRequest.forEach((reservePostRequestEl) => {
+                                    reservePostRequestEl.classList.add('hidden')
+                                })
+                                bookAvailabilityEl.classList.add('out-stock')
+                            }
+                        })
+
+                        loadingIndicators.forEach((loadingIndicator, i) => {
+                            loadingIndicator.style.display = 'none'
+                            console.log(loadingIndicator)
+
+                        });
+
+                        modalText.forEach((modalTextEl, i) => {
+                            modalTextEl.style.display = 'block'
+                            console.log(modalTextEl)
+
+                        });
+
+                    })
+                    .catch(error => {
+                        console.error('Error fetching book data:', error);
+                    });
             })
         })
     </script>
