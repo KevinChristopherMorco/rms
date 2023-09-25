@@ -23,23 +23,30 @@
                             one later.</p>
                     </div>
                 </div>
-                <p class="text-4xl font-bold mb-4">Pending Request</p>
-                <div class="home-container__book-view">
+                <div class="home-container__btn-group flex justify-start items-center bg-white">
+                    <button class="home-container__btn-item home-container__btn-item--active p-2">Pending</button>
+                    <button class="home-container__btn-item p-2">Approved</button>
+                    <button class="home-container__btn-item p-2">Declined</button>
+                </div>
+                <hr>
+
+                <div class="home-container__book-view home-container__book-status bg-white">
+                    <p class="text-xl font-bold py-4 mb-4">Pending Request</p>
                     <div class="grid md:grid-cols-2 gap-4">
-                        @forelse ($books as $book)
+                        @forelse ($pending as $pendingBookRequest)
                             <div class="col-span-1">
                                 <div class="home-container__card">
                                     <div class="home-container__card-header">
-                                        <img src="{{ $book->book_image }}" alt="">
+                                        <img src="{{ $pendingBookRequest->book_image }}" alt="">
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-base font-bold text-center">{{ $book->title }}</p>
-                                        <p class="text-sm text-center py-4 px-2">{{ $book->description }}</p>
+                                        <p class="text-base font-bold text-center">{{ $pendingBookRequest->title }}</p>
+                                        <p class="text-sm text-center py-4 px-2">{{ $pendingBookRequest->description }}</p>
                                     </div>
                                     <div class="home-container__card-footer px-4 ">
                                         <div class="flex items-center gap-4">
                                             <button class="view-book-btn text-center"
-                                                data-book-id="{{ $book->id }}">View</button>
+                                                data-book-id="{{ $pendingBookRequest->id }}">View</button>
                                             <div class="home-container__add-favorite flex justify-center items-center">
                                                 <i class="fa-solid fa-heart"></i>
                                             </div>
@@ -52,37 +59,34 @@
                             </div>
                         @empty
                             <div class="col-span-2">
-                                <div class="md:flex md:justify-center md:items-center w-full">
-                                    <img class="m-0 m-auto md:m-0" src="/pictures/owl.png" width="150px" height="150px"
-                                        alt="">
-                                    <p class="text-center text-xl font-bold md:text-left">You have no reserved books at the
-                                        moment</p>
-                                </div>
+                                <p class="text-center text-xl font-bold"><i
+                                        class="fa-solid fa-hourglass-start fa-spin px-2"></i>No pending requests at the
+                                    moment</p>
                             </div>
                         @endforelse
                     </div>
                     <div class="py-6">
-                        {{ $books->links() }}
+                        {{ $pending->links() }} 
                     </div>
                 </div>
 
-                <p class="text-4xl font-bold mb-4">My Books</p>
-                <div class="home-container__book-view">
+                <div class="home-container__book-view home-container__book-status bg-white hidden">
+                    <p class="text-xl font-bold py-4 mb-4">Approved Request</p>
                     <div class="grid md:grid-cols-2 gap-4">
-                        @forelse ($books as $book)
+                        @forelse ($approve as $approveBookRequest)
                             <div class="col-span-1">
                                 <div class="home-container__card">
                                     <div class="home-container__card-header">
-                                        <img src="{{ $book->book_image }}" alt="">
+                                        <img src="{{ $approveBookRequest->book_image }}" alt="">
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-base font-bold text-center">{{ $book->title }}</p>
-                                        <p class="text-sm text-center py-4 px-2">{{ $book->description }}</p>
+                                        <p class="text-base font-bold text-center">{{ $approveBookRequest->title }}</p>
+                                        <p class="text-sm text-center py-4 px-2">{{ $approveBookRequest->description }}</p>
                                     </div>
                                     <div class="home-container__card-footer px-4 ">
                                         <div class="flex items-center gap-4">
                                             <button class="view-book-btn text-center"
-                                                data-book-id="{{ $book->id }}">View</button>
+                                                data-book-id="{{ $approveBookRequest->id }}">View</button>
                                             <div class="home-container__add-favorite flex justify-center items-center">
                                                 <i class="fa-solid fa-heart"></i>
                                             </div>
@@ -95,17 +99,95 @@
                             </div>
                         @empty
                             <div class="col-span-2">
-                                <div class="md:flex md:justify-center md:items-center w-full">
-                                    <img class="m-0 m-auto md:m-0" src="/pictures/owl.png" width="150px" height="150px"
-                                        alt="">
-                                    <p class="text-center text-xl font-bold md:text-left">You have no reserved books at the
-                                        moment</p>
-                                </div>
+
+                                <p class="text-center text-xl font-bold"><i
+                                        class="fa-solid fa-check-to-slot fa-bounce px-2"></i>No approved requests at
+                                    the moment</p>
                             </div>
                         @endforelse
                     </div>
                     <div class="py-6">
-                        {{ $books->links() }}
+                        {{ $approve->links() }}
+                    </div>
+                </div>
+
+                <div class="home-container__book-view home-container__book-status bg-white hidden">
+                    <p class="text-xl font-bold py-4 mb-4">Declined Request</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        @forelse ($decline as $declineBookRequest)
+                            <div class="col-span-1">
+                                <div class="home-container__card">
+                                    <div class="home-container__card-header">
+                                        <img src="{{ $declineBookRequest->book_image }}" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="text-base font-bold text-center">{{ $declineBookRequest->title }}</p>
+                                        <p class="text-sm text-center py-4 px-2">{{ $declineBookRequest->description }}</p>
+                                    </div>
+                                    <div class="home-container__card-footer px-4 ">
+                                        <div class="flex items-center gap-4">
+                                            <button class="view-book-btn text-center"
+                                                data-book-id="{{ $declineBookRequest->id }}">View</button>
+                                            <div class="home-container__add-favorite flex justify-center items-center">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </div>
+                                            <div class="home-container__feedback flex justify-center items-center">
+                                                <i class="fa-regular fa-comments"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-span-2">
+                                <p class="text-center text-xl font-bold"><i
+                                        class="fa-solid fa-rectangle-xmark fa-bounce px-2"></i>No declined requests
+                                    at the moment</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <div class="py-6">
+                        {{ $decline->links() }}
+                    </div>
+                </div>
+
+
+                <div class="home-container__book-view mt-10 bg-white">
+                    <p class="text-xl font-bold py-4 mb-4">My Books</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        @forelse ($confirm as $confirmBookRequest)
+                            <div class="col-span-1">
+                                <div class="home-container__card">
+                                    <div class="home-container__card-header">
+                                        <img src="{{ $confirmBookRequest->book_image }}" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="text-base font-bold text-center">{{ $confirmBookRequest->title }}</p>
+                                        <p class="text-sm text-center py-4 px-2">{{ $confirmBookRequest->description }}</p>
+                                    </div>
+                                    <div class="home-container__card-footer px-4 ">
+                                        <div class="flex items-center gap-4">
+                                            <button class="view-book-btn text-center"
+                                                data-book-id="{{ $confirmBookRequest->id }}">View</button>
+                                            <div class="home-container__add-favorite flex justify-center items-center">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </div>
+                                            <div class="home-container__feedback flex justify-center items-center">
+                                                <i class="fa-regular fa-comments"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-span-2">
+                                <p class="text-center text-xl font-bold"><i class="fa-solid fa-book-open-reader fa-beat px-2"></i>Confirm the books in the approved tab to get started</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <div class="py-6">
+                        {{ $confirm->links() }}
                     </div>
                 </div>
 
@@ -269,6 +351,32 @@
                     title: 'We hear you!',
                     text: 'Feedback was successfully added',
                 })
+            })
+        })
+    </script>
+
+    <script>
+        tabButton = document.querySelectorAll('.home-container__btn-item')
+        homeContainer = document.querySelectorAll('.home-container__book-status')
+
+        const removeActiveState = () => {
+            tabButton.forEach((tabButtonEl) => {
+                tabButtonEl.classList.remove('home-container__btn-item--active')
+            })
+        }
+
+
+        tabButton.forEach((tabButtonEl, tabButtonIndex) => {
+            tabButtonEl.addEventListener('click', (e) => {
+                homeContainer.forEach((homeContainerEl, i) => {
+                    homeContainerEl.classList.add('hidden')
+                })
+
+                removeActiveState()
+
+                tabButtonEl.classList.add('home-container__btn-item--active')
+
+                homeContainer[tabButtonIndex].classList.remove('hidden')
             })
         })
     </script>

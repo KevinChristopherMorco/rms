@@ -550,6 +550,16 @@ Welcome.blade.php
     box-shadow: 5px 5px #6BACFB;
 }
 
+.home-container__btn-item{
+    background-color: #CEB4F2;
+    color: #fff;
+}
+
+.home-container__btn-item--active{
+    background-color: #640ED8;
+    color: #fff;
+}
+
 .home-container__book-view {
     padding: 15px;
     width: 100%;
@@ -644,6 +654,20 @@ Welcome.blade.php
     border-radius: 40px;
 }
 
+.fa-hourglass-start{
+    color: #640ED8;
+}
+
+.fa-check-to-slot{
+    color: #37C70E;
+}
+
+.fa-rectangle-xmark{
+    color: red;
+}
+.fa-book-open-reader{
+    color: #5B78D6;
+}
 .reserve-input{
     border: 1px solid #640ED8;
     border-radius: 10px;

@@ -30,18 +30,28 @@ class UserController extends Controller
     }
     public function home()
     {
-        $authSessionId=Auth::id();
-        $data = array('books'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->select('books.*')->paginate(4));
+        $authSessionId = Auth::id();
+        // $data = array('books'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->select('books.*')->paginate(4));
+        // $pending = array('pending'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId, 'and', 'book_reservations.status', '=', 'Pending')->select('books.*')->paginate(4));
+       
+        $bookData = DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->select('books.*')->paginate(4);
+        $pendingBookData =  DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->where('book_reservations.reservation_status', '=', 'Pending')->select('books.*')->paginate(4);
+        $aprroveBookData =  DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->where('book_reservations.reservation_status', '=', 'Approved')->select('books.*')->paginate(4);
+        $declineBookData =  DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->where('book_reservations.reservation_status', '=', 'Declined')->select('books.*')->paginate(4);
+        $confirmBookData =  DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->where('book_reservations.reservation_status', '=', 'Confirmed')->select('books.*')->paginate(4);
+
+        $data = ['books' => $bookData, 'pending' => $pendingBookData, 'approve' => $aprroveBookData, 'decline' => $declineBookData, 'confirm' => $confirmBookData];
         return view('home', $data);
     }
 
     public function catalog()
     {
-        $data= array('books'=>DB::table('books')->leftJoin('book_reservations', function(JoinClause $join){
-            $authSessionId=Auth::id();
-            $join->on('book_reservations.book_id', '=', 'books.id')->where('book_reservations.user_id', '=', $authSessionId);
-        })->whereNull('book_reservations.user_id')->select('books.*')->paginate(10)
-    );
+        $data = array(
+            'books' => DB::table('books')->leftJoin('book_reservations', function (JoinClause $join) {
+                $authSessionId = Auth::id();
+                $join->on('book_reservations.book_id', '=', 'books.id')->where('book_reservations.user_id', '=', $authSessionId);
+            })->whereNull('book_reservations.user_id')->select('books.*')->paginate(10)
+        );
         return view('user.catalog', $data);
     }
 
@@ -65,7 +75,6 @@ class UserController extends Controller
     {
         $userCount = User::count();
         return view('admin.adminHome', compact('userCount'));
-
     }
 
     public function showUser()
