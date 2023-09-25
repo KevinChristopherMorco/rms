@@ -5,7 +5,7 @@
 @section('title', __('Page Not Found'))
 
 <div class="home-icon flex justify-start items-center p-2" style="background-color: #ECF1FE">
-    <a class="text-black" href="/"> <i class="fa-solid fa-house mr-2"></i> Return to home</a>
+    <a class="text-black" href="{{url()->previous()}}"> <i class="fa-solid fa-arrow-left"></i> Go Back</a>
 </div>
 <div class="flex justify-center items-center  404-error" style="height:100%; width: 100%; background-color: #ECF1FE">
     <img class="px-4" src="/pictures/ghost.png" width="150px" height="150px" alt="">

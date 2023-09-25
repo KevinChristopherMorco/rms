@@ -23,6 +23,49 @@
                             one later.</p>
                     </div>
                 </div>
+                <p class="text-4xl font-bold mb-4">Pending Request</p>
+                <div class="home-container__book-view">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        @forelse ($books as $book)
+                            <div class="col-span-1">
+                                <div class="home-container__card">
+                                    <div class="home-container__card-header">
+                                        <img src="{{ $book->book_image }}" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="text-base font-bold text-center">{{ $book->title }}</p>
+                                        <p class="text-sm text-center py-4 px-2">{{ $book->description }}</p>
+                                    </div>
+                                    <div class="home-container__card-footer px-4 ">
+                                        <div class="flex items-center gap-4">
+                                            <button class="view-book-btn text-center"
+                                                data-book-id="{{ $book->id }}">View</button>
+                                            <div class="home-container__add-favorite flex justify-center items-center">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </div>
+                                            <div class="home-container__feedback flex justify-center items-center">
+                                                <i class="fa-regular fa-comments"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-span-2">
+                                <div class="md:flex md:justify-center md:items-center w-full">
+                                    <img class="m-0 m-auto md:m-0" src="/pictures/owl.png" width="150px" height="150px"
+                                        alt="">
+                                    <p class="text-center text-xl font-bold md:text-left">You have no reserved books at the
+                                        moment</p>
+                                </div>
+                            </div>
+                        @endforelse
+                    </div>
+                    <div class="py-6">
+                        {{ $books->links() }}
+                    </div>
+                </div>
+
                 <p class="text-4xl font-bold mb-4">My Books</p>
                 <div class="home-container__book-view">
                     <div class="grid md:grid-cols-2 gap-4">
@@ -53,8 +96,10 @@
                         @empty
                             <div class="col-span-2">
                                 <div class="md:flex md:justify-center md:items-center w-full">
-                                    <img class="m-0 m-auto md:m-0" src="/pictures/owl.png" width="150px" height="150px" alt="">
-                                    <p class="text-center text-xl font-bold md:text-left">You have no reserved books at the moment</p>
+                                    <img class="m-0 m-auto md:m-0" src="/pictures/owl.png" width="150px" height="150px"
+                                        alt="">
+                                    <p class="text-center text-xl font-bold md:text-left">You have no reserved books at the
+                                        moment</p>
                                 </div>
                             </div>
                         @endforelse
@@ -63,6 +108,7 @@
                         {{ $books->links() }}
                     </div>
                 </div>
+
             </div>
             <div class="home-container__goal-interest-container col-span-1 px-8 py-8">
                 <p class="text-3xl font-bold">My Goals</p>

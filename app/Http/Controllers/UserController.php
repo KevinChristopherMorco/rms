@@ -31,7 +31,7 @@ class UserController extends Controller
     public function home()
     {
         $authSessionId=Auth::id();
-        $data = array('books'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->select('books.*')->paginate(10));
+        $data = array('books'=> DB::table('books')->join('book_reservations', 'books.id', '=', 'book_reservations.book_id')->where('book_reservations.user_id', '=',  $authSessionId)->select('books.*')->paginate(4));
         return view('home', $data);
     }
 

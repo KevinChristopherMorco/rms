@@ -9,10 +9,10 @@
                 <i class="eye-icon-auth fa-regular fa-eye text-black md:hidden"></i>
             </li>
             <div class="nav-links-desktop hidden md:flex">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('user.catalog') }}">Catalog</a></li>
-                <li><a href="">Resources</a></li>
-                <li><a href="">Forums</a></li>
+                <li class="{{Route::is('home') ? 'active' : ''}}"><a href="{{ route('home') }}">Home</a></li>
+                <li class="{{Route::is('user.catalog') ? 'active': ''}}"><a href="{{ route('user.catalog') }}">Catalog</a></li>
+                <li><a href="/resource">Resources</a></li>
+                <li><a href="/forums">Forums</a></li>
             </div>
             <div class="flex justify-center navbar__nav-profile-image">
                 <img class="navbar__nav-image"

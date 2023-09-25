@@ -197,6 +197,12 @@ a {
     border-radius: 10px;
 }
 
+li.active{
+    text-decoration: underline;
+    border-bottom: 3px solid #6F6EE3;
+
+}
+
 /*
 Welcome.blade.php
 */
@@ -546,7 +552,6 @@ Welcome.blade.php
 
 .home-container__book-view {
     padding: 15px;
-    height: 100%;
     width: 100%;
     /* background-color: #fff;
     box-shadow: 5px 5px #6BACFB; */
