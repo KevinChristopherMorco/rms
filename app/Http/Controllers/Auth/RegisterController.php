@@ -45,8 +45,6 @@ class RegisterController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('post')) {
-            // Handle form submission
-         //   $validator = Validator::make($request->all(), [
             $validator = $request->validate([
                 'first_name' => 'required',
                 'middle_name' => 'required',
@@ -63,27 +61,8 @@ class RegisterController extends Controller
                 'password' => 'required|min:8', // Adjust the minimum length as needed
             ]);
 
-            /*
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-            */
 
-            User::create([
-                'first_name' => $request['first_name'],
-                'middle_name' => $request['middle_name'],
-                'last_name' => $request['last_name'],
-                'birthdate' => $request['birthdate'],
-                'gender' => $request['gender'],
-                'card_number' => $request['card_number'],
-                'email' => $request['email'],
-                'house_no' => $request['house_no'],
-                'barangay' => $request['barangay'],
-                'city_municipality' => $request['city_municipality'],
-                'province' => $request['province'],
-                'user_type' => $request['user_type'],
-                'password' => $request['password'],
-            ]);
+          User::create($validator);
             
 
             return redirect()->route('register')->with('success', 'Form submitted successfully!');

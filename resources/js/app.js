@@ -12,4 +12,12 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './components/Example';
+// import './components/Example';
+// import './components/User';
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
+
+
+
+

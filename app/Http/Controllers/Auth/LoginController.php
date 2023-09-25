@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,21 +40,25 @@ class LoginController extends Controller
 
     public function process(Request $request)
     {
+        $validator = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
 
-       $validator = $request->validate([
-        'email' => 'required|email',
-        'password'=> 'required|min:8',
-       ]);
-    
-        if(auth()->attempt($validator)){
-            $request->session()->regenerate();
-            return view('dashboard');
+        if (Auth::attempt($validator)) {
+            if (Auth::user()->user_type == "Admin") {
+                $request->session()->regenerate();
+                return redirect()->route('admin')->with('success', 'Logged in successfully');
+            } else {
+                $request->session()->regenerate();
+                return redirect()->route('home')->with('success', 'Logged in successfully');
+            }
         }
         return redirect()->route('login')->with('error', 'Invalid credentials');
-
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
