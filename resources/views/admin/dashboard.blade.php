@@ -14,7 +14,24 @@
             </div>
             <div class="w-full">
                 @include('partials.navAdmin')
-
+                <div class="admin-container__introductory-note-container flex justify-center items-center">
+                    <div class="admin-container__introductory-note flex items-center mb-8 p-4">
+                        <div class=""><img src="pictures/book-icon.png" alt="loading"></div>
+                        <div>
+                            <p class="font-bold text-base text-center md:text-start md:text-2xl mb-2">Hi
+                                {{ Auth::user()->first_name }}, Welcome to your
+                                dashboard!</p>
+                            <p class="font-500 text-sm text-center md:text-start md:text-base py-2">We've added
+                                some
+                                recommendations based on your goals and
+                                interests.</p>
+                            <p class="font-500 text-sm text-center md:text-start md:text-base ">Try out a course
+                                or
+                                path now — you can always start a new
+                                one later.</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="dashboard-card-container flex flex-wrap justify-center content-start text-white gap-4  ">
                     <div class="dashboard-card bg-red-700">
                         <p class="text-xl font-bold">Total Users</p>
