@@ -50,8 +50,9 @@ Route::post('/catalog/reserveBook', [BookReservationController::class, 'store'])
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
-Route::get('/admin/showUser', [UserController::class, 'showUser'])->name('admin.showUser');
-Route::get('/admin/showBook', [UserController::class, 'showBook'])->name('admin.showBook');
+Route::get('/admin/ShowUser', [UserController::class, 'showUser'])->name('admin.showUser');
+Route::get('/admin/ShowBook', [UserController::class, 'showBook'])->name('admin.showBook');
+Route::get('/admin/showReservation',[UserController::class, 'showReservation'])->name('admin.showReservation');
 
 
 Auth::routes();

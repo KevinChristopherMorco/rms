@@ -87,4 +87,10 @@ class UserController extends Controller
         $book = array('books' => DB::table('books')->orderBy('created_at')->paginate(8));
         return view('admin.showBook', $book);
     }
+
+    public function showReservation()
+    {
+        $bookReservation = array('reservations' => DB::table('books')->join('book_reservations', 'books.id', '=', "book_reservations.book_id")->join('users', 'book_reservations.user_id', '=', 'users.id')->select('books.*', 'book_reservations.*', 'users.*')->paginate(10));
+        return view('admin.showReservation', $bookReservation);
+    }
 }

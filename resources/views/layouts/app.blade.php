@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    @if (!Route::is('login', 'register', 'resetPassword', 'admin', 'admin.showUser', 'admin.showBook'))
+    @if (!Route::is('login', 'register', 'resetPassword', 'admin', 'admin.showUser', 'admin.showBook', 'admin.showReservation'))
         <header>
             @auth
                 @include('partials.navAuth')

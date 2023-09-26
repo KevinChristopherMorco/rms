@@ -15,15 +15,15 @@
                 <div class="register-container__register-breadcrumb-container">
                     <ul class="register-container__register-breadcrumb-item md:flex md:justify-around md:items-center">
                         <li class="register-container__step flex text-center items-center">
-                            <div class="register-container__step-number mr-4">1. </div> Personal Information
+                            <div class="register-container__step-number mr-4">1</div> Personal Information
                         </li>
 
                         <li class="register-container__step flex text-center items-center">
-                            <div class="register-container__step-number mr-4">2. </div> Identification Information
+                            <div class="register-container__step-number mr-4">2</div> Identification Information
                         </li>
 
                         <li class="register-container__step flex text-center items-center">
-                            <div class="register-container__step-number mr-4">3. </div> Membership Type
+                            <div class="register-container__step-number mr-4">3</div> Membership Type
                         </li>
                     </ul>
                 </div>

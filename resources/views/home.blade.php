@@ -32,7 +32,7 @@
 
                 <div class="home-container__book-view home-container__book-status bg-white">
                     <p class="text-xl font-bold py-4 mb-4">Pending Request</p>
-                    <p class="text-sm"><span class="font-bold">Note:</span> Pending requests are subject to reviewed by the
+                    <p class="text-sm text-center"><span class="font-bold">Note:</span> Pending requests are subject to reviewed by the
                         library staffs. You may check this dashboard frequently for updates.</p>
                     @forelse ($pending as $pendingBookRequest)
                         <div class="home-container__book-request-container home-container__book-pending py-6 px-2 mt-10"
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center text-xl font-bold"><i class="fa-solid fa-hourglass-start fa-spin px-2"></i>No
+                        <p class="text-center text-xl font-bold py-4"><i class="fa-solid fa-hourglass-start fa-spin px-2"></i>No
                             pending requests at the
                             moment</p>
                     @endforelse
@@ -61,7 +61,7 @@
 
                 <div class="home-container__book-view home-container__book-status bg-white hidden">
                     <p class="text-xl font-bold py-4 mb-4">Approved Request</p>
-                    <p class="text-sm"><span class="font-bold">Note:</span> Approved requests are needed to be confirmed by
+                    <p class="text-sm text-center"><span class="font-bold">Note:</span> Approved requests are needed to be confirmed by
                         the user for validation.</p>
                     @forelse ($approve as $approveBookRequest)
                         <div class="home-container__book-request-container home-container__book-accept py-6 px-2 mt-10"
@@ -80,7 +80,7 @@
                         </div>
                     @empty
 
-                        <p class="text-center text-xl font-bold"><i class="fa-solid fa-check-to-slot fa-bounce px-2"></i>No
+                        <p class="text-center text-xl font-bold py-4"><i class="fa-solid fa-check-to-slot fa-bounce px-2"></i>No
                             approved requests at
                             the moment</p>
                     @endforelse
@@ -91,7 +91,7 @@
 
                 <div class="home-container__book-view home-container__book-status bg-white hidden">
                     <p class="text-xl font-bold py-4 mb-4">Declined Request</p>
-                    <p class="text-sm"><span class="font-bold">Note:</span> Declined requests are irreversible, you may want
+                    <p class="text-sm text-center"><span class="font-bold">Note:</span> Declined requests are irreversible, you may want
                         to ask a staff why this had happened.</p>
 
                     @forelse ($decline as $declineBookRequest)
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center text-xl font-bold"><i
+                        <p class="text-center text-xl font-bold py-4"><i
                                 class="fa-solid fa-rectangle-xmark fa-bounce px-2"></i>No declined requests
                             at the moment</p>
                     @endforelse
