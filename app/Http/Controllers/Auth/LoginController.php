@@ -48,7 +48,7 @@ class LoginController extends Controller
         if (Auth::attempt($validator)) {
             if (Auth::user()->user_type == "Admin") {
                 $request->session()->regenerate();
-                return redirect()->route('admin')->with('success', 'Logged in successfully');
+                return redirect()->route('admin.dashboard')->with('success', 'Logged in successfully');
             } else {
                 $request->session()->regenerate();
                 return redirect()->route('home')->with('success', 'Logged in successfully');

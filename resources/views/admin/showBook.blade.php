@@ -4,17 +4,18 @@
 
 
     <section class="admin-container">
-        <div class="admin-content-container">
-            <div class="grid grid-cols-5 h-full">
-                <div class="col-span-1">
-                    @include('partials.sidebar')
-                </div>
-                <div class="col-span-4">
-                    <div style="background: linear-gradient(240deg, #4976E7, #7CC6FA); width:100%; height:20%;"></div>
+        <div class="flex h-full">
 
-                    <div class="table-container">
-                        <p class="text-lg font-bold pb-4">User Information</p>
-                        <table class="table-fixed">
+            <div class="admin-sidebar-container">
+                @include('partials.sidebar')
+            </div>
+            <div class="w-full">
+                @include('partials.navAdmin')
+                <div class="flex justify-center">
+
+                    <div class="table-container p-6">
+                        <p class="text-lg font-bold pb-4">Book Catalog</p>
+                        <table class="table-auto">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -30,20 +31,40 @@
                                         <td>{{ $book->title }}</td>
                                         <td>{{ $book->author }}</td>
                                         <td>{{ $book->isbn }}</td>
-                                        <td class="action-btn"><i class="fa-solid fa-eye px-2"></i>
+                                        <td class="action-btn" style="width: 20%;"><i class="fa-solid fa-eye px-2"></i>
                                             <i class="fa-solid fa-pen-to-square px-2"></i>
                                             <i class="fa-solid fa-trash px-2"></i>
                                         </td>
 
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
+                        <div class="py-6">
+                            {{ $books->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            let sidebarContainer = document.querySelector('.admin-sidebar-container')
+            let sidebar = document.querySelector('.admin-sidebar')
+            let sidebarHeading = document.querySelectorAll('.admin-sidebar-heading')
+            let sidebarText = document.querySelectorAll('.admin-sidebar span')
+            let sidebarBtn = document.querySelector('.sidebar-btn')
+            sidebarBtn.addEventListener('click', (e) => {
+                sidebarContainer.classList.toggle('admin-sidebar-container--toggle')
+
+                sidebarHeading.forEach((sidebarHeadingEl) => {
+                    sidebarHeadingEl.classList.toggle('hidden')
+                })
+                sidebarText.forEach((sidebarTextEl) => {
+                    sidebarTextEl.classList.toggle('hidden')
+                })
+
+            })
+        </script>
 
     </section>
 @endsection
