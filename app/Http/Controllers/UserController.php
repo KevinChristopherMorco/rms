@@ -74,7 +74,7 @@ class UserController extends Controller
     public function adminHome()
     {
         $userCount = User::count();
-        return view('admin.adminHome', compact('userCount'));
+        return view('admin.dashboard', compact('userCount'));
     }
 
     public function showUser()

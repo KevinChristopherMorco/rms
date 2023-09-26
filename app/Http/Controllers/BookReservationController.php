@@ -18,7 +18,7 @@ class BookReservationController extends Controller
             'reserve_end' => 'required',
         ]);
 
-      $dateNow = Carbon::now()->format('Y-m-d');
+      $dateNow = Carbon::now('Asia/Manila')->format('Y-m-d');
 
         $book = Book::find($validateData['book_id']);
         if (!$book) {

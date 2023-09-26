@@ -47,10 +47,10 @@ Route::get('/auth/password/email', [UserController::class, 'resetPassword'])->na
 Route::get('/guest/browse', [UserController::class, 'guestBrowse'])->name('guest.browse');
 Route::get('/catalog', [UserController::class, 'catalog'])->name('user.catalog');
 Route::post('/catalog/reserveBook', [BookReservationController::class, 'store'])->name('catalog.reserve');
+Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
-Route::get('/home', [UserController::class, 'home'])->name('home');
-Route::get('/admin/show', [UserController::class, 'showUser'])->name('admin.showUser');
+Route::get('/admin/showUser', [UserController::class, 'showUser'])->name('admin.showUser');
 Route::get('/admin/showBook', [UserController::class, 'showBook'])->name('admin.showBook');
 
 

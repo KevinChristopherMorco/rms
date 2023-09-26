@@ -1,16 +1,29 @@
 <div class="admin-sidebar">
-    <ul class="admin-sidebar-items">
-        <li><a href="{{route('admin')}}"><i class="fa-solid fa-house"></i>Home</a></li>
-        <li><a href="{{ route('admin.showUser') }}"><i class="fa-solid fa-users"></i>User Management</a><i class="fa-solid fa-arrow-right"></i></li>
-        <li><a href="{{route('admin.showBook')}}"><i class="fa-solid fa-book"></i>Catalog Management</a><i class="fa-solid fa-arrow-right"></i></li>
-        <li><a href=""><i class="fa-solid fa-people-carry-box"></i>Patron Management</a><i class="fa-solid fa-arrow-right"></i></li>
-        <li><a href=""><i class="fa-solid fa-chart-gantt"></i>Circulation Management</a><i class="fa-solid fa-arrow-right"></i></li>
-        <li><a href=""><i class="fa-solid fa-table-list"></i>Inventory Management</a><i class="fa-solid fa-arrow-right"></i></li>
-        <li>
-            <form action="/logout" method="POST">
-                @csrf
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded" role="alert"><i class="fa-solid fa-power-off pr-2"></i>Logout</button>
-            </form>
-        </li>
+    <ul class="admin-sidebar-items px-4">
+        <div class="admin-sidebar-item-group py-2">
+            <li class="admin-sidebar-heading text-sm font-bold py-2">Dashboard</li>
+            <li class="{{Route::is('admin.dashboard') ? 'admin-sidebar--active' : '' }} admin-sidebar-subheading text-sm py-2"><a href="{{ route('admin') }}"><i
+                        class="fa-solid fa-house"></i><span class="list-text">Home</span></a></li>
+        </div>
+        <div class="admin-sidebar-item-group py-4">
+            <li class="admin-sidebar-heading text-sm font-bold py-2">System Management</li>
+
+            <li class="{{Route::is('admin.showUser') ? 'admin-sidebar--active' : '' }} admin-sidebar-subheading text-sm py-2"><a href="{{ route('admin.showUser') }}"><i
+                        class="fa-solid fa-users"></i><span class="list-text">User</span></a></li>
+            <li class="{{Route::is('admin.showBook') ? 'admin-sidebar--active' : ''}} admin-sidebar-subheading text-sm py-2"><a href="{{ route('admin.showBook') }}"><i
+                        class="fa-solid fa-book"></i><span class="list-text">Catalog</span></a></li>
+            <li class="admin-sidebar-subheading text-sm py-2"><a href=""><i
+                        class="fa-solid fa-people-carry-box"></i><span class="list-text">Reservation</span></a>
+            </li>
+            <li class="admin-sidebar-subheading text-sm py-2"><a href=""><i
+                        class="fa-solid fa-chart-gantt"></i><span class="list-text">Circulation</span></a></li>
+            <li class="admin-sidebar-subheading text-sm py-2"><a href=""><i
+                        class="fa-solid fa-table-list"></i><span class="list-text">Inventory</span></a></li>
+        </div>
+        <div class="admin-sidebar-item-group py-4">
+            <li class="admin-sidebar-heading text-sm font-bold py-2">Resource Management</li>
+            <li class="admin-sidebar-subheading text-sm py-2"><a href=""><i class="fa-solid fa-cloud-arrow-down"></i><span class="list-text">Downloads</span></a></li>
+        </div>
+        
     </ul>
 </div>

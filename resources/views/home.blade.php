@@ -209,6 +209,8 @@
 
     </section>
     <script>
+        // variable element declarations
+
         const modal = document.querySelectorAll('.main-modal')
         const viewBtn = document.querySelectorAll('.view-book-btn')
         const modalClose = document.querySelectorAll('.modal-close')
@@ -385,29 +387,33 @@
     </script>
 
     <script>
-        tabButton = document.querySelectorAll('.home-container__btn-item')
-        homeContainer = document.querySelectorAll('.home-container__book-status')
+        // function for altering active state of request button
+        const requestBtnActiveState = () => {
+            tabButton = document.querySelectorAll('.home-container__btn-item')
+            homeContainer = document.querySelectorAll('.home-container__book-status')
 
-        const removeActiveState = () => {
-            tabButton.forEach((tabButtonEl) => {
-                tabButtonEl.classList.remove('home-container__btn-item--active')
+            const removeActiveState = () => {
+                tabButton.forEach((tabButtonEl) => {
+                    tabButtonEl.classList.remove('home-container__btn-item--active')
+                })
+            }
+
+
+            tabButton.forEach((tabButtonEl, tabButtonIndex) => {
+                tabButtonEl.addEventListener('click', (e) => {
+                    homeContainer.forEach((homeContainerEl, i) => {
+                        homeContainerEl.classList.add('hidden')
+                    })
+
+                    removeActiveState()
+
+                    tabButtonEl.classList.add('home-container__btn-item--active')
+
+                    homeContainer[tabButtonIndex].classList.remove('hidden')
+                })
             })
         }
-
-
-        tabButton.forEach((tabButtonEl, tabButtonIndex) => {
-            tabButtonEl.addEventListener('click', (e) => {
-                homeContainer.forEach((homeContainerEl, i) => {
-                    homeContainerEl.classList.add('hidden')
-                })
-
-                removeActiveState()
-
-                tabButtonEl.classList.add('home-container__btn-item--active')
-
-                homeContainer[tabButtonIndex].classList.remove('hidden')
-            })
-        })
+        requestBtnActiveState();
     </script>
 
     <script>

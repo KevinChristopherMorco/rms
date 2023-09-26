@@ -671,7 +671,6 @@
 
                             reserveStart.addEventListener('change', (e) => {
                                 let reserveStartDate = reserveStart.value
-
                                 let date = new Date(reserveStart.value);
                                 let checkDay = date.getDay();
                                 if (checkDay == 0 || checkDay == 6) {
