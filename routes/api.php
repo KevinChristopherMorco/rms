@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // book api routes
 
 Route::get('/books/{id}', [BookController::class, 'findBookId']);
+Route::get('/users/{id}', [UserController::class, 'findUserId']);
+
+
+
 Route::get('/catalogfilter',[BookController::class, 'findBookFilter']);
+

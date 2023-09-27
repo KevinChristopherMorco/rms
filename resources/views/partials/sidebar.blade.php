@@ -2,7 +2,7 @@
     <ul class="admin-sidebar-items px-4">
         <div class="admin-sidebar-item-group py-2">
             <li class="admin-sidebar-heading text-sm font-bold py-2">Dashboard</li>
-            <li class="{{Route::is('admin.dashboard') ? 'admin-sidebar--active' : '' }} admin-sidebar-subheading text-sm py-2"><a href="{{ route('admin') }}"><i
+            <li class="{{Route::is('admin') ? 'admin-sidebar--active' : '' }} admin-sidebar-subheading text-sm py-2"><a href="{{ route('admin') }}"><i
                         class="fa-solid fa-house"></i><span class="list-text">Home</span></a></li>
         </div>
         <div class="admin-sidebar-item-group py-4">

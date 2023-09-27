@@ -641,8 +641,6 @@
 
                         loadingIndicators.forEach((loadingIndicator, i) => {
                             loadingIndicator.style.display = 'none'
-                            console.log(loadingIndicator)
-
                         });
 
                         modalText.forEach((modalTextEl, i) => {

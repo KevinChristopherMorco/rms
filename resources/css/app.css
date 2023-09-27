@@ -959,7 +959,10 @@ table .action-btn i:nth-of-type(2) {
 table .action-btn i:nth-of-type(3) {
     color: var(--red);
 }
-
+.table-row-heading{
+    background-color: var(--accent-color);
+    color: var(--white);
+}
 
 
 
