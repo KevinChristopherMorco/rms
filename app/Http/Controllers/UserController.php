@@ -93,4 +93,10 @@ class UserController extends Controller
         $bookReservation = array('reservations' => DB::table('books')->join('book_reservations', 'books.id', '=', "book_reservations.book_id")->join('users', 'book_reservations.user_id', '=', 'users.id')->select('books.*', 'book_reservations.*', 'users.*')->paginate(10));
         return view('admin.showReservation', $bookReservation);
     }
+
+    public function findUserId($id){
+        $user = User::find($id);
+        return response()->json($user);
+
+    }
 }
