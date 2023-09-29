@@ -84,7 +84,7 @@ class UserController extends Controller
     }
     public function showBook()
     {
-        $book = array('books' => DB::table('books')->orderBy('created_at')->paginate(8));
+        $book = array('books' => DB::table('books')->orderBy('id', 'asc')->paginate(8));
         return view('admin.showBook', $book);
     }
 

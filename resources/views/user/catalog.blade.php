@@ -489,58 +489,7 @@
         })
 
 
-        // Function to generate modal content
-        const generateModalContent = (bookData, userId) => {
-            return `
-            <div class="flex justify-between items-center pb-3">
-    <p class="book-title text-2xl font-bold">${bookData.title}</p>
-</div>
-<div class="flex justify-center items-center">
-    <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4">${bookData.college}</p>
-    <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4">${bookData.genre}</p>
-
-</div>
-<div class="py-5">
-    <p class="text-center text-sm">${bookData.description}</p>
-</div>
-<div class="py-2">
-    <span class="font-bold">Availability:</span> <span class="book-availability text-sm">${bookData.status}</span>
-</div>
-
-<div class="py-2">
-    <span class="font-bold">Author:</span> <span class="book-isbn text-sm"> ${bookData.author}</span>
-</div>
-
-<div class="py-2">
-    <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm"> ${bookData.isbn}</span>
-</div>
-
-
-
-<form action='{{ route('catalog.reserve') }}' method="POST">
-    @csrf
-    <input type="hidden" name="user_id" value="${userId}">
-    <input type="hidden" name="book_id" value="${bookData.id}">
-    <div class="reserve-post-input py-2">
-    <p class="py-2 text-base font-bold">Reservation Date:</p>
-    <div class="flex justify-center items-center">
-        <label class="font-bold px-4" for="reserve_start"> Start Date </label>
-        <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
-        <label class="font-bold px-4" for="reserve_end"> End Date </label>
-        <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
-    </div>
-
-    <!--Footer-->
-    <div class="flex justify-end mt-14">
-        <button
-            class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
-    </div>
-</div>
-
-</form>
-<!-- Add more book data here -->
-        `;
-        }
+        
 
         // this function is used for viewing the content through modal it includes the ID of the item as well as the endpoint
 
@@ -597,11 +546,16 @@
                             const bookData = response.data;
                             const userId = viewBtnEl.getAttribute('data-user-id')
 
-                            // generate the fetched data in the html of modalText
-                            modalText.forEach((modalTextEl) => {
-                                modalTextEl.innerHTML = generateModalContent(bookData,
-                                    userId);
-                            })
+                           document.getElementById('book-title').innerHTML = bookData.title
+                           document.getElementById('book-college').innerHTML = bookData.college
+                           document.getElementById('book-description').innerHTML = bookData.description
+                           document.getElementById('book-status').innerHTML = bookData.status
+                           document.getElementById('book-author').innerHTML = bookData.author
+                           document.getElementById('book-isbn').innerHTML = bookData.isbn
+                           document.getElementById('book-genre').innerHTML = bookData.genre
+
+                           document.getElementById('user-id').value = userId
+                           document.getElementById('book-id').value = bookData.id
 
                             // set the design color tags of colleges
                             const collegeTag = document.querySelectorAll(
@@ -650,14 +604,27 @@
                             bookAvailability.forEach((bookAvailabilityEl) => {
                                 if (bookAvailabilityEl.innerHTML == 'In stock') {
                                     bookAvailabilityEl.classList.add('in-stock')
+                                    bookAvailabilityEl.classList.remove('out-stock')
+                                    bookAvailabilityEl.classList.remove('limited-stock')
+                                    reservePostRequest.forEach((reservePostRequestEl) => {
+                                        reservePostRequestEl.classList.remove('hidden')
+                                    })
+
                                 } else if (bookAvailabilityEl.innerHTML ==
                                     'Limited stock') {
                                     bookAvailabilityEl.classList.add('limited-stock')
+                                    bookAvailabilityEl.classList.remove('in-stock')
+                                    bookAvailabilityEl.classList.remove('out-stock')
+                                    reservePostRequest.forEach((reservePostRequestEl) => {
+                                        reservePostRequestEl.classList.remove('hidden')
+                                    })
                                 } else {
                                     reservePostRequest.forEach((reservePostRequestEl) => {
                                         reservePostRequestEl.classList.add('hidden')
                                     })
                                     bookAvailabilityEl.classList.add('out-stock')
+                                    bookAvailabilityEl.classList.remove('in-stock')
+                                    bookAvailabilityEl.classList.remove('limited-stock')
                                 }
                             })
 

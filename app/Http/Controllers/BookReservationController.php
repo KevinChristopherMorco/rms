@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\BookReservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookReservationController extends Controller
 {
@@ -19,6 +20,7 @@ class BookReservationController extends Controller
         ]);
 
       $dateNow = Carbon::now('Asia/Manila')->format('Y-m-d');
+      $authUser = Auth::id();
 
         $book = Book::find($validateData['book_id']);
         if (!$book) {
@@ -27,7 +29,13 @@ class BookReservationController extends Controller
             return redirect()->route('user.catalog')->with('error', 'Book is out of stock. Reservation not allowed.');
         }elseif($validateData['reserve_start'] < $dateNow){
             return redirect()->route('user.catalog')->with('invalidDate', 'Invalid date.');
-        } else {
+        }
+        elseif($authUser != $validateData['user_id']){
+            return redirect()->route('user.catalog')->with('notFound', 'Invalid user.');
+
+        }
+        
+        else {
             BookReservation::create($validateData);
             return redirect()->route('user.catalog')->with('success', 'Book reservation request successful');
         }

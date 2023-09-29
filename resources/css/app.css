@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
+:root {
     --primary-color: #6918B4;
     --secondary-color: #36117E;
     --accent-color: #B691FF;
@@ -20,6 +20,8 @@
     --light-gray: #D3D3D3;
     --lightest-gray: #F0F0F0;
     --blue-green: #2FAA8C;
+    --hover: #8F32E4;
+    --cancel-btn: #BEBEBE;
 
 }
 
@@ -168,7 +170,7 @@ a {
     padding: 5rem;
     width: 100%;
     height: auto;
-    background-color:var(--white);
+    background-color: var(--white);
     z-index: 999;
 }
 
@@ -575,7 +577,7 @@ Welcome.blade.php
 .home-container__btn-item--active {
     background-color: var(--primary-color);
     box-shadow: 2px 2px var(--primary-color);
-    color:var(--white);
+    color: var(--white);
 }
 
 .home-container__book-view {
@@ -920,7 +922,7 @@ Welcome.blade.php
 }
 
 .table-container {
-    background-color:var(--white);
+    background-color: var(--white);
     width: 95%;
     height: 95%;
     border-radius: 10px;
@@ -959,12 +961,64 @@ table .action-btn i:nth-of-type(2) {
 table .action-btn i:nth-of-type(3) {
     color: var(--red);
 }
-.table-row-heading{
+
+.table-row-heading {
     background-color: var(--accent-color);
     color: var(--white);
 }
 
+.main-modal-edit__input-group {
+    width: 100%;
+    padding: .3rem .3rem;
 
+}
+
+.main-modal-edit__input-group input,
+.main-modal-edit__input-group textarea,
+.main-modal-edit__input-group select {
+    width: 95%;
+    padding: .3rem 0;
+}
+
+.main-modal-edit__input-group textarea {
+    height: auto;
+}
+
+.main-modal-edit__input-group input:focus,
+.main-modal-edit__input-group textarea:focus,
+.main-modal-edit__input-group select:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+.main-modal-edit__btn-submit {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.main-modal-edit__btn-submit:hover {
+    background-color: var(--hover);
+}
+
+.main-modal-edit__input-group select:hover {
+    cursor: pointer;
+}
+
+.main-modal-edit__input-group input[type='date']:hover {
+    cursor: pointer;
+}
+
+
+.swal2-confirm-custom {
+    background-color: var(--primary-color) !important;
+}
+
+.swal2-cancel-custom {
+    background-color: var(--cancel-btn) !important;
+    color: var(--black);
+
+}
 
 
 
