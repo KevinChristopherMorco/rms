@@ -35,6 +35,53 @@
 
                     <div class="modal-text">
 
+                        <div class="flex justify-between items-center pb-3">
+                            <p class="book-title text-2xl font-bold" id="book-title">${bookData.title}</p>
+                        </div>
+                        <div class="flex justify-center items-center">
+                            <p class="home-container__tags home-container__tags-college text-xs text-center px-2 py-2 mx-2 mt-4" id="book-college">${bookData.college}</p>
+                            <p class="home-container__tags home-container__tags-genre text-xs text-center px-2 py-2 mt-4" id="book-genre">${bookData.genre}</p>
+                        
+                        </div>
+                        <div class="py-5">
+                            <p class="text-center text-sm" id="book-description">${bookData.description}</p>
+                        </div>
+                        <div class="py-2">
+                            <span class="font-bold">Availability:</span> <span class="book-availability text-sm" id="book-status">${bookData.status}</span>
+                        </div>
+                        
+                        <div class="py-2">
+                            <span class="font-bold">Author:</span> <span class="book-isbn text-sm" id="book-author"> ${bookData.author}</span>
+                        </div>
+                        
+                        <div class="py-2">
+                            <span class="font-bold">ISBN:</span> <span class="book-isbn text-sm" id="book-isbn"> ${bookData.isbn}</span>
+                        </div>
+                        
+                        
+                        
+                        <form action='{{ route('catalog.reserve') }}' method="POST">
+                            @csrf
+                            <input type="hidden" id="user-id" name="user_id">
+                            <input type="hidden" id="book-id" name="book_id">
+                            <div class="reserve-post-input py-2">
+                            <p class="py-2 text-base font-bold">Reservation Date:</p>
+                            <div class="flex justify-center items-center">
+                                <label class="font-bold px-4" for="reserve_start"> Start Date </label>
+                                <input type="text" class="reserve-input p-2" id="reserve_start" name="reserve_start" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required>
+                                <label class="font-bold px-4" for="reserve_end"> End Date </label>
+                                <input type="text" class="reserve-input p-2" id="reserve_end" name="reserve_end" onfocus="{this.type='date'}" onblur="if(this.value == '') {this.type='text'}" placeholder="Enter date here" required disabled>
+                            </div>
+                        
+                            <!--Footer-->
+                            <div class="flex justify-end mt-14">
+                                <button
+                                    class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
+                            </div>
+                        </div>
+                        
+                        </form>
+
                     </div>
                 </div>
 
