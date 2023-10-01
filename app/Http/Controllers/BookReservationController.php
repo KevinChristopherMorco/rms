@@ -22,7 +22,7 @@ class BookReservationController extends Controller
       $dateNow = Carbon::now('Asia/Manila')->format('Y-m-d');
       $authUser = Auth::id();
 
-        $book = Book::find($validateData['book_id']);
+        $book = Book::findOrFail($validateData['book_id']);
         if (!$book) {
             return redirect()->route('user.catalog')->with('notFound', 'Invalid request');
         } elseif ($book->status === 'Out of stock') {

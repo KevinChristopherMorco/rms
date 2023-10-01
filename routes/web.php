@@ -51,7 +51,8 @@ Route::get('/catalog', [UserController::class, 'catalog'])->name('user.catalog')
 Route::post('/catalog/reserveBook', [BookReservationController::class, 'store'])->name('catalog.reserve');
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
-Route::put('/books', [BookController::class, 'updateBook'])->name('book.update');
+
+Route::put('/user/update', [UserController::class, 'editUser'])->name('user.update');
 
 
 
@@ -60,5 +61,11 @@ Route::get('/admin/ShowUser', [UserController::class, 'showUser'])->name('admin.
 Route::get('/admin/ShowBook', [UserController::class, 'showBook'])->name('admin.showBook');
 Route::get('/admin/showReservation',[UserController::class, 'showReservation'])->name('admin.showReservation');
 
+Route::put('/books', [BookController::class, 'updateBook'])->name('book.update');
+
+Route::delete('/books/{book}/delete', [BookController::class, 'deleteBook'])->name('book.delete')->withTrashed();
+Route::post('/books/{book}/restore', [BookController::class, 'restoreBook'])->name('book.restore')->withTrashed();
+
+Route::get('/books/archive', [BookController::class, 'archiveBook'])->name('book.archive');
 
 Auth::routes();

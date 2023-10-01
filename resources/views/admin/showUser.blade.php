@@ -34,7 +34,7 @@
                                 <td>{{ $user->card_number }}</td>
                                 <td class="action-btn user"><i class="fa-regular fa-eye px-2"
                                         data-user-id="{{ $user->id }}"></i>
-                                    <i class="fa-regular fa-pen-to-square px-2"></i>
+                                    <i class="fa-regular fa-pen-to-square px-2" data-user-id="{{ $user->id }}"></i>
                                     <i class="fa-solid fa-user-slash px-2"></i>
                                 </td>
                             </tr>
@@ -50,6 +50,7 @@
     </div>
 
     @include('modal.admin.userDetail')
+    @include('modal.admin.editUserDetail')
 
 
     <script>
@@ -82,6 +83,7 @@
             const editUser = document.querySelectorAll('.action-btn.user .fa-pen-to-square')
             const archiveUser = document.querySelectorAll('.action-btn.user .fa-user-slash')
 
+            const editModal = document.querySelectorAll('.main-modal-user-edit')
 
             modal.forEach((modalEl) => {
                 modalEl.classList.add('hidden')
@@ -142,15 +144,57 @@
     </script>
 
     <script>
-        editUser.forEach((editUserEl) => {
-                editUserEl.addEventListener('click', (e) => {
-                    Swal.fire({
-                        icon: 'question',
-                        title: 'Modify User Information',
-                        text: 'Are you sure you want to proceed?!',
+        // editUser.forEach((editUserEl) => {
+        //         editUserEl.addEventListener('click', (e) => {
+        //             Swal.fire({
+        //                 icon: 'question',
+        //                 title: 'Modify User Information',
+        //                 text: 'Are you sure you want to proceed?!',
+        //             })
+        //         })
+        //     })
+
+        editModal.forEach((editModalEl) => {
+            editModalEl.classList.add('hidden')
+            })
+
+            modalClose.forEach((modalCloseEl) => {
+                modalCloseEl.addEventListener('click', (e) => {
+                    editModal.forEach((editModalEl) => {
+                        editModalEl.classList.add('hidden')
                     })
                 })
             })
+
+        editUser.forEach((editUserEl) => {
+                editUserEl.addEventListener('click', (e) => {
+                   
+                    editModal.forEach((editModalEl) => {
+            editModalEl.classList.remove('hidden')
+            })
+
+
+            const userId = editUserEl.getAttribute('data-user-id')
+                    loadingIndicators.forEach((loadingIndicatorsEl) => {
+                        loadingIndicatorsEl.style.display = 'block'
+                    })
+                    modalText.forEach((modalTextEl) => {
+                        modalTextEl.style.display = 'none'
+                    })
+
+                    axios.get(`/api/users/${userId}`)
+                        .then(function(response) {
+                            const userData = response.data
+
+                            document.getElementById('user-id').value = userData.id
+
+                            })
+
+                })
+            })
+
+        
+
     </script>
 
     <script>

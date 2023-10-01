@@ -27,7 +27,7 @@
 
         <div class="admin-sidebar-item-group danger-zone py-4">
             <li class="admin-sidebar-heading text-sm font-bold py-2">Danger zone</li>
-            <li class="admin-sidebar-subheading text-sm py-2"><a href=""><i class="fa-solid fa-box-archive"></i><span class="list-text">Archive</span></a></li>
+            <li class="admin-sidebar-subheading text-sm py-2"><a href="{{route('book.archive')}}"><i class="fa-solid fa-box-archive"></i><span class="list-text">Archive Books</span></a></li>
         </div>
         
     </ul>
