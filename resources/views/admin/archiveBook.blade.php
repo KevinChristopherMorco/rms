@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Book Catalog')
+@section('title', 'Book Archive')
 @section('content')
 
 
@@ -14,7 +14,7 @@
             <div class="flex justify-center">
 
                 <div class="table-container p-6">
-                    <p class="text-lg font-bold pb-4">Book Catalog</p>
+                    <p class="text-lg font-bold pb-4">Book Archive</p>
                     <table class="table-auto">
                         <thead>
                             <tr>
@@ -31,13 +31,17 @@
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->isbn }}</td>
-                                <td class="action-btn book flex justify-center items-center" style="width: 100%;"><i class="fa-regular fa-eye px-2"
-                                        data-book-id="{{$book->id}}"></i>
-                                    <i class="fa-regular fa-pen-to-square px-2" data-book-id="{{$book->id}}"></i>
-                                    <form class="delete-book-form" action="{{route('book.delete', ['book' => $book->id])}}" method="POST">
+                                <td class="action-btn book flex justify-center items-center" style="width: 100%;">
+                                    <form action="{{route('book.restore', ['book'=> $book->id])}}" method="POST">
+                                        @csrf
+                                      <button> <i class="fa-solid fa-rotate-right px-2"></i></button> 
+                                    </form>
+                                    <form class="delete-book-form"
+                                        action="{{route('book.delete', ['book' => $book->id])}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button  data-book-id="{{$book->id}}" class="btn-delete"> <i class="fa-solid fa-box-archive px-2"></i></button>
+                                        <button data-book-id="{{$book->id}}" class="btn-delete"> <i
+                                                class="fa-regular fa-trash-can px-2"></i></button>
                                     </form>
                                 </td>
 
@@ -99,13 +103,13 @@
         const navbar = document.querySelectorAll('.navbar')
         const viewBook = document.querySelectorAll('.action-btn.book .fa-eye')
         const editBook = document.querySelectorAll('.action-btn.book .fa-pen-to-square')
+        
 
         const editModal = document.querySelectorAll('.main-modal-edit')
         const modalEditContent = document.querySelectorAll('.main-modal-edit__modal-content');
 
         const archiveBook = document.querySelectorAll('.action-btn.book .btn-delete')
         const deleteForm = document.querySelectorAll('.delete-book-form')
-
 
 
         modalClose.forEach((modalCloseEl) => {
@@ -236,30 +240,30 @@
         })
     </script>
 
-<script>
-    deleteForm.forEach((deleteFormEl) => {
-        deleteFormEl.addEventListener('submit', (e) => {
-            e.preventDefault()
-            Swal.fire({
-                icon: 'warning',
-                title: 'Archive Book Information',
-                text: 'Book data will be moved to the archive book page',
-                showCancelButton: true,
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: 'swal2-confirm-custom',
-                    cancelButton: 'swal2-cancel-custom',
-                            },
+    <script>
+        deleteForm.forEach((deleteFormEl) => {
+            deleteFormEl.addEventListener('submit', (e) => {
+                e.preventDefault()
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Delete Book Information?',
+                    text: 'Data will be deleted permanently',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: 'swal2-confirm-custom',
+                        cancelButton: 'swal2-cancel-custom',
+                                },
+                })
+                .then((response)=>{
+                    if(response.value){
+                        deleteFormEl.submit()
+                    }
+                })
+               
             })
-            .then((response)=>{
-                if(response.value){
-                    deleteFormEl.submit()
-                }
-            })
-           
         })
-    })
-</script> 
+    </script>
 
 
 </section>

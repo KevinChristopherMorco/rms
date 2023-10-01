@@ -10,14 +10,14 @@ class BookController extends Controller
 {
     public function findBookId($id)
     {
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
         return response()->json($book);
     }
 
     public function updateBook(Request $request)
     {
         $id = $request->input('book_id');
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
         // dd($request);
         // dd($request);
 
@@ -36,14 +36,28 @@ class BookController extends Controller
         return redirect()->route('admin.showBook')->with('success', 'Update');
     }
 
+    public function deleteBook(Book $book, Request $request){
+        if($book->trashed()){
+            $book->forceDelete();
+            return redirect()->route('book.archive')->with('delete', 'Data has been deleted permanently');
 
+        }
+        $book->delete();
 
-    // public function findBookFilter(Request $request){
-    //     // $filters = $request->input('college');
-    //     // $filteredData = DB::table('books')->whereIn('college',$filters)->get();
+        return redirect()->route('admin.showBook')->with('archive', 'Data has been archived');
 
-    //     $selectedFilters = $request->query('selectedFilters');
+    }
 
-    //     // return response()->json($filteredData);
-    // }
+    public function archiveBook(){
+
+        $books = array('books'=>Book::onlyTrashed()->orderBy('id')->paginate(8));
+
+        return view('admin.archiveBook', $books);
+
+    }
+
+    public function restoreBook(Book $book){
+        $book->restore();
+    }
+
 }

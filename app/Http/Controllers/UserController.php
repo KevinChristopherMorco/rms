@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Book;
+
 use App\Models\Client;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
@@ -84,8 +86,8 @@ class UserController extends Controller
     }
     public function showBook()
     {
-        $book = array('books' => DB::table('books')->orderBy('id', 'asc')->paginate(8));
-        return view('admin.showBook', $book);
+        $books = array('books'=>Book::orderBy('id', 'asc')->paginate(8));
+        return view('admin.showBook', $books);
     }
 
     public function showReservation()
@@ -95,8 +97,20 @@ class UserController extends Controller
     }
 
     public function findUserId($id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return response()->json($user);
+    }
+
+    public function editUser(Request $request){
+        $id = $request->input('user_id');
+        $user = User::findOrFail($id);
+
+        $validateData = $request->validate([
+            'status' => 'required',
+        ]);
+
+        $user->update($validateData);
+        return redirect()->route('admin.showUser');
 
     }
 }
