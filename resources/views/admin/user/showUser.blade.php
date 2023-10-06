@@ -26,19 +26,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @forelse ($users as $user)
                             <tr>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->middle_name }}</td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->card_number }}</td>
-                                <td class="action-btn user"><i class="fa-regular fa-eye px-2"
-                                        data-user-id="{{ $user->id }}"></i>
+                                <td class="action-btn user flex justify-center items-center"><i
+                                        class="fa-regular fa-eye px-2" data-user-id="{{ $user->id }}"></i>
+
                                     <i class="fa-regular fa-pen-to-square px-2" data-user-id="{{ $user->id }}"></i>
-                                    <i class="fa-solid fa-user-slash px-2"></i>
+                                    <form class="suspend-user" action="{{route('user.suspend')}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button> <i class="fa-solid fa-user-slash px-2"></i> </button>
+                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                    </form>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <td class="table__no-record" colspan="5"><p class="text-xl font-bold"><i class="fa-solid fa-circle-exclamation"></i> No records found</p></td>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="py-6">
@@ -52,6 +60,17 @@
     @include('modal.admin.userDetail')
     @include('modal.admin.editUserDetail')
 
+    @if (session('userSuspend'))
+    <script>
+        window.addEventListener('load', () => {
+        Swal.fire({
+            icon: 'warning',
+            title: 'User Suspended',
+            text: 'You can view the account at the "Suspended Users" module'
+        })
+    })   
+    </script>
+    @endif
 
     <script>
         let sidebarContainer = document.querySelector('.admin-sidebar-container')
@@ -81,7 +100,7 @@
             const navbar = document.querySelectorAll('.navbar')
             const viewUser = document.querySelectorAll('.action-btn.user .fa-eye')
             const editUser = document.querySelectorAll('.action-btn.user .fa-pen-to-square')
-            const archiveUser = document.querySelectorAll('.action-btn.user .fa-user-slash')
+            const suspendUser = document.querySelectorAll('.action-btn.user .suspend-user')
 
             const editModal = document.querySelectorAll('.main-modal-user-edit')
 
@@ -198,12 +217,25 @@
     </script>
 
     <script>
-        archiveUser.forEach((archiveUserEl) => {
-                archiveUserEl.addEventListener('click', (e) => {
+        suspendUser.forEach((suspendUserEl) => {
+            suspendUserEl.addEventListener('submit', (e) => {
+                e.preventDefault()
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Archive User Account',
+                        title: 'Suspend User Account',
                         text: 'Are you sure you want to proceed?!',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        allowOutsideClick: false,
+                        customClass: {
+                            confirmButton: 'swal2-confirm-custom',
+                            cancelButton: 'swal2-cancel-custom',
+                        },
+                    })
+                    .then((response)=>{
+                        if(response.value){
+                            suspendUserEl.submit()
+                        }
                     })
                 })
             })

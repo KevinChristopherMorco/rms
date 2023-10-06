@@ -42,6 +42,7 @@ class BookController extends Controller
             return redirect()->route('book.archive')->with('delete', 'Data has been deleted permanently');
 
         }
+
         $book->delete();
 
         return redirect()->route('admin.showBook')->with('archive', 'Data has been archived');
@@ -49,15 +50,13 @@ class BookController extends Controller
     }
 
     public function archiveBook(){
-
-        $books = array('books'=>Book::onlyTrashed()->orderBy('id')->paginate(8));
-
+        $books = array('books'=>Book::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate(8));
         return view('admin.archiveBook', $books);
-
     }
 
     public function restoreBook(Book $book){
         $book->restore();
+        return redirect()->route('book.archive')->with('bookRestore', 'Book has been restored');
     }
 
 }

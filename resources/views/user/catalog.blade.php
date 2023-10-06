@@ -2,87 +2,276 @@
 @section('title', 'Browse Books')
 
 @section('content')
-    <section class="guest-browse-container py-20">
-        <div class="guest-browse-container__guest-browse-books">
-            <div class="grid md:grid-cols-4 gap-4">
-                <div class="md:col-span-1">
-                    <div class="guest-browse-books__filter-container hidden md:block">
+<section class="user-browse-container py-20">
+    <div class="user-browse-container__user-browse-books">
+        <div class="grid md:grid-cols-4 gap-4">
+            <div class="md:col-span-1">
+                <div class="guest-browse-books__filter-container hidden md:block">
+                    <p class="text-lg text-center font-bold py-4">Filter books</p>
+                    <div class="px-2 py-2">
+                        <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                            <p class="guest-browse-books__filter-base text-base font-bold py-2">Colleges</p> <i
+                                class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul
+                            class="guest-browse-books__category-list guest-browse-books__category-list--college hidden px-2">
+                            <form id="filter-form">
+                                @csrf
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of engineering">
+                                        College of Engineering
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of industrial technology">
+                                        College of Industrial Technology
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of business management and accountancy">
+                                        College of Business Management and Accountancy
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of teacher education">
+                                        College of Teacher Education
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of computer studies">
+                                        College of Computer Studies
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of nursing and allied health">
+                                        College of Nursing and Allied Health
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of arts and sciences">
+                                        College of Arts and Sciences
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of criminal justice education ">
+                                        College of Criminal Justice Education
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of hospitality management and tourism">
+                                        College of Hospitality Management and Tourism
+                                    </label>
+                                </li>
+                        </ul>
+
+                        <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                            <p class="guest-browse-books__filter-base text-base font-bold py-2">Genre</p> <i
+                                class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <ul
+                            class="guest-browse-books__category-list guest-browse-books__category-list--genre hidden px-2">
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Biography/Authobiography">
+                                    Biography/Authobiography
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Comics">
+                                    Comics
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Cookbook">
+                                    Cookbook
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Fantasy">
+                                    Fantasy
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="History">
+                                    History
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Horror">
+                                    Horror
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Mathematics">
+                                    Mathematics
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Mystery">
+                                    Mystery
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Poetry">
+                                    Poetry
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Religious/Spiritual">
+                                    Religious/Spiritual
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Science">
+                                    Science
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="category" value="Thriller">
+                                    Thriller
+                                </label>
+                            </li>
+                        </ul>
+
+                        <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
+                            <p class="guest-browse-books__filter-base text-base font-bold py-2">Availability</p> <i
+                                class="fa-solid fa-arrow-down"></i>
+                        </div>
+
+                        <ul
+                            class="guest-browse-books__category-list guest-browse-books__category-list--availability hidden px-2">
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="availability" value="in stock">
+                                    In stock
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="availability" value="limited stock">
+                                    Limited Stock
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="availability" value="out of stock">
+                                    Out of Stock
+                                </label>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <div class="px-6 py-6">
+                        <button class="bg-violet-800 text-white p-2" type="submit">Filter</button>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="guest-browse-books__filter-phone-container hidden">
+                    <div class="guest-browse-books__phone-filter">
                         <p class="text-lg text-center font-bold py-4">Filter books</p>
                         <div class="px-2 py-2">
-                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
-                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Colleges</p> <i
-                                    class="fa-solid fa-arrow-down"></i>
+                            <div
+                                class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Colleges</p>
+                                <i class="fa-solid fa-arrow-down"></i>
                             </div>
                             <ul
-                                class="guest-browse-books__category-list guest-browse-books__category-list--college hidden px-2">
-                                <form id="filter-form">
-                                    @csrf
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of engineering">
-                                            College of Engineering
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of industrial technology">
-                                            College of Industrial Technology
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of business management and accountancy">
-                                            College of Business Management and Accountancy
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of teacher education">
-                                            College of Teacher Education
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of computer studies">
-                                            College of Computer Studies
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of nursing and allied health">
-                                            College of Nursing and Allied Health
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of arts and sciences">
-                                            College of Arts and Sciences
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of criminal justice education ">
-                                            College of Criminal Justice Education
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of hospitality management and tourism">
-                                            College of Hospitality Management and Tourism
-                                        </label>
-                                    </li>
+                                class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--college hidden px-2">
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of engineering">
+                                        College of Engineering
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of industrial technology">
+                                        College of Industrial Technology
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of business management and accountancy">
+                                        College of Business Management and Accountancy
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of teacher education">
+                                        College of Teacher Education
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of computer studies">
+                                        College of Computer Studies
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of nursing and allied health">
+                                        College of Nursing and Allied Health
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college" value="college of arts and sciences">
+                                        College of Arts and Sciences
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of criminal justice education ">
+                                        College of Criminal Justice Education
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="college"
+                                            value="college of hospitality management and tourism">
+                                        College of Hospitality Management and Tourism
+                                    </label>
+                                </li>
                             </ul>
 
-                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
-                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Genre</p> <i
+                            <div
+                                class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Genre</p> <i
                                     class="fa-solid fa-arrow-down"></i>
                             </div>
+
                             <ul
-                                class="guest-browse-books__category-list guest-browse-books__category-list--genre hidden px-2">
+                                class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--genre hidden px-2">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="category" value="Biography/Authobiography">
@@ -157,13 +346,13 @@
                                 </li>
                             </ul>
 
-                            <div class="guest-browse-books__filter-base-container flex justify-between items-center px-2">
-                                <p class="guest-browse-books__filter-base text-base font-bold py-2">Availability</p> <i
-                                    class="fa-solid fa-arrow-down"></i>
+                            <div
+                                class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
+                                <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Availability
+                                </p> <i class="fa-solid fa-arrow-down"></i>
                             </div>
-
                             <ul
-                                class="guest-browse-books__category-list guest-browse-books__category-list--availability hidden px-2">
+                                class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--availability hidden px-2">
                                 <li>
                                     <label>
                                         <input type="checkbox" name="availability" value="in stock">
@@ -185,220 +374,27 @@
                                 </li>
 
                             </ul>
-
-                        </div>
-                        <div class="px-6 py-6">
-                            <button class="bg-violet-800 text-white p-2" type="submit">Filter</button>
-                        </div>
-                        </form>
-                    </div>
-
-                    <div class="guest-browse-books__filter-phone-container hidden">
-                        <div class="guest-browse-books__phone-filter">
-                            <p class="text-lg text-center font-bold py-4">Filter books</p>
-                            <div class="px-2 py-2">
-                                <div
-                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
-                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Colleges</p>
-                                    <i class="fa-solid fa-arrow-down"></i>
-                                </div>
-                                <ul
-                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--college hidden px-2">
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of engineering">
-                                            College of Engineering
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of industrial technology">
-                                            College of Industrial Technology
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of business management and accountancy">
-                                            College of Business Management and Accountancy
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of teacher education">
-                                            College of Teacher Education
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of computer studies">
-                                            College of Computer Studies
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of nursing and allied health">
-                                            College of Nursing and Allied Health
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college" value="college of arts and sciences">
-                                            College of Arts and Sciences
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of criminal justice education ">
-                                            College of Criminal Justice Education
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="college"
-                                                value="college of hospitality management and tourism">
-                                            College of Hospitality Management and Tourism
-                                        </label>
-                                    </li>
-                                </ul>
-
-                                <div
-                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
-                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Genre</p> <i
-                                        class="fa-solid fa-arrow-down"></i>
-                                </div>
-
-                                <ul
-                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--genre hidden px-2">
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Biography/Authobiography">
-                                            Biography/Authobiography
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Comics">
-                                            Comics
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Cookbook">
-                                            Cookbook
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Fantasy">
-                                            Fantasy
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="History">
-                                            History
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Horror">
-                                            Horror
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Mathematics">
-                                            Mathematics
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Mystery">
-                                            Mystery
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Poetry">
-                                            Poetry
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Religious/Spiritual">
-                                            Religious/Spiritual
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Science">
-                                            Science
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="category" value="Thriller">
-                                            Thriller
-                                        </label>
-                                    </li>
-                                </ul>
-
-                                <div
-                                    class="guest-browse-books__filter-base-phone-container flex justify-between items-center px-2">
-                                    <p class="guest-browse-books__filter-base-phone text-base font-bold py-2">Availability
-                                    </p> <i class="fa-solid fa-arrow-down"></i>
-                                </div>
-                                <ul
-                                    class="guest-browse-books__category-list-phone guest-browse-books__category-list-phone--availability hidden px-2">
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="availability" value="in stock">
-                                            In stock
-                                        </label>
-                                    </li>
-
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="availability" value="limited stock">
-                                            Limited Stock
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="availability" value="out of stock">
-                                            Out of Stock
-                                        </label>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="md:col-span-3">
-                    <div class="guest-browse-container__guest-book-view">
-                        <div class="grid md:grid-cols-3 gap-4">
-                            @foreach ($books as $book)
-                                <div class="home-container__card">
-                                    <div class="home-container__card-header">
-                                        <img src="{{ $book->book_image }}" alt="">
-                                    </div>
-                                    <div class="home-container__card-body">
-                                        <p class="text-base font-bold text-center">{{ $book->title }}</p>
-                                        <div class="flex justify-center items-center">
-                                            <p class="text-sm text-center pt-4">{{ $book->description }}</p>
-                                        </div>
 
-                                    </div>
-                                    <div class="home-container__card-footer px-4 ">
-                                        <div class="flex justify-center items-center gap-4">
-                                            <button class="view-book-btn text-center" data-book-id="{{ $book->id }}"
-                                                data-user-id="{{ Auth::user()->id }}">View</button>
+            </div>
+            <div class="md:col-span-3">
+                <div class="user-browse-container__user-browse-catalog">
+                    <div class="grid md:grid-cols-2">
+                        @forelse ($books as $book)
+                        <div class="col-span-1 py-8 ">
+                            <div class="user-browse-container__user-card flex">
+                                <img src="{{$book->book_image}}" width="150px" height="100%" alt="">
+                                <div class="user-browse-container__user-card-body py-10 px-2">
+                                    <p class="text-sm font-bold text-center  md:text-start md:text-base">
+                                        {{$book->title}}</p>
+                                    <p class="text-sm text-center md:text-start md:text-base">{{$book->author}}</p>
+                                    <p class="text-xs text-center md:text-start">{{$book->isbn}}</p>
+                                    <div class="user-browse-container__user-card-footer flex justify-between items-center">
+                                        <button class="user-browse-container__view-book-btn text-center p-2" data-book-id="{{ $book->id }}"
+                                            data-user-id="{{ Auth::user()->id }}"><i class="fa-solid fa-calendar-day"></i> Reserve</button>
+                                        <div class="user-browse-container__user-icon flex justify-around">
                                             <div class="home-container__add-favorite flex justify-center items-center">
                                                 <i class="fa-solid fa-heart"></i>
                                             </div>
@@ -408,56 +404,61 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
+                        @empty
+
+                        @endforelse
                     </div>
-                    {{ $books->links() }}
                 </div>
-            </div>
-            <div class="flex justify-center items-center guest-browse-books__filter-icon-container mr-2 md:hidden">
-                <i class="fa-solid fa-gears text-white"></i>
+                {{$books->links()}}
+
             </div>
         </div>
-    </section>
+        <div class="flex justify-center items-center guest-browse-books__filter-icon-container mr-2 md:hidden">
+            <i class="fa-solid fa-gears text-white"></i>
+        </div>
+    </div>
+</section>
 
 
 
-    {{-- reserve modal --}}
-    @include('modal.reserveBook')
+{{-- reserve modal --}}
+@include('modal.reserveBook')
 
-    @if (session('success'))
-        <script>
-            window.addEventListener('load', () => {
+@if (session('success'))
+<script>
+    window.addEventListener('load', () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Reservation request successful!',
                     text: 'You may check the status of this request on your dashboard.',
                 })
             })
-        </script>
-    @endif
+</script>
+@endif
 
-    @if (session('error'))
-        <script>
-            window.addEventListener('load', () => {
+@if (session('error'))
+<script>
+    window.addEventListener('load', () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Invalid request!',
                     text: 'We cannot proceed to your request',
                 })
             })
-        </script>
-    @endif
-    @if (session('notFound'))
-    <script>
-        window.addEventListener('load', () => {
+</script>
+@endif
+@if (session('notFound'))
+<script>
+    window.addEventListener('load', () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Invalid request!',
                 text: 'We cannot proceed to your request',
             })
         })
-    </script>
+</script>
 @endif
 
 @if (session('invalidDate'))
@@ -474,9 +475,9 @@
 
 
 
-    <script>
-        const modal = document.querySelectorAll('.main-modal')
-        const viewBtn = document.querySelectorAll('.view-book-btn')
+<script>
+    const modal = document.querySelectorAll('.main-modal')
+        const viewBtn = document.querySelectorAll('.user-browse-container__view-book-btn')
         const modalClose = document.querySelectorAll('.modal-close')
         const modalContent = document.querySelectorAll('.modal-content-container');
         const loadingIndicators = document.querySelectorAll('.loading-indicator');
@@ -637,7 +638,6 @@
                             const reserveEnd = document.getElementById('reserve_end')
 
                             reserveStart.addEventListener('change', (e) => {
-                                let reserveStartDate = reserveStart.value
                                 let date = new Date(reserveStart.value);
                                 let checkDay = date.getDay();
                                 if (checkDay == 0 || checkDay == 6) {
@@ -660,7 +660,7 @@
                                     reserveEnd.disabled = false
 
                                     //set the date of the end date that will depend on the start date 
-                                    let minEndDate = new Date(reserveStartDate);
+                                    let minEndDate = new Date(reserveStart.value);
                                     minEndDate.setDate(minEndDate.getDate() + 7);
                                     reserveEnd.min = minEndDate.toISOString().split("T")[0]
                                 }
@@ -706,12 +706,12 @@
         }
 
         viewButtonFunction();
-    </script>
+</script>
 
 
 
-    <script>
-        const heartIcon = document.querySelectorAll('.home-container__add-favorite')
+<script>
+    const heartIcon = document.querySelectorAll('.home-container__add-favorite')
         const feedbackIcon = document.querySelectorAll('.home-container__feedback')
 
         heartIcon.forEach((heartIconEl) => {
@@ -733,10 +733,10 @@
                 })
             })
         })
-    </script>
+</script>
 
-    <script>
-        document.getElementById('filter-form').addEventListener('submit', function(e) {
+<script>
+    document.getElementById('filter-form').addEventListener('submit', function(e) {
             e.preventDefault();
             // Get selected filters
             const selectedFilters = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
@@ -751,10 +751,10 @@
                     // Handle errors
                 });
         });
-    </script>
+</script>
 
-    <script>
-        const filterBookGuest = document.querySelectorAll('.guest-browse-books__filter-icon-container')
+<script>
+    const filterBookGuest = document.querySelectorAll('.guest-browse-books__filter-icon-container')
         const filterBookIcon = document.querySelectorAll('.guest-browse-books__filter-icon-container i')
         const showFilterBook = document.querySelectorAll('.guest-browse-books__filter-phone-container')
 
@@ -820,6 +820,6 @@
 
             })
         })
-    </script>
+</script>
 
 @endsection

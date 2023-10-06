@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($books as $book)
+                            @forelse ($books as $book)
                             <tr>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
@@ -42,7 +42,9 @@
                                 </td>
 
                             </tr>
-                            @endforeach
+                            @empty
+                            <td class="table__no-record" colspan="5"><p class="text-xl font-bold"><i class="fa-solid fa-circle-exclamation"></i> No records found</p></td>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="py-6">
@@ -246,6 +248,7 @@
                 text: 'Book data will be moved to the archive book page',
                 showCancelButton: true,
                 reverseButtons: true,
+                allowOutsideClick: false,
                 customClass: {
                     confirmButton: 'swal2-confirm-custom',
                     cancelButton: 'swal2-cancel-custom',

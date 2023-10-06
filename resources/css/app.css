@@ -12,6 +12,7 @@
     --black: #000;
     --gray: gray;
     --red: #FF0000;
+    --light-red: #FFAEAE;
     --blue: #0000FF;
     --orange: #FFA500;
     --green: #37C70E;
@@ -295,7 +296,7 @@ Welcome.blade.php
 
 /* start guest browse books */
 
-.guest-browse-container {
+.guest-browse-container, .user-browse-container {
     background-image: url('/public/pictures/wave.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -304,12 +305,12 @@ Welcome.blade.php
     height: 100vh;
 }
 
-.guest-browse-container__guest-browse-books {
+.guest-browse-container__guest-browse-books, .user-browse-container__user-browse-books {
     width: 100%;
     height: 100vh;
 }
 
-.guest-browse-container__guest-book-view {
+.guest-browse-container__guest-book-view, .user-browse-container__user-book-view {
     width: 100%;
     background-color: var(--white);
     border-radius: 20px;
@@ -686,6 +687,52 @@ Welcome.blade.php
     border-radius: 40px;
 }
 
+.user-browse-container__user-card{
+    width: 90%;
+    height: 250px;
+    background-color: var(--white);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+}
+
+.user-browse-container__user-card img{
+    border-radius:7px;
+}
+
+.user-browse-container__user-card-body{
+    position: relative;
+    width: 100%;
+}
+
+.user-browse-container__user-card-footer{
+    position: absolute;
+    bottom: 35px;
+    width: 95%;
+}
+
+.user-browse-container__view-book-btn{
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 5px;
+}
+.user-browse-container__view-book-btn:hover{
+    background-color: var(--hover);
+    color: var(--white);
+    border-radius: 5px;
+}
+.user-browse-container__user-icon{
+    width: 40%;
+}
+
+.user-browse-container__user-icon i{
+    cursor: pointer;
+}
+
+
+
+
+
+
 .fa-hourglass-start {
     color: var(--primary-color);
 }
@@ -825,6 +872,7 @@ Welcome.blade.php
 .admin-sidebar-items li.admin-sidebar-subheading {
     display: flex;
     align-items: center;
+    margin-top: .5rem;
 }
 
 .admin-sidebar-items a {
@@ -839,16 +887,24 @@ Welcome.blade.php
     color: var(--gray);
 }
 
-.admin-sidebar-subheading:hover {
-    background-color: var(--light-gray);
+.admin-sidebar-subheading:hover:not(.admin-sidebar--active, .admin-sidebar-danger--active) {
+    background-color: var(--lightest-gray);
     border-radius: 10px;
 }
 
 .admin-sidebar--active {
     background-color: var(--light-violet);
     border-radius: 10px;
+    box-shadow: -3px 3px var(--primary-color);
+    font-weight: bolder;
 }
 
+.admin-sidebar-danger--active{
+    background-color: var(--light-red);
+    border-radius: 10px;
+    box-shadow: -3px 3px var(--red);
+    font-weight: bolder;
+}
 .admin-sidebar--active a {
     color: var(--primary-color);
 }
@@ -936,6 +992,9 @@ table {
     text-align: center;
     margin: 0 auto;
 }
+.table__no-record{
+    color: var(--primary-color);
+}
 
 table td,
 th {
@@ -962,12 +1021,12 @@ table .action-btn .fa-pen-to-square {
     color: var(--orange);
 }
 
-table .action-btn button .fa-box-archive, table .action-btn button .fa-trash-can {
+table .action-btn button .fa-box-archive, table .action-btn button .fa-trash-can, table .action-btn button .fa-user-slash {
     color: var(--red);
 }
 
 .table-row-heading {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--white);
 }
 

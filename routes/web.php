@@ -60,6 +60,8 @@ Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
 Route::get('/admin/ShowUser', [UserController::class, 'showUser'])->name('admin.showUser');
 Route::get('/admin/ShowBook', [UserController::class, 'showBook'])->name('admin.showBook');
 Route::get('/admin/showReservation',[UserController::class, 'showReservation'])->name('admin.showReservation');
+Route::put('/admin/SuspendUser', [UserController::class, 'suspendUser'])->name('user.suspend');
+Route::put('/admin/RestoreUser', [UserController::class, 'restoreUser'])->name('user.restore');
 
 Route::put('/books', [BookController::class, 'updateBook'])->name('book.update');
 
@@ -67,5 +69,6 @@ Route::delete('/books/{book}/delete', [BookController::class, 'deleteBook'])->na
 Route::post('/books/{book}/restore', [BookController::class, 'restoreBook'])->name('book.restore')->withTrashed();
 
 Route::get('/books/archive', [BookController::class, 'archiveBook'])->name('book.archive');
+Route::get('admin/user/SuspendedUsers', [UserController::class, 'showSuspended'])->name('admin.suspend');
 
 Auth::routes();

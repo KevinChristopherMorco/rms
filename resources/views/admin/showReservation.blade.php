@@ -26,7 +26,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reservations as $reservation)
+                                @forelse ($reservations as $reservation)
                                     <tr>
                                         <td>{{ $reservation->title }}</td>
                                         <td>{{ $reservation->author }}</td>
@@ -37,7 +37,9 @@
                                         </td>
 
                                     </tr>
-                                @endforeach
+                                    @empty
+                                    <td class="table__no-record" colspan="5"><p class="text-xl font-bold"><i class="fa-solid fa-circle-exclamation"></i> No records found</p></td>
+                                @endforelse
                             </tbody>
                         </table>
                         <div class="py-6">

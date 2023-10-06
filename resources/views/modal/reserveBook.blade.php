@@ -64,7 +64,7 @@
                             @csrf
                             <input type="hidden" id="user-id" name="user_id">
                             <input type="hidden" id="book-id" name="book_id">
-                            <div class="reserve-post-input py-2">
+                            <div class="reserve-post-input">
                             <p class="py-2 text-base font-bold">Reservation Date:</p>
                             <div class="flex justify-center items-center">
                                 <label class="font-bold px-4" for="reserve_start"> Start Date </label>
@@ -76,7 +76,7 @@
                             <!--Footer-->
                             <div class="flex justify-end mt-14">
                                 <button
-                                    class="focus:outline-none px-4 bg-purple-500 p-3 ml-3 rounded-lg text-white hover:bg-purple-400">Reserve</button>
+                                    class="user-browse-container__view-book-btn p-2">Reserve</button>
                             </div>
                         </div>
                         
