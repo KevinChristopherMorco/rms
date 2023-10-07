@@ -1021,13 +1021,19 @@ table .action-btn .fa-pen-to-square {
     color: var(--orange);
 }
 
-table .action-btn button .fa-box-archive, table .action-btn button .fa-trash-can, table .action-btn button .fa-user-slash {
+table .action-btn button .fa-box-archive, table .action-btn button .fa-trash-can, table .action-btn button .fa-user-slash,table .action-btn .fa-trash-can{
     color: var(--red);
 }
 
 .table-row-heading {
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+.admin-container__add-book-btn{
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 5px;
 }
 
 .main-modal-edit__input-group {
@@ -1069,6 +1075,49 @@ table .action-btn button .fa-box-archive, table .action-btn button .fa-trash-can
 }
 
 .main-modal-edit__input-group input[type='date']:hover {
+    cursor: pointer;
+}
+
+.main-modal-edit__input-group {
+    width: 100%;
+    padding: .3rem .3rem;
+
+}
+
+.main-modal-add-book__input-group input,
+.main-modal-add-book__input-group textarea,
+.main-modal-add-book__input-group select {
+    width: 95%;
+    padding: .3rem 0;
+    border: 1px solid var(--primary-color);
+}
+
+.main-modal-add-book__input-group textarea {
+    height: auto;
+}
+
+.main-modal-add-book__input-group input:focus,
+.main-modal-add-book__input-group textarea:focus,
+.main-modal-add-book__input-group select:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+.main-modal-add-book__btn-submit {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.main-modal-add-book__btn-submit:hover {
+    background-color: var(--hover);
+}
+
+.main-modal-add-book__input-group select:hover {
+    cursor: pointer;
+}
+
+.main-modal-add-book__input-group input[type='date']:hover {
     cursor: pointer;
 }
 

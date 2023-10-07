@@ -57,16 +57,35 @@
         </div>
     </div>
 
-    @if(session('bookRestore'))
+    @if(session('restore'))
     <script>
         window.addEventListener('load', (e) =>{
         Swal.fire({
             icon: 'success',
             title: 'Book Information Restored',
             text: 'Book is now available in the catalog',
-         })
+            customClass: {
+            confirmButton: 'swal2-confirm-custom',
+            cancelButton: 'swal2-cancel-custom',
+                },
+            })
         })
     </script>
+    @endif
+
+@if(session('delete'))
+<script>
+    window.addEventListener('load', (e) =>{
+    Swal.fire({
+        icon: 'success',
+        title: 'Book Permanently Deleted',
+        customClass: {
+        confirmButton: 'swal2-confirm-custom',
+        cancelButton: 'swal2-cancel-custom',
+            },
+         })
+    })
+</script>
     @endif
 
     <script>

@@ -31,7 +31,7 @@
                                         <td>{{ $reservation->title }}</td>
                                         <td>{{ $reservation->author }}</td>
                                         <td>{{ $reservation->reservation_status }}</td>
-                                        <td class="action-btn" style="width: 20%;"><i class="fa-regular fa-eye px-2"></i>
+                                        <td class="action-btn reserve" style="width: 20%;"><i class="fa-regular fa-eye px-2"></i>
                                             <i class="fa-regular fa-pen-to-square px-2"></i>
                                             <i class="fa-regular fa-trash-can px-2"></i>
                                         </td>

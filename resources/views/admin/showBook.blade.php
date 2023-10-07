@@ -14,7 +14,11 @@
             <div class="flex justify-center">
 
                 <div class="table-container p-6">
-                    <p class="text-lg font-bold pb-4">Book Catalog</p>
+                    <div class="flex justify-between items-center w-full">
+                        <p class="text-lg font-bold">Book Catalog</p>
+                        <button class="admin-container__add-book-btn p-2"><i class="fa-solid fa-circle-plus"></i> Add
+                            Book</button>
+                    </div>
                     <table class="table-auto">
                         <thead>
                             <tr>
@@ -31,19 +35,24 @@
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->isbn }}</td>
-                                <td class="action-btn book flex justify-center items-center" style="width: 100%;"><i class="fa-regular fa-eye px-2"
-                                        data-book-id="{{$book->id}}"></i>
+                                <td class="action-btn book flex justify-center items-center" style="width: 100%;"><i
+                                        class="fa-regular fa-eye px-2" data-book-id="{{$book->id}}"></i>
                                     <i class="fa-regular fa-pen-to-square px-2" data-book-id="{{$book->id}}"></i>
-                                    <form class="delete-book-form" action="{{route('book.delete', ['book' => $book->id])}}" method="POST">
+                                    <form class="delete-book-form"
+                                        action="{{route('book.delete', ['book' => $book->id])}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button  data-book-id="{{$book->id}}" class="btn-delete"> <i class="fa-solid fa-box-archive px-2"></i></button>
+                                        <button data-book-id="{{$book->id}}" class="btn-delete"> <i
+                                                class="fa-solid fa-box-archive px-2"></i></button>
                                     </form>
                                 </td>
 
                             </tr>
                             @empty
-                            <td class="table__no-record" colspan="5"><p class="text-xl font-bold"><i class="fa-solid fa-circle-exclamation"></i> No records found</p></td>
+                            <td class="table__no-record" colspan="5">
+                                <p class="text-xl font-bold"><i class="fa-solid fa-circle-exclamation"></i> No records
+                                    found</p>
+                            </td>
                             @endforelse
                         </tbody>
                     </table>
@@ -57,6 +66,7 @@
 
     @include('modal.admin.bookDetail')
     @include('modal.admin.editBookDetail')
+    @include('modal.admin.add.addBook')
 
     @if(session('success'))
     <script>
@@ -64,8 +74,43 @@
         Swal.fire({
             icon: 'success',
             title: 'Changes were saved',
-         })
+            customClass: {
+            confirmButton: 'swal2-confirm-custom',
+            cancelButton: 'swal2-cancel-custom',
+                },
+            })
         })
+    </script>
+    @endif
+
+    @if(session('add'))
+    <script>
+        window.addEventListener('load', (e) =>{
+        Swal.fire({
+            icon: 'success',
+            title: 'New Book Added',
+            customClass: {
+            confirmButton: 'swal2-confirm-custom',
+            cancelButton: 'swal2-cancel-custom',
+                },
+            })
+        })
+    </script>
+    @endif
+
+    @if(session('archive'))
+    <script>
+        window.addEventListener('load', (e) =>{
+    Swal.fire({
+        icon: 'warning',
+        title: 'Book Archived',
+        text: 'Book was transferred to the archive module',
+        customClass: {
+        confirmButton: 'swal2-confirm-custom',
+        cancelButton: 'swal2-cancel-custom',
+            },
+        })
+    })
     </script>
     @endif
 
@@ -170,6 +215,32 @@
     </script>
 
     <script>
+        const addBook = document.querySelectorAll('.admin-container__add-book-btn')
+        const modalAddBook = document.querySelectorAll('.main-modal-add-book')
+        const modalAddBookContent = document.querySelectorAll('.main-modal-add-book__modal-content')
+
+        
+        modalClose.forEach((modalCloseEl) => {
+            modalCloseEl.addEventListener('click', (e) => {
+                modalAddBook.forEach((modalAddBookEl) => {
+                    modalAddBookEl.classList.add('hidden')
+                })
+            })
+        })
+
+        addBook.forEach((addBookEl) => {
+            addBookEl.addEventListener('click', (e) => {
+                modalAddBook.forEach((modalAddBookEl) => {
+                    modalAddBookEl.classList.remove('hidden')
+                })
+
+              
+
+            })
+        })
+    </script>
+
+    <script>
         editBook.forEach((editBookEl) => {
             editBookEl.addEventListener('click', (e) => {
                 editModal.forEach((editModalEl) => {
@@ -238,8 +309,8 @@
         })
     </script>
 
-<script>
-    deleteForm.forEach((deleteFormEl) => {
+    <script>
+        deleteForm.forEach((deleteFormEl) => {
         deleteFormEl.addEventListener('submit', (e) => {
             e.preventDefault()
             Swal.fire({
@@ -262,7 +333,7 @@
            
         })
     })
-</script> 
+    </script>
 
 
 </section>

@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookReservationController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AdminController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -56,19 +58,26 @@ Route::put('/user/update', [UserController::class, 'editUser'])->name('user.upda
 
 
 
-Route::get('/admin', [UserController::class, 'adminHome'])->name('admin');
-Route::get('/admin/ShowUser', [UserController::class, 'showUser'])->name('admin.showUser');
-Route::get('/admin/ShowBook', [UserController::class, 'showBook'])->name('admin.showBook');
-Route::get('/admin/showReservation',[UserController::class, 'showReservation'])->name('admin.showReservation');
+Route::controller(AdminController::class)->group(function(){
+    // Admin Pages
+    Route::get('/admin', 'adminHome')->name('admin');
+    Route::get('/admin/ShowUser',  'showUser')->name('admin.showUser');
+    Route::get('/admin/ShowBook',  'showBook')->name('admin.showBook');
+    Route::get('/admin/showReservation', 'showReservation')->name('admin.showReservation');
+    Route::get('/admin/archive',  'archiveBook')->name('book.archive');
+    Route::get('admin/SuspendedUsers',  'showSuspended')->name('admin.suspend');
+});
+
 Route::put('/admin/SuspendUser', [UserController::class, 'suspendUser'])->name('user.suspend');
 Route::put('/admin/RestoreUser', [UserController::class, 'restoreUser'])->name('user.restore');
 
-Route::put('/books', [BookController::class, 'updateBook'])->name('book.update');
 
-Route::delete('/books/{book}/delete', [BookController::class, 'deleteBook'])->name('book.delete')->withTrashed();
-Route::post('/books/{book}/restore', [BookController::class, 'restoreBook'])->name('book.restore')->withTrashed();
+Route::controller(BookController::class)->group(function(){
+    Route::post('/books/create', 'storeBook')->name('book.create');
+    Route::put('/books', 'updateBook')->name('book.update');
+    Route::delete('/books/{book}/delete', 'deleteBook')->name('book.delete')->withTrashed();
+    Route::post('/books/{book}/restore', 'restoreBook')->name('book.restore')->withTrashed();
+});
 
-Route::get('/books/archive', [BookController::class, 'archiveBook'])->name('book.archive');
-Route::get('admin/user/SuspendedUsers', [UserController::class, 'showSuspended'])->name('admin.suspend');
 
 Auth::routes();

@@ -61,7 +61,11 @@
     Swal.fire({
         icon: 'success',
         title: 'User Restored',
-        text: 'User account was set to active'
+        text: 'User account was set to active',
+        customClass: {
+        confirmButton: 'swal2-confirm-custom',
+        cancelButton: 'swal2-cancel-custom',
+                },
 
             })
         })   

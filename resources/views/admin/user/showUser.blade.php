@@ -66,8 +66,12 @@
         Swal.fire({
             icon: 'warning',
             title: 'User Suspended',
-            text: 'You can view the account at the "Suspended Users" module'
-        })
+            text: 'You can view the account at the "Suspended Users" module',
+            customClass: {
+            confirmButton: 'swal2-confirm-custom',
+            cancelButton: 'swal2-cancel-custom',
+                },
+            })
     })   
     </script>
     @endif

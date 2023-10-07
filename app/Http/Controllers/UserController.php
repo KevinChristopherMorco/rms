@@ -73,29 +73,6 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
-    public function adminHome()
-    {
-        $userCount = User::count();
-        return view('admin.dashboard', compact('userCount'));
-    }
-
-    public function showUser()
-    {
-        $data = array('users' => DB::table('users')->orderBy('created_at')->whereNot('status', 'Suspended') ->paginate(8));
-        return view('admin.user.showUser', $data);
-    }
-    public function showBook()
-    {
-        $books = array('books' => Book::orderBy('id', 'asc')->paginate(8));
-        return view('admin.showBook', $books);
-    }
-
-    public function showReservation()
-    {
-        $bookReservation = array('reservations' => DB::table('books')->join('book_reservations', 'books.id', '=', "book_reservations.book_id")->join('users', 'book_reservations.user_id', '=', 'users.id')->select('books.*', 'book_reservations.*', 'users.*')->paginate(10));
-        return view('admin.showReservation', $bookReservation);
-    }
-
     public function findUserId($id)
     {
         $user = User::findOrFail($id);
@@ -123,11 +100,7 @@ class UserController extends Controller
         return redirect()->route('admin.showUser')->with('userSuspend', 'User Suspended');
     }
 
-    public function showSuspended()
-    {
-        $user = array('users' => User::where('status', 'Suspended')->orderBy('last_name','asc')->paginate(8));
-        return view('admin.user.showSuspended', $user);
-    }
+ 
     public function restoreUser(Request $request)
     {
         $id = $request->input('user_id');
